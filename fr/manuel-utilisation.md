@@ -1,25 +1,9 @@
 ---
-title: Documentation de Cosma
-author:
-- Guillaume Brioudes <https://myllaume.fr/>
-- Arthur Perret <https://www.arthurperret.fr/>
+title: Manuel utilisateur de Cosma
 date: 2021-11-19
-lang: fr
+flag: fr
 layout: doc
 ---
-
-::: sommaire
-#. [Présentation](#presentation)
-#. [Installation](#installation)
-#. [Créer du contenu](#creer-du-contenu)
-#. [Créer un cosmoscope](#creer-un-cosmoscope)
-#. [Historique](#historique)
-#. [Utilisation du cosmoscope](#utilisation-du-cosmoscope)
-#. [Partager un cosmoscope](#partager-un-cosmoscope)
-#. [Configuration](#configuration)
-#. [Cosma CLI](#cosma-cli)
-#. [Développement](#developpement)
-:::
 
 # Présentation
 
