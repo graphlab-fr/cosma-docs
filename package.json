@@ -1,0 +1,26 @@
+{
+  "name": "cosma-docs",
+  "version": "2.0.0",
+  "description": "Documentation for users and developpers of Cosma software.",
+  "homepage": "https://cosma.graphlab.fr/docs/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graphlab-fr/cosma-docs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/graphlab-fr/cosma-docs/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve"
+  },
+  "contributors": [
+    "Arthur Perret",
+    "Guillaume Brioudes"
+  ],
+  "license": "GNU GPL 3.0",
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "@11ty/eleventy": "^0.12.1"
+  }
+}

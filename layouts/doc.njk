@@ -1,0 +1,14 @@
+<!doctype html>
+{% include "head.njk" %}
+
+<body>
+    {% include "header-doc.njk" %}
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    {% include "footer.njk" %}
+</body>
+
+</html>
