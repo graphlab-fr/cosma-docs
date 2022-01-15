@@ -17,7 +17,13 @@ module.exports = function(e) {
             breaks: true,
             linkify: true
         })
-        .use(require('markdown-it-anchor'))
+        .use(require('markdown-it-anchor'), {
+                slugify: s => require('slugify')(s, {
+                    remove: /[&*+~.'"!:@]/g,
+                    lower: true
+                })
+            }
+        )
         .use(require('markdown-it-deflist'))
         .use(markdown_it_container, 'important')
         .use(markdown_it_container, 'astuce')
