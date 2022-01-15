@@ -1,10 +1,15 @@
 const markdown_it_container = require('markdown-it-container');
 
+const plugin_toc = require('eleventy-plugin-toc');
+
 module.exports = function(e) {
     // read YAML data from 'data' folder
     e.addDataExtension("yml", contents => require("js-yaml").load(contents));
 
-    e.addPlugin(require('eleventy-plugin-toc'));
+    e.addPlugin(plugin_toc, {
+      tags: ['h2', 'h3'],
+    	ul: true
+    });
 
     e.setLibrary("md",
         require("markdown-it")({

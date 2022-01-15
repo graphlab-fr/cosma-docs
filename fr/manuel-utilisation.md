@@ -5,7 +5,7 @@ flag: fr
 layout: doc
 ---
 
-# Présentation
+## Présentation
 
 Cosma est un logiciel de visualisation de graphe documentaire. Il permet de représenter des notes interreliées sous la forme d’un réseau interactif dans une interface web. Le logiciel est conçu pour fonctionner avec des fichiers texte en Markdown et s’adapte aussi bien à une petite collection (centaine de documents) qu’à une vaste documentation (jusqu'à plusieurs milliers de documents).
 
@@ -13,7 +13,7 @@ Cosma est développé dans le cadre du programme de recherche ANR [HyperOtlet](h
 
 [![L'interface de Cosma](https://hyperotlet.huma-num.fr/cosma/img/cosma-main-screenshot.png)](https://hyperotlet.huma-num.fr/cosma/img/cosma-main-screenshot.png)
 
-## Spécificités de Cosma
+### Spécificités de Cosma
 
 Dans le vaste champ des outils qui servent à penser (*tools for thought*), Cosma se démarque par **trois originalités** :
 
@@ -25,7 +25,7 @@ Enfin, **Cosma permet de partager simultanément les données et les outils pour
 
 [![Le cosmoscope au cœur de Cosma est un fichier HTML autonome](https://hyperotlet.huma-num.fr/cosma/img/cosma-cosmoscope-html.png)](https://hyperotlet.huma-num.fr/cosma/img/cosma-cosmoscope-html.png)
 
-## Un degré élevé de contrôle utilisateur
+### Un degré élevé de contrôle utilisateur
 
 Cosma est conçu pour laisser un degré élevé de contrôle à ses utilisateurs.
 
@@ -37,7 +37,7 @@ Troisièmement, **des enrichissements documentaires (métadonnées) et sémantiq
 
 Quatrièmement, Cosma est un logiciel modulaire, interopérable et portable mais surtout, **c'est un logiciel libre** : le code est public, son développement est documenté, il est accessible et réutilisable gratuitement sous licence GNU GPL 3.0. Le travail peut ainsi être évalué, archivé et continué par d'autres.
 
-## Un logiciel expérimental
+### Un logiciel expérimental
 
 Enfin, Cosma est un logiciel expérimental, développé dans le cadre d'une démarche de recherche-conception.
 
@@ -54,7 +54,7 @@ La première version de Cosma, rétroactivement libellée alpha, est archivée s
 > Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (alpha). Zenodo. <https://doi.org/10.5281/zenodo.4734377>
 
 
-# Installation
+## Installation
 
 Cosma est disponible pour macOS et Windows. [Visitez la page Releases pour obtenir la dernière version du logiciel.](https://github.com/graphlab-fr/cosma/releases/latest) L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.
 
@@ -68,13 +68,13 @@ Sur Windows
 Depuis le dépôt Cosma-help, [téléchargez un répertoire de fiches d'exemple](https://github.com/graphlab-fr/cosma-help/archive/refs/heads/main.zip). Après avoir décompressé `cosma-help-main.zip` vous pouvez utiliser ces fiches pour tester Cosma et les lire pour apprendre à utiliser le logiciel. Indiquez le chemin du répertoire dans Préférences (`Ctrl + o` ou `Cmd + ,`) › Général › Répertoire des fiches.
 :::
 
-# Créer du contenu
+## Créer du contenu
 
 ::: important
 Pour créer du contenu dans Cosma, il faut d'abord indiquer un répertoire dans Préférences (`Ctrl + o` ou `Cmd + ,`) › Général › Répertoire des fiches. Le répertoire peut être vide ou contenir des fiches. Cosma ignore les sous-répertoires éventuels : seules les fiches présentes immédiatement au niveau du répertoire sont prises en compte.
 :::
 
-## Créer une fiche
+### Créer une fiche
 
 Cliquez sur Fichier › Nouvelle fiche (`Ctrl/Cmd + N`) pour ouvrir le formulaire de création de fiche de Cosma.
 
@@ -86,7 +86,7 @@ Cliquez sur OK crée une fiche dans le répertoire indiqué dans Préférences �
 Afin de garantir la pérennité de vos fichiers et leur enregistrement, certains caractères comme les accents sont remplacés (ex : `é` devient `e`).
 :::
 
-## Format de données
+### Format de données
 
 Cosma ne prescrit pas l'utilisation d'un logiciel d'écriture particulier. En revanche, seuls les fichiers Mardown (`.md`) répondant à certaines normes d'écriture sont analysés par le logiciel :
 
@@ -101,7 +101,7 @@ Cette combinaison de normes d'écriture correspond au croisement de plusieurs cu
 
 Vous pouvez créer un fichier conforme pour Cosma via le formulaire de l'application (cliquez sur Fichier › Nouvelle fiche ou tapez `Ctrl + N`) ou bien en passant directement par votre éditeur de texte préféré. Certains éditeurs de texte peuvent vous faire gagner du temps en vous permettant d'enregistrer des modèles de documents, ce que vous pouvez utiliser pour créer rapidement des fiches à destination de Cosma.
 
-### Métadonnées
+#### Métadonnées
 
 Pour être correctement interprétés par Cosma, les fichiers Markdown (`.md`) doivent respecter une certaine structure, et notamment la présence d'un en-tête en [YAML](http://yaml.org) au début du fichier.
 
@@ -162,13 +162,13 @@ L'inconvénient de ce fonctionnement est qu'il n'est pas interopérable : chaque
 Utiliser un en-tête en YAML permet de déclarer des métadonnées comme le titre et l'identifiant unique d'une fiche de manière **explicite**. Ceci présente l'avantage de rendre triviale la détection et la manipulation de ces métadonnées, aussi bien par une machine que par un humain. L'utilisation d'un format commun (comme YAML) augmente le nombre d'outils compatibles avec un même ensemble de fichiers. Et des outils informatiques très répandus comme les expressions régulières et les scripts *shell* permettent aux utilisateurs de convertir eux-mêmes leurs données de manière relativement simple si besoin.
 :::
 
-### Contenu
+#### Contenu
 
 Cosma interprète les fichiers en analysant leur contenu (suivant l'en-tête YAML) selon la syntaxe Markdown [CommonMark](https://spec.commonmark.org/0.30/) afin de rendre les fiches. Vous pouvez [suivre ce tutoriel pour apprendre les bases de ce mode d'écriture](https://www.arthurperret.fr/tutomd/).
 
 Le rendu des fichiers Markdown sous forme de fiche HTML dans le cosmoscope est limité aux éléments textuels (Markdown, HTML, SVG etc.). Les **images** *bitmap* peuvent être incluses en indiquant un lien vers leur emplacement. Toutefois, elles ne seront pas intégrées à l'export : si le lien est brisé, l'image disparaît et est remplacée par son texte alternatif le cas échéant.
 
-### Liens
+#### Liens
 
 À l'intérieur des fiches, vous pouvez créer des liens avec l'identifiant de la fiche cible (inscrit dans son en-tête YAML) entre double crochets. Cosma reconnaît ces liens et les utilise pour modéliser le graphe des fiches.
 
@@ -192,7 +192,7 @@ La personne D a écrit contre [[opposant:20201209111625]] la personne C.
 Cosma inclut également une option pour personnaliser l'apparence des liens dans le texte des fiches. Dans Préférences › Symbole de lien, entrez n'importe quelle chaîne de caractères Unicode qui remplacera l'identifiant entre les crochets dans le rendu HTML des fiches.
 :::
 
-### Identifiants uniques
+#### Identifiants uniques
 
 De nombreux logiciels de prise de notes interreliées proposent d'établir les liens entre fichiers via leurs noms, et de gérer automatiquement la maintenance des liens lorsque les noms de fichiers sont modifiés.
 
@@ -204,13 +204,13 @@ Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (ann�
 L'inconvénient d'un lien basé sur un identifiant unique, c'est qu'il peut gêner la lecture du contenu, notamment lorsque l'identifiant est une longue série de chiffres. Ajouter un symbole de remplacement dans Préférences (`Ctrl + o` ou `Cmd + ,`) › Symbole de lien pour alléger visuellement le texte de vos fiches en remplaçant les identifiants par une convention personnelle (par exemple une petite manicule : ☞).
 :::
 
-# Créer un cosmoscope
+## Créer un cosmoscope
 
 Cliquez sur Nouveau cosmoscope (raccourci : `Cmd/Ctrl + R`) pour lancer la génération d'un nouveau cosmoscope. Il s'affiche automatiquement dans l'interface du logiciel.
 
 Cosma crée automatiquement un rapport d'erreurs qui décrit les problèmes éventuellement rencontrés durant la génération d'un cosmoscope. Cliquez sur Fichier › Historique… (`Cmd/Ctrl + H`) et séletionnez une entrée pour consulter le rapport d'erreurs associé.
 
-### Citations et bibliographies
+#### Citations et bibliographies
 
 Cosma intègre une fonctionnalité de traitement des citations qui repose sur le même écosystème que Zettlr : des données et styles bibliographiques respectant la norme CSL, et la syntaxe définie par Pandoc pour insérer des citations dans un texte.
 
@@ -243,7 +243,7 @@ Vous devez relier un fichier de traduction des mots-clés de la notice bibliogra
 
 Les données CSL JSON correspondant aux références citées sont enregistrées dans le cosmoscope au format JSON. Vous pouvez retrouver et télécharger ces données en cliquant sur le lien « Données », au bas du menu latéral gauche. Dans le code source du cosmoscope, elles se situent sous la balise `<article id="citation-references">`.
 
-# Historique
+## Historique
 
 Par défaut, Cosma exporte automatiquement chaque cosmoscope horodaté répertoire temporaire  `cosma-history` localisé par le système d'exploitation. Cliquez sur Préférences (`Ctrl + o` ou `Cmd + ,`) › Enregistrer automatiquement les cosmoscopes dans l'historique pour activer ou désactiver l'enregistrement automatique.
 
@@ -269,9 +269,9 @@ Supprimer
 Vider l'historique…
 : Supprimer le répertoire temporaire `cosma-history` et toutes les entrées d'historique contenues.
 
-# Utilisation du cosmoscope
+## Utilisation du cosmoscope
 
-## Description générale de l'interface
+### Description générale de l'interface
 
 L'interface de Cosma est organisée en trois colonnes :
 
@@ -291,7 +291,7 @@ Vous retrouverez la même interface, les mêmes raccourcis et outils de visualis
 Refaire ce schéma annoté avec les nouvelles captures d'écran
 -->
 
-## Graphe
+### Graphe
 
 Le graphe situé dans la zone centrale de l'interface affiche des nœuds étiquetés et interreliés. Chaque nœud correspond à une fiche ; l'étiquette correspond au titre de la fiche. Les liens correspondent aux liens établis entre les fiches via leur identifiant.
 
@@ -315,7 +315,7 @@ Modifiez la force et la distance maximale entre les nœuds pour adapter l'affich
 
 L'affichage est possible sur tous types d'écrans mais n'est pas optimisé pour les terminaux mobiles : le tactile ne donne pas accès à certaines interactions comme le survol, et les petits écrans restreignent l'utilité du graphe.
 
-## Fiches
+### Fiches
 
 Les fiches peuvent êtres ouvertes en cliquant sur un nœud, une entrée de l'index, une suggestion du moteur de recherche, ou un lien dans le corps ou le pied d'une fiche. Ouvrir une fiche affiche son contenu dans le panneau latéral droit.
 
@@ -333,7 +333,7 @@ Cliquez sur Préférences (`Ctrl + o` ou `Cmd + ,`) › Symbole de lien pour sai
 
 En bas de la fiche se trouve une liste des fiches vers lesquelles elle renvoie (liens sortants), ainsi que des fiches qui pointent vers elles (liens entrants ou rétroliens). Les liens et rétroliens sont **contextualisés** : au survol, une infobulle s'affiche, montrant le paragraphe dans lequel ce lien se trouve dans la fiche correspondante.
 
-## Mode focus
+### Mode focus
 
 Le bouton Activer le focus (raccourci : touche `F`) situé en bas à gauche du graphe permet de restreindre l'affichage au nœud sélectionné : en mode focus, seules les connexions directes à la fiche sélectionnée sont affichées dans l'interface. Le mode focus ne fonctionne que si vous avez sélectionné une fiche.
 
@@ -345,7 +345,7 @@ Le curseur qui apparaît sous le bouton Activer le focus permet de faire varier 
 Le curseur du niveau de focus est contrôlable via les flèches du clavier. Vous pouvez enchaîner les raccourcis : `F` pour activer le focus, puis les flèches pour augmenter le niveau de focus.
 :::
 
-## Moteur de recherche
+### Moteur de recherche
 
 Le champ de texte situé en haut du panneau latéral gauche est un moteur de recherche qui fonctionne sur les titres de fiches. Il suggère une liste de fiches dont le titre est le plus proche de ce que vous saisissez dans la barre de recherche (*fuzzy search*). Cliquer sur une suggestion sélectionne le nœud correspondant dans le graphe et ouvre la fiche correspondante dans le panneau latéral de droite.
 
@@ -353,27 +353,27 @@ Le champ de texte situé en haut du panneau latéral gauche est un moteur de rec
 Les suggestions disponibles sont contraintes par les [filtres](#filtrer-laffichage-par-types) et le [mode focus](#mode-focus) : une fiche masquée par l'une l'autre de ces fonctionnalités ne sera pas accessible via le moteur de recherche. Lorsque vous voulez repartir de zéro pour une nouvelle requête, vous pouvez cliquer sur Réinitialiser l'affichage (raccourci : `Alt` + `R`).
 :::
 
-## Filtrer l'affichage par types
+### Filtrer l'affichage par types
 
 La liste des types de fiches située en haut du panneau latéral gauche permet de filtrer l'affichage. Cliquer sur un type permet de masquer et réafficher les fiches du type correspondant dans le graphe, l'index et les suggestions du moteur de recherche. Cliquer sur un type en maintenant la touche `Alt` enfoncée permet de masquer et réafficher les fiches des autres types.
 
 Pour qu'un type apparaisse, il doit être déclaré dans Préférences (`Ctrl + o` ou `Cmd + ,`) › Types de fiches et être attribué à au moins une fiche.
 
-## Mots-clés
+### Mots-clés
 
 La liste des mots-clés située dans le panneau latéral gauche permet de mettre en évidence les fiches qui utilisent chaque mot-clé sélectionné. Sélectionner un mot-clé met en surbrillance l'étiquette des nœuds correspondants dans le graphe et restreint l'index aux fiches correspondantes. Vous pouvez activer simultanément plusieurs mots-clés. Pour désactiver un mot-clé, cliquez à nouveau sur le bouton correspondant.
 
 Pour qu'un mot-clé apparaisse, il suffit qu'il ait été déclaré dans l'en-tête YAML d'au moins une fiche avec le champ `tags` .
 
-## Index
+### Index
 
 L'index alphabétique des fiches situé dans le panneau latéral gauche permet d'accéder directement à une fiche sans passer par le graphe. Cliquer sur un titre sélectionne le nœud correspondant dans le graphe et ouvre la fiche correspondante. L'index peut être trié par ordre alphabétique croissant ou décroissant. Les filtres, les mots-clés et le mode focus modifient l'affichage de l'index.
 
-## Vues
+### Vues
 
 À tout moment, l'état du graphe (fiche sélectionnée, filtres actifs, mode focus) peut être sauvegardé pour un accès rapide. Ceci fonctionne comme un marque-page. Cliquez sur le bouton Sauvegarder la vue et indiquez un nom. Ceci ajoute un bouton éponyme dans la section Vues du panneau latéral gauche. Cliquer sur ce bouton applique tous les paramètres qui étaient actifs au moment de l'enregistrement de la vue. Cliquer à nouveau sur le bouton rétablit l'affichage normal.
 
-# Partager un cosmoscope
+## Partager un cosmoscope
 
 Cliquez sur Fichier › Partager (`Cmd/Ctrl + E`) pour lancer la génération d'un cosmoscope destiné à être partagé.
 
@@ -395,13 +395,13 @@ Vous pouvez envoyer un lien vers une fiche en particulier en ajoutant son identi
 
 `https://domaine.fr/cosmoscope.html#20210427185546`
 
-# Configuration
+## Configuration
 
 Cliquez sur Préférences (`Ctrl + o` ou `Cmd + ,`) pour configurer Cosma.
 
 Pour utiliser le logiciel, vous devez impérativement sélectionner dans l'option Général › Répertoire des fiches un répertoire cible d'où sont importés les fichiers Mardown (fiches). Ce répertoire peut être vide ; il en résultera un graphe vide, mais vous pourrez y ajouter des fiches via Fichier › Nouvelle fiche… (`Cmd/Ctrl + N`)
 
-## Général
+### Général
 
 Sélectionner une langue d'affichage
 : Vous choissiez la langue que vous souhaitez appliquer à l'interface de l'application ainsi qu'au cosmoscope générés et exportés.
@@ -416,7 +416,7 @@ Enregistrer automatiquement les cosmoscopes dans l’historique
 Symbole de lien
 : Saisissez ici une chaîne de caractères Unicode arbitraire. Elle remplacera les identifiants entre les crochets dans le rendu HTML des fiches. Ceci permet d'alléger visuellement le texte de vos fiches en remplaçant les longs identifiants numériques par une convention personnelle (par exemple une petite manicule : ☞).
 
-## Types de fiches
+### Types de fiches
 
 Liste des types de fiches. Chaque type est défini par un nom et une couleur prévisualisée dans le sélecteur, puis dans le tableau. Ajoutez `type: nom` à l'en-tête en YAML d'une fiche pour lui attribuer ce type et ainsi attribuer une couleur au nœud correspondant à la fiche.
 
@@ -424,7 +424,7 @@ Liste des types de fiches. Chaque type est défini par un nom et une couleur pr�
 Le type "undefined" (couleur par défaut des nœuds) peut être modifié, mais ne peut être retiré.
 :::
 
-## Types de liens
+### Types de liens
 
 Liste des types de liens. Chaque type est défini par un nom, une couleur et un type de trait. Les types de traits disponibles sont :
 
@@ -445,7 +445,7 @@ Le paramétrage visuel des liens a une incidence sur leur lisibilité au sein du
 
 ![Exemple de configuration des types de liens](https://hyperotlet.huma-num.fr/cosma/img/link-types.png)
 
-## Graphe
+### Graphe
 
 Couleur de fond
 : La couleur de fond du graphe.
@@ -480,7 +480,7 @@ Distance maximum entre les nœuds
 Attraction verticale/horizontale
 : Force d'attraction vers l'axe vertical/horizontal, de 0 à 1. Une valeur de `0` signifie que le paramètre est désactivé. Appliquer une force verticale/horizontale resserre le graphe et permet de ramener plus près du centre les nœuds isolés.
 
-## Métadonnées
+### Métadonnées
 
 Les champs suivants sont intégrés à l'en-tête (`<head>`) du code source des cosmoscope exportés.
 
@@ -490,15 +490,15 @@ Titre
 Auteur, Mots-clés, Description
 : Notés dans le panneau latéral droit au clique sur le bouton À propos.
 
-## Bibliographie
+### Bibliographie
 
 Indiquez ici les chemins des fichiers de données, style et localisation bibliographique. Les trois fichiers sont requis pour le traitement des citations.
 
-## Vues
+### Vues
 
 Gérez ici les vues enregistrées dans le cosmoscope.
 
-## Avancé
+### Avancé
 
 Afficher les outils de développement
 : Cette option permet d'afficher les outils de développement du logiciel depuis Affichage › Outils de développement. Cliquez sur Afficher l'inspecteur web pour inspecter le code de l'interface de Cosma.
@@ -525,17 +525,17 @@ Les feuilles de style du cosmoscope utilisent notamment des variables CSS pour d
 ```
 :::
 
-# Cosma CLI
+## Cosma CLI
 
 En plus de l'interface graphique de Cosma ("GUI"), nous proposons une interface en ligne de commande ("CLI"). Cette dernière vous permet, comme avec l'interface graphique, de générer des cosmoscopes. La différence est que la génération, la création de fiches et la configuration se font avec des lignes de commandes.
 
-## Téléchargement et installation
+### Téléchargement et installation
 
 Vous pouvez télécharger cette interface de Cosma sur le [dépôt Cosma-Cli](https://github.com/graphlab-fr/cosma-cli). Après avoir décompresser le répertoire, vous pouvez le placer où vous le souhaitez.
 
 Elle requière l'installation préalable de [NodeJS](https://nodejs.org/), version 16 minimum.
 
-## Commandes
+### Commandes
 
 Pour entrer les commandes suivantes, vous devez ouvrir un terminal à la racine du dépôt de Cosma-cli que vous avez décompressé.
 
@@ -620,7 +620,7 @@ node app modelize --publish --citeproc --load_css_custom
 node app m -p -c -css
 ```
 
-## Configuration
+### Configuration
 
 La configuration est un fichier YAML `config.yml` à la racine du répertoire. Il est généré par Cosma-Cli avec les paramètres par défaut si un fichier du même nom n'existe pas.
 
@@ -669,16 +669,16 @@ node app m -s
 node app m -l:"en" -s
 ```
 
-# Crédits
+## Crédits
 
-## Équipe
+### Équipe
 
 - [Arthur Perret](https://www.arthurperret.fr/) (porteur du projet)
 - [Guillaume Brioudes](https://myllaume.fr/) (développeur)
 - [Clément Borel](https://mica.u-bordeaux-montaigne.fr/borel-clement/) (chercheur)
 - [Olivier Le Deuff](http://www.guidedesegares.info/) (chercheur)
 
-## Bibliothèques utilisées
+### Bibliothèques utilisées
 
 Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes.
 
