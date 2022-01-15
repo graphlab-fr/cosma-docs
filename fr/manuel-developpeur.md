@@ -7,7 +7,8 @@ layout: doc
 
 Cette documentation est destinée aux développeurs souhaitant participer ou reprendre le projet (code source) Cosma. Nous vous recommandons vivement de lire la documentation des utilisateurs pour bien saisir l'ensemble des usages en jeu dans le code source présenté ci-dessous.
 
-Cosma repose sur l'environnement de développement NodeJS et les **technologies du Web** (HTML, CSS). Il est intégralement développé en JavaScript (ES2019). Une bonne connaissance de ces langages est requise.
+Cosma repose sur l'environnement de développement NodeJS et les **technologies du Web** (HTML, CSS). Il est intégralement développé en JavaScript (ES2019). Une bonne connaissance de ces langages est requise pour modifier le cœur de Cosma ou son interface en ligne de commande Cosma-cli.
+Modifier l'interface graphique nécessite en plus de maîtriser le *framework* [ElectronJS](https://www.electronjs.org/).
 
 # Code source
 
@@ -21,6 +22,34 @@ Ces fonctionnalités peuvent être utilisées via deux interfaces, stockées dan
 
 - Interface graphique (GUI), basée sur le *framework* [Electron,](https://www.electronjs.org/) stockée dans le dépôt [Cosma](https://github.com/graphlab-fr/cosma)
 - Interface en ligne de commande (CLI) stockée dans le dépôt [Cosma-cli](https://github.com/graphlab-fr/cosma-cli)
+
+# Architecture du logiciel
+
+## Vue générale
+
+Cosma est principalement implémenté en JavaScript. Le logiciel repose sur deux systèmes distincts, le cosmographe et le cosmoscope, programmées dans le [dépôt Cosma-core](https://github.com/graphlab-fr/cosma-core).
+
+Le **cosmographe** repose sur l'environnement Node.js. Il s'agit d'une série d'objets (`/cosma-core/models`) listés ci-dessous constituant l'API (interface de programmation) de Cosma. Elle permet d'appeler les principales fonctionnalités comme la création de fiche ou la génération de cosmoscopes. Cette API est manipulée par les deux interfaces que sont Cosma-Gui et Cosma-Cli pour rendre le même comoscope.
+
+- `Config.js` : vérifier et actualiser le fichier de configuration ;
+- `Record.js` :  générer des fichiers Markdown et leur entête ;
+- `Graph.js` : lire un répertoire pour en extraire les fichiers Markdown et analyser leur contenu (Markdown, métadonnées YAML et liens style wiki) afin de générer des données JSON ;
+- `Template.js` : assembler HTML (`/cosma-core/template.njk` et `/cosma-core/icons/**.svg`), CSS (`/cosma-core/**.css` et depuis `Graph.js`), JavaScript (`/cosma-core/scripts/**.js` et `/cosma-core/libs/**.js`) et données JSON (depuis `Graph.js`) pour rendre un cosmoscope ;
+- `Lang.js` : traduire les éléments d'interface depuis le fichier multilingue `/cosma-core/lang.yml`.
+
+Le **cosmoscope** est un fichier `.html` intégrant les éléments listés ci-dessous et généré via `Template.js`. Il peut être rendu sur navigateur web, que ce soit Chromium pour afficher le comoscope dans l'application ElectronJS, ou un autre navigateur choisi par un utilisateur pour lire un comoscope.
+
+- métadonnées (titre, auteur, description, mots-clés issus de la configuration) ;
+- styles (CSS) issus de `/cosma-core` et de la configuration (types de fiches, de liens, couleur de surbrillance…)
+- scripts et bibliothèques JavaScript (outils de visualisation et de navigation) ;
+- des index (mots-clés, titre de fiche, vues) ;
+- les fiches.
+
+## Interfaces des classes
+
+L'objet `Config.js` (`/cosma-core/models/config.js`) est connecté à tous les autres objets de Cosma-core. Il permet de retrouver le fichier où est inscrite la configuration (`Config.getFilePath()`) en fonction de l'envrionnement (ElectronJS ou pas) et de le rendre (`Config.get()`).
+
+En reposant sur cette première classe
 
 # Terminologie
 
