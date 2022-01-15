@@ -517,9 +517,28 @@ En plus de l'interface graphique de Cosma ("GUI"), nous proposons une interface 
 
 ### Téléchargement et installation
 
-Vous pouvez télécharger cette interface de Cosma sur le [dépôt Cosma-Cli](https://github.com/graphlab-fr/cosma-cli). Après avoir décompresser le répertoire, vous pouvez le placer où vous le souhaitez.
+Vous devez installer [NodeJS](https://nodejs.org/), version 15 minimum.
 
-Elle requière l'installation préalable de [NodeJS](https://nodejs.org/), version 16 minimum.
+Entrer la commande suivante dans votre terminal pour installer Cosma CLI.
+
+```
+npm i @graphlab-fr/cosma -g
+```
+
+### Configuration
+
+La configuration est contenus dans un fichier YAML `config.yml` à la racine du répertoire de l'application. Il est généré par Cosma-Cli avec les paramètres par défaut si un fichier du même nom n'existe pas.
+
+Pour accéder au fichier de configuration et l'éditer, rendez-vous dans le répertoire
+
+- windows : `%USERPROFILE%\AppData\Roaming\npm\node_modules\@graphlab-fr\cosma`
+- macOS, linux : `/usr/local/lib/node_modules\@graphlab-fr\cosma`
+
+La configuration par défaut vous sert de modèle. Elle comporte les mêmes paramètres que l'interface graphique de Cosma. Un paramètre qui n'est pas inscrit dans le fichier a une valeur par défaut.
+
+::: important
+Ne supprimez pas les types "undefined" qui servent à définir l'apparence par défaut des éléments.
+:::
 
 ### Commandes
 
@@ -528,22 +547,22 @@ Pour entrer les commandes suivantes, vous devez ouvrir un terminal à la racine 
 Générer un fichier de configuration modèle :
 
 ```
-node app config
-node app c
+cosma config
+cosma c
 ```
 
 Créer une fiche (mode formulaire) :
 
 ```
-node app record
-node app r
+cosma record
+cosma r
 ```
 
 Créer une fiche (mode *one-liner*) :
 
 ```
-node app autorecord <titre> <type> <mots-clés>
-node app a <titre> <type> <mots-clés>
+cosma autorecord <titre> <type> <mots-clés>
+cosma a <titre> <type> <mots-clés>
 ```
 
 - `<titre>` correspond au titre de la fiche, qui est aussi le nom du fichier généré ;
@@ -553,8 +572,8 @@ node app a <titre> <type> <mots-clés>
 Créer une série de fiches :
 
 ```
-node app batchrecord <path>
-node app b <path>
+cosma batchrecord <path>
+cosma b <path>
 ```
 
 Seuls les fichiers JSON sont pris en charge, pour le moment. Votre fichier (pointé par le `<path>`) doit être formaté comme l'exemple ci-dessous. Les identifiants des fiches générés sont des horodatages arrangés. Ils indiquent l'année, le mois, le jour, mais les heures, minutes et secondes dépassent les horaire normaux (ex : 25 heures, 64 minutes et 95 secondes).
@@ -574,85 +593,75 @@ Seuls les fichiers JSON sont pris en charge, pour le moment. Votre fichier (poin
 Créer un cosmoscope :
 
 ```
-node app modelize
-node app m
+cosma modelize
+cosma m
 ```
 
 Avec citations :
 
 ```
-node app modelize --citeproc
-node app modelize -c
+cosma modelize --citeproc
+cosma modelize -c
 ```
 
 En mode publication :
 
 ```
-node app modelize --publish
-node app m -p
+cosma modelize --publish
+cosma m -p
 ```
 
 En incluant la feuille de style CSS personnalisée
 
 ```
-node app modelize --load_css_custom
-node app m -css
+cosma modelize --load_css_custom
+cosma m -css
 ```
 
 Vous pouvez combiner les différentes options d'export comme suit :
 
 ```
-node app modelize --publish --citeproc --load_css_custom
-node app m -p -c -css
+cosma modelize --publish --citeproc --load_css_custom
+cosma m -p -c -css
 ```
 
-### Configuration
-
-La configuration est un fichier YAML `config.yml` à la racine du répertoire. Il est généré par Cosma-Cli avec les paramètres par défaut si un fichier du même nom n'existe pas.
-
-La configuration par défaut vous sert de modèle. Elle comporte les mêmes paramètres que l'interface graphique de Cosma. Un paramètre qui n'est pas inscrit dans le fichier a une valeur par défaut.
-
-::: important
-Ne supprimez pas les types "undefined" qui servent à définir l'apparence par défaut des éléments.
-:::
-
-Vous pouvez réécrire les paramètres de ce fichier de configuration directement dans votre commande pour générer un cosmoscope.
+Vous pouvez réécrire les paramètres de ce fichier de configuration "à la volée" (uniquement pour cette commande) directement dans la commande pour générer un cosmoscope.
 
 Réécrire le chemin du répertoire des fiches
 
 ```
-node app modelize --files_origin:"D:\fiches"
-node app m -f:"D:\fiches"
+cosma modelize --files_origin:"D:\fiches"
+cosma m -f:"D:\fiches"
 ```
 
 Réécrire le chemin d'export du cosmoscope
 
 ```
-node app modelize --export_target:"C:\desktop"
-node app m -e:"C:\desktop"
+cosma modelize --export_target:"C:\desktop"
+cosma m -e:"C:\desktop"
 ```
 
 Réécrire la langue utilisée
 
 ```
-node app modelize --lang:"en"
-node app m -l:"en"
+cosma modelize --lang:"en"
+cosma m -l:"en"
 ```
 
 Réécrire l'enregistrement de l'historique
 
 ```
-node app modelize --history:false
-node app m -h:false
+cosma modelize --history:false
+cosma m -h:false
 ```
 
 Enregistrer dans la configuration les paramètres réécrits
 
 ```
-node app modelize --save
-node app m -s
+cosma modelize --save
+cosma m -s
 
-node app m -l:"en" -s
+cosma m -l:"en" -s
 ```
 
 ## Crédits
