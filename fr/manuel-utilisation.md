@@ -78,9 +78,13 @@ Pour créer du contenu dans Cosma, il faut d'abord indiquer un répertoire dans 
 
 Cliquez sur Fichier › Nouvelle fiche (`Ctrl/Cmd + N`) pour ouvrir le formulaire de création de fiche de Cosma.
 
-Le titre est obligatoire. Vous pouvez aussi assigner un type à la fiche, à définir préalablement dans la configuration (Préférences › Types de fiche). Vous pouvez également ajouter des mots-clés arbitraires à la fiche, en les séparant par des virgules tel que `mots-clé 1, mot-clé 2`.
+Le titre est obligatoire. Il deviendra le nom du fichier Markdown enregistré. Vous pouvez aussi assigner un type à la fiche, à définir préalablement dans la configuration (Préférences › Types de fiche). Vous pouvez également ajouter des mots-clés arbitraires à la fiche, en les séparant par des virgules tel que `mots-clé 1, mot-clé 2`.
 
 Cliquez sur OK crée une fiche dans le répertoire indiqué dans Préférences › Répertoire des fiches.
+
+::: important
+Afin de garantir la pérennité de vos fichiers et leur enregistrement, certains caractères comme les accents sont remplacés (ex : `é` devient `e`).
+:::
 
 ## Format de données
 
@@ -559,6 +563,27 @@ node app a <titre> <type> <mots-clés>
 - `<titre>` correspond au titre de la fiche, qui est aussi le nom du fichier généré ;
 - `<type>` (facultatif) correspond à l’un des types définis dans la configuration ("undefined" par défaut) ;
 - `<mots-clés>` (facultatif) est une liste de mots-clés séparés par des virgules (sans espaces).
+
+Créer une série de fiches :
+
+```
+node app batchrecord <path>
+node app b <path>
+```
+
+Seuls les fichiers JSON sont pris en charge, pour le moment. Votre fichier (pointé par le `<path>`) doit être formaté comme l'exemple ci-dessous. Les identifiants des fiches générés sont des horodatages arrangés. Ils indiquent l'année, le mois, le jour, mais les heures, minutes et secondes dépassent les horaire normaux (ex : 25 heures, 64 minutes et 95 secondes).
+
+```json
+[
+  {
+    "title": "record name 1",
+    "type": "idea",
+    "tags": "tag 1,tag 2",
+    "content": "Lorem ipsum dolor sit [[20210704100343]] amet, consectetur adipiscing elit."
+  },
+  ...
+]
+```
 
 Créer un cosmoscope :
 
