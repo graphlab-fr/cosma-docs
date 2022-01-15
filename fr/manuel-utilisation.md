@@ -11,31 +11,27 @@ Cosma est un logiciel de visualisation de graphe documentaire. Il permet de repr
 
 Cosma est développé dans le cadre du programme de recherche ANR [HyperOtlet](https://hyperotlet.hypotheses.org/).
 
-[![L'interface de Cosma](https://hyperotlet.huma-num.fr/cosma/img/cosma-main-screenshot.png)](https://hyperotlet.huma-num.fr/cosma/img/cosma-main-screenshot.png)
-
 ### Spécificités de Cosma
 
-Dans le vaste champ des outils qui servent à penser (*tools for thought*), Cosma se démarque par **trois originalités** :
+Dans le vaste champ des outils qui servent à penser (*tools for thought*), Cosma se démarque par trois originalités :
 
-D'abord, **Cosma n'est pas lui-même un logiciel de prise de notes**. Il est pensé pour fonctionner en complémentarité avec ces logiciels. Nous nous sommes inspirés ici du fonctionnement de logiciels comme [Deckset](https://www.deckset.com), qui applique ce principe aux présentations.
+D'abord, Cosma n'est pas lui-même un logiciel de prise de notes. Il est pensé pour fonctionner en complémentarité avec ces logiciels. Nous nous sommes inspirés ici du fonctionnement de logiciels comme [Deckset](https://www.deckset.com), qui applique ce principe aux présentations.
 
-Ensuite, **Cosma repose sur des normes d'écriture interopérables, ouvertes et standardisées**. Ceci accroît la pérennité des données, facilite l'utilisation combinée avec des outils qui partagent ces normes (comme [Zettlr](https://www.zettlr.com)), tout en laissant la possibilité de changer d'outil à tout moment.
+Ensuite, Cosma repose sur des normes d'écriture interopérables, ouvertes et standardisées. Ceci accroît la pérennité des données, facilite l'utilisation combinée avec des outils qui partagent ces normes (comme [Zettlr](https://www.zettlr.com)), tout en laissant la possibilité de changer d'outil à tout moment.
 
-Enfin, **Cosma permet de partager simultanément les données et les outils pour les explorer**. La plupart des outils de visualisation concentrent leurs fonctionnalités dans une application à interface graphique, à partir de laquelle il est possible d'exporter des données structurées ou des images statiques. Cosma inverse cette logique : l'application installée, surnommée **cosmographe**, est un simple outil de création et d'affichage qui accueille un fichier HTML surnommé **cosmoscope** ; c'est ce dernier qui constitue la véritable interface de visualisation, avec un graphe interactif, des outils de navigation interne (index, moteur de recherche, filtres) et le texte intégral des fiches. Or il s'agit d'un fichier autonome, qui inclut aussi les données sources au format JSON et peut être utilisé hors connexion. Ainsi dans Cosma, l'export est aussi puissant que l'application : **en partageant un cosmoscope vous ne transmettez pas seulement des données mais des capacités heuristiques**.
-
-[![Le cosmoscope au cœur de Cosma est un fichier HTML autonome](https://hyperotlet.huma-num.fr/cosma/img/cosma-cosmoscope-html.png)](https://hyperotlet.huma-num.fr/cosma/img/cosma-cosmoscope-html.png)
+Enfin, Cosma permet de partager simultanément les données et les outils pour les explorer. La plupart des outils de visualisation concentrent leurs fonctionnalités dans une application à interface graphique, à partir de laquelle il est possible d'exporter des données structurées ou des images statiques. Cosma inverse cette logique : l'application installée, surnommée cosmographe, est un simple outil de création et d'affichage qui accueille un fichier HTML surnommé cosmoscope ; c'est ce dernier qui constitue la véritable interface de visualisation, avec un graphe interactif, des outils de navigation interne (index, moteur de recherche, filtres) et le texte intégral des fiches. Or il s'agit d'un fichier autonome, qui inclut aussi les données sources au format JSON et peut être utilisé hors connexion. Ainsi dans Cosma, l'export est aussi puissant que l'application : en partageant un cosmoscope vous ne transmettez pas seulement des données mais des capacités heuristiques.
 
 ### Un degré élevé de contrôle utilisateur
 
 Cosma est conçu pour laisser un degré élevé de contrôle à ses utilisateurs.
 
-Premièrement, le logiciel fonctionne avec un répertoire de fichiers au format texte qu'il se contente de lire : utiliser ou désinstaller le logiciel n'altérera pas vos fichiers et vous permet donc de mettre en œuvre les pratiques de stockage, de versionnement et d'édition de votre choix. De cette manière, **si le logiciel s'envole les données restent**.
+Premièrement, le logiciel fonctionne avec un répertoire de fichiers au format texte qu'il se contente de lire : utiliser ou désinstaller le logiciel n'altérera pas vos fichiers et vous permet donc de mettre en œuvre les pratiques de stockage, de versionnement et d'édition de votre choix. De cette manière, si le logiciel s'envole les données restent.
 
-Deuxièmement, **de nombreux éléments d'interface sont personnalisables** : algorithme de dessin de réseau, couleurs des nœuds, tracé des liens, raccourcis vers des vues particulières, etc. Vous pouvez ajouter un fichier de style CSS pour personnaliser l'interface.
+Deuxièmement, de nombreux éléments d'interface sont personnalisables : algorithme de dessin de réseau, couleurs des nœuds, tracé des liens, raccourcis vers des vues particulières, etc. Vous pouvez ajouter un fichier de style CSS pour personnaliser l'interface.
 
-Troisièmement, **des enrichissements documentaires (métadonnées) et sémantiques (qualification des liens) sont possibles** et se font par des mécanismes génériques : l'utilisateur est libre d'appliquer les typologies et ontologies de son choix.
+Troisièmement, des enrichissements documentaires (métadonnées) et sémantiques (qualification des liens) sont possibles et se font par des mécanismes génériques : l'utilisateur est libre d'appliquer les typologies et ontologies de son choix.
 
-Quatrièmement, Cosma est un logiciel modulaire, interopérable et portable mais surtout, **c'est un logiciel libre** : le code est public, son développement est documenté, il est accessible et réutilisable gratuitement sous licence GNU GPL 3.0. Le travail peut ainsi être évalué, archivé et continué par d'autres.
+Quatrièmement, Cosma est un logiciel modulaire, interopérable et portable mais surtout, c'est un logiciel libre : le code est public, son développement est documenté, il est accessible et réutilisable gratuitement sous licence GNU GPL 3.0. Le travail peut ainsi être évalué, archivé et continué par d'autres.
 
 ### Un logiciel expérimental
 
@@ -48,11 +44,6 @@ Néanmoins, des efforts importants ont été entrepris dès le prototype pour co
 La version actuelle de Cosma peut être citée dans une bibliographie de la manière suivante :
 
 > Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (1.0). Zenodo. <https://doi.org/10.5281/zenodo.5412315>
-
-La première version de Cosma, rétroactivement libellée alpha, est archivée sur Zenodo. Elle peut être citée dans une bibliographie de la manière suivante :
-
-> Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (alpha). Zenodo. <https://doi.org/10.5281/zenodo.4734377>
-
 
 ## Installation
 
@@ -155,18 +146,18 @@ tags: [mot-clé 1, mot-clé 2]
 Vous pouvez ajouter des champs supplémentaires de manière arbitraire, par exemple un champ `description`.
 
 ::: note
-Certains logiciels établissent une série de présupposés qui servent à identifier les métadonnées d'un fichier de manière **heuristique**. Par exemple, si la première ligne du fichier est un titre de niveau 1, alors il s'agit du titre du fichier ; si la seconde ligne contient des mots préfixés par un croisillon `#`, alors il s'agit de mots-clés.
+Certains logiciels établissent une série de présupposés qui servent à identifier les métadonnées d'un fichier de manière heuristique. Par exemple, si la première ligne du fichier est un titre de niveau 1, alors il s'agit du titre du fichier ; si la seconde ligne contient des mots préfixés par un croisillon `#`, alors il s'agit de mots-clés.
 
 L'inconvénient de ce fonctionnement est qu'il n'est pas interopérable : chaque logiciel a ses propres conventions, ce qui limite la capacité de l'utilisateur à changer d'outil.
 
-Utiliser un en-tête en YAML permet de déclarer des métadonnées comme le titre et l'identifiant unique d'une fiche de manière **explicite**. Ceci présente l'avantage de rendre triviale la détection et la manipulation de ces métadonnées, aussi bien par une machine que par un humain. L'utilisation d'un format commun (comme YAML) augmente le nombre d'outils compatibles avec un même ensemble de fichiers. Et des outils informatiques très répandus comme les expressions régulières et les scripts *shell* permettent aux utilisateurs de convertir eux-mêmes leurs données de manière relativement simple si besoin.
+Utiliser un en-tête en YAML permet de déclarer des métadonnées comme le titre et l'identifiant unique d'une fiche de manière explicite. Ceci présente l'avantage de rendre triviale la détection et la manipulation de ces métadonnées, aussi bien par une machine que par un humain. L'utilisation d'un format commun (comme YAML) augmente le nombre d'outils compatibles avec un même ensemble de fichiers. Et des outils informatiques très répandus comme les expressions régulières et les scripts *shell* permettent aux utilisateurs de convertir eux-mêmes leurs données de manière relativement simple si besoin.
 :::
 
 #### Contenu
 
 Cosma interprète les fichiers en analysant leur contenu (suivant l'en-tête YAML) selon la syntaxe Markdown [CommonMark](https://spec.commonmark.org/0.30/) afin de rendre les fiches. Vous pouvez [suivre ce tutoriel pour apprendre les bases de ce mode d'écriture](https://www.arthurperret.fr/tutomd/).
 
-Le rendu des fichiers Markdown sous forme de fiche HTML dans le cosmoscope est limité aux éléments textuels (Markdown, HTML, SVG etc.). Les **images** *bitmap* peuvent être incluses en indiquant un lien vers leur emplacement. Toutefois, elles ne seront pas intégrées à l'export : si le lien est brisé, l'image disparaît et est remplacée par son texte alternatif le cas échéant.
+Le rendu des fichiers Markdown sous forme de fiche HTML dans le cosmoscope est limité aux éléments textuels (Markdown, HTML, SVG etc.). Les images *bitmap* peuvent être incluses en indiquant un lien vers leur emplacement. Toutefois, elles ne seront pas intégrées à l'export : si le lien est brisé, l'image disparaît et est remplacée par son texte alternatif le cas échéant.
 
 #### Liens
 
@@ -286,11 +277,6 @@ Panneau latéral droit (Fiche)
 
 Vous retrouverez la même interface, les mêmes raccourcis et outils de visualisation dans un cosmoscope ouvert dans l'application Cosma que dans un export ouvert dans un navigateur web. À ceci près que les boutons permettant d'intéragir avec l'application ne s'affichent que dans l'application.
 
-<!-- [![Interface de Cosma (cliquez sur l'image pour l'afficher en grand)](https://hyperotlet.huma-num.fr/cosma/img/cosma-interface-schema.png)](https://hyperotlet.huma-num.fr/cosma/img/cosma-interface-schema.png)
-
-Refaire ce schéma annoté avec les nouvelles captures d'écran
--->
-
 ### Graphe
 
 Le graphe situé dans la zone centrale de l'interface affiche des nœuds étiquetés et interreliés. Chaque nœud correspond à une fiche ; l'étiquette correspond au titre de la fiche. Les liens correspondent aux liens établis entre les fiches via leur identifiant.
@@ -331,7 +317,7 @@ Les liens présents dans les fiches sont cliquables. Dans un navigateur où est 
 Cliquez sur Préférences (`Ctrl + o` ou `Cmd + ,`) › Symbole de lien pour saisir une chaîne de caractères Unicode arbitraire qui remplacera l'identifiant entre les crochets dans le rendu HTML des fiches. Ceci permet d'alléger visuellement le texte de vos fiches en remplaçant les longs identifiants numériques par une convention personnelle (par exemple une petite manicule : ☞)
 :::
 
-En bas de la fiche se trouve une liste des fiches vers lesquelles elle renvoie (liens sortants), ainsi que des fiches qui pointent vers elles (liens entrants ou rétroliens). Les liens et rétroliens sont **contextualisés** : au survol, une infobulle s'affiche, montrant le paragraphe dans lequel ce lien se trouve dans la fiche correspondante.
+En bas de la fiche se trouve une liste des fiches vers lesquelles elle renvoie (liens sortants), ainsi que des fiches qui pointent vers elles (liens entrants ou rétroliens). Les liens et rétroliens sont contextualisés : au survol, une infobulle s'affiche, montrant le paragraphe dans lequel ce lien se trouve dans la fiche correspondante.
 
 ### Mode focus
 
