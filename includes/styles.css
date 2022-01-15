@@ -15,7 +15,6 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   font-family: var(--serif);
-  counter-reset: hFirst;
 
   display: grid;
   grid-template-columns: 70% 30%;
@@ -81,42 +80,6 @@ h1:not(.title-site), h2, h3 {
 	padding-bottom: 0.2em;
 	border-bottom: 1px solid black;
   font-size: 1.2em;
-}
-
-h1:not(.title-site) {
-  counter-increment: hFirst;
-  counter-reset: hSecond;
-}
-h1:not(.title-site)::before {
-  content: counter(hFirst);
-  position: relative;
-  left: -30px;
-  font-weight: normal;
-  font-size: 0.8em;
-}
-
-h2 {
-  counter-increment: hSecond;
-  counter-reset: hThird;
-}
-h2::before {
-  content: counter(hFirst)'.'counter(hSecond);
-  position: relative;
-  left: -30px;
-  font-weight: normal;
-  font-size: 0.8em;
-}
-
-h3 {
-  counter-increment: hThird;
-  counter-reset: hFourth;
-}
-h3::before {
-  content: counter(hFirst)'.'counter(hSecond)'.'counter(hThird);
-  position: relative;
-  left: -30px;
-  font-weight: normal;
-  font-size: 0.8em;
 }
 
 .astuce, .tip, .note, .important {
