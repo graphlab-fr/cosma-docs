@@ -41,6 +41,10 @@ main {
 
 aside {
   grid-area: aside;
+	position: sticky;
+	height: 80vh;
+	top: 2em;
+	padding-left: 1em;
 }
 
 .nav-lang ul {
