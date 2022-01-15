@@ -5,12 +5,15 @@
 	--code-background-color: #f5f5f5;
 	--code-border-color: #ccc;
 }
+
+/* LAYOUT */
+
 * {
 	box-sizing: border-box;
 }
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 1em;
 	line-height: 1.5;
   max-width: 1000px;
   margin: 0 auto;
@@ -22,23 +25,42 @@ body {
                        "main   aside"
                        "footer footer";
 }
-
 header {
   grid-area: header;
 }
-
 nav.nav-lang {
   grid-area: headernav;
   font-family: var(--sans);
 }
-
+.nav-lang ul {
+  display: flex;
+  justify-content: space-between;
+  list-style:none;
+  padding: 0;
+  margin-top: 1.8em;
+}
 main {
   grid-area: main;
+  padding-bottom: 5vh;
 }
 
+/* HEADINGS */
+
+header, h1, h2, h3, h4 {
+	font-family: var(--sans);
+}
+h2, h3, h4 {
+	line-height: 1.2;
+	padding-bottom: 0.2em;
+	border-bottom: 1px solid black;
+  font-size: 1.2em;
+}
 main h2 {
 	font-size: 1.3em;
 	margin: 3.5rem 0 0.5rem 0;
+}
+main > h2:first-child {
+	margin-top: 0;
 }
 main h3 {
   font-size: 1.2em;
@@ -47,112 +69,6 @@ main h3 {
 main h4 {
   font-size: 1em;
   margin: 2.5rem 0 0 0;
-}
-
-.nav-lang ul {
-  display: flex;
-  justify-content: space-between;
-  list-style:none;
-  padding: 0;
-}
-
-/* TOC */
-
-aside {
-  grid-area: aside;
-	position: sticky;
-	height: 80vh;
-	top: 2em;
-	padding-left: 1em;
-	font-size: 0.875em;
-  font-family: var(--sans);
-}
-aside ul {
-	list-style-type: none;
-}
-aside > nav > ul > li {
-	position: relative;
-	padding-bottom: 0.75em;
-}
-aside .toggle {
-	cursor: pointer;
-	position: absolute;
-	left: -28px;
-	top: -2px;
-	padding: 2px 10px;
-	color: #0056b3;
-}
-
-footer {
-  grid-area: footer;
-}
-
-img {
-  max-width: 100%;
-}
-
-header, h1, h2, h3, h4 {
-	font-family: var(--sans);
-}
-
-h2, h3, h4 {
-	line-height: 1.2;
-	padding-bottom: 0.2em;
-	border-bottom: 1px solid black;
-  font-size: 1.2em;
-}
-
-.astuce, .tip, .note, .important {
-  position: relative;
-  background: rgb(225, 225, 225);
-  padding: 30px 10px 3px 10px;
-  border-radius: 5px;
-  margin: 1.5rem 0;
-  font-size: 0.9rem;
-}
-
-.astuce::before,
-.tip::before,
-.note::before,
-.important::before {
-  content: attr(class);
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  font-size: 12px;
-  font-family: var(--mono);
-}
-/* .astuce p, .tip p, .note p {
-	font-size: 0.9rem;
-}
-.astuce::before,
-.tip::before,
-.note::before,
-.important::before {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  font-size: 12px;
-  font-family: var(--mono);
-}*/
-
-.astuce, .tip, .note { background: rgb(225, 225, 225); }
-.important { background: rgb(239,178,178); }
-
-/* LISTS */
-
-ul ul {
-	padding-left: 1rem;
-}
-dt {
-  font-family: var(--sans);
-  font-weight: bold;
-  float: left;
-  padding: 0 0.5rem 0 0;
-}
-dd {
-  padding: 0;
-  margin: 1rem 0 1rem 2rem;
 }
 
 /* LINKS */
@@ -171,9 +87,73 @@ a:hover {
   100% { background-color: #ffffff; }
 }
 
+/* LISTS */
+
+ul, ol {
+	padding-left: 1rem;
+}
+dt {
+  font-family: var(--sans);
+  font-weight: bold;
+  float: left;
+  padding: 0 0.5rem 0 0;
+}
+dd {
+  padding: 0;
+  margin: 1rem 0 1rem 2rem;
+}
+
+/* MEDIA */
+
+img {
+  max-width: 100%;
+}
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: var(--accent-color) 1px solid;
+  padding: 15px 10px;
+}
+figcaption {
+  font-size: 0.8rem;
+  font-style: italic;
+  padding: 1rem 0 0 0;
+}
+
+/* ADMONITIONS */
+
+.astuce, .tip, .note, .important {
+  position: relative;
+  background: rgb(225, 225, 225);
+  padding: 30px 10px 3px 10px;
+  border-radius: 5px;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+.astuce::before,
+.tip::before,
+.note::before,
+.important::before {
+  content: attr(class);
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  font-family: var(--mono);
+}
+.astuce, .tip, .note {
+	background: rgb(225, 225, 225);
+}
+.important {
+	background: rgb(239,178,178);
+}
+
 /* CODE */
 
-code, pre { font-family: var(--mono); }
+code, pre {
+	font-family: var(--mono);
+}
 code {
   display: inline-block;
   font-size: 90%;
@@ -196,3 +176,37 @@ pre {
   margin: 1em 0;
   overflow-x: auto;
 }
+
+/* ASIDE (TOC) */
+
+aside {
+  grid-area: aside;
+	position: sticky;
+	height: 80vh;
+	top: 2em;
+	padding-left: 3em;
+	font-size: 0.875em;
+  font-family: var(--sans);
+}
+aside ul {
+	list-style-type: none;
+}
+aside > nav > ul > li {
+	position: relative;
+	padding-bottom: 0.75em;
+}
+aside .toggle {
+	cursor: pointer;
+	position: absolute;
+	left: -28px;
+	top: -2px;
+	padding: 2px 10px;
+	color: #0056b3;
+}
+
+/* FOOTER */
+
+footer {
+  grid-area: footer;
+}
+
