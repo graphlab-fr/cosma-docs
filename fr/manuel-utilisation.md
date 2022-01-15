@@ -1,6 +1,6 @@
 ---
-title: Manuel utilisateur de Cosma
-date: 2021-11-19
+title: Cosma — Manuel d’utilisation
+date: 2022-01-15
 flag: fr
 layout: doc
 ---

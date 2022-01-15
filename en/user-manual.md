@@ -1,6 +1,6 @@
 ---
 title: Cosma user manual
-date: 2021-08-31
+date: 2022-01-15
 flag: en
 layout: doc
 ---

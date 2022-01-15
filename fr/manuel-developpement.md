@@ -1,6 +1,6 @@
 ---
-title: Manuel des développeurs de Cosma
-date: 2021-11-19
+title: Cosma — Manuel de développement
+date: 2022-01-15
 flag: fr
 layout: doc
 ---
