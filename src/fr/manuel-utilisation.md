@@ -602,7 +602,7 @@ Avec citations :
 
 ```
 cosma modelize --citeproc
-cosma modelize -c
+cosma m -c
 ```
 
 En mode publication :
