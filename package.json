@@ -12,7 +12,7 @@
   },
   "main": ".eleventy.js",
   "scripts": {
-    "start": "npx @11ty/eleventy --serve"
+    "start": "cd src && npx @11ty/eleventy --serve"
   },
   "contributors": [
     "Arthur Perret",

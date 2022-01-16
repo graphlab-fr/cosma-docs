@@ -2,7 +2,7 @@ const markdown_it_container = require('markdown-it-container')
     , plugin_toc = require('eleventy-plugin-toc')
     , moment = require('moment');
 
-const pckData = require('./package.json');
+const pckData = require('../package.json');
 
 module.exports = function(e) {
     // read YAML data from 'data' folder
@@ -42,7 +42,7 @@ module.exports = function(e) {
     return {
         dir: {
             input: "./",
-            output: "./build",
+            output: "../",
             includes: "includes",
             layouts: "layouts",
             data: "data"
