@@ -1,5 +1,5 @@
 ---
-title: Cosma — Manuel d’utilisation
+title: Manuel d’utilisation
 date: Last Modified
 flag: fr
 layout: doc

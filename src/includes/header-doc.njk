@@ -8,7 +8,7 @@
 <nav class="nav-lang">
 	<ul>
 		{% for post in collections[tags] %}
-		<li><a href="../{{ post.data.flag }}/{{ post.data.title | slug }}.html">{{ flag_name[post.data.flag] }}</a></li>
+		<li><a href="../{{ post.data.title | slugify }}.html">{{ flag_name[post.data.flag] }}</a></li>
 		{% endfor %}
 		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
 	</ul>

@@ -1,5 +1,5 @@
 ---
-title: Cosma — developer manual
+title: Developer manual
 date: Last Modified
 flag: en
 layout: doc

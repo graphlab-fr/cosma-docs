@@ -3,6 +3,7 @@ title: Cosma Documentation
 description: >
     Cosma manual for users and developers.
 flag: en
+eleventyExcludeFromCollections: true
 ---
 <!doctype html>
 {% include "head.njk" %}
@@ -17,15 +18,21 @@ flag: en
             <li>
                 FR 🇫🇷
                 <ul>
-                    <li><a href="./fr/cosma-manuel-d'utilisation.html">Manuel d'utilisation</a></li>
-                    <li><a href="./fr/cosma-manuel-de-developpement.html">Manuel de développement</a></li>
+                    {% for post in collections.all %}
+                    {% if post.data.flag == 'fr' %}
+                    <li><a href="./{{ post.data.title | slugify }}.html">{{ post.data.title }}</a></li>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
             </li>
             <li>
                 EN 🇬🇧
                 <ul>
-                    <li><a href="./en/cosma-user-manual.html">User manual</a></li>
-                    <li><a href="./en/cosma-developer-manual.html">Developer manual</a></li>
+                    {% for post in collections.all %}
+                    {% if post.data.flag == 'en' %}
+                    <li><a href="./{{ post.data.title | slugify }}.html">{{ post.data.title }}</a></li>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
             </li>
         </ul>
