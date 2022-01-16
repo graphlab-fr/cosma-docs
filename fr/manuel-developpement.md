@@ -1,8 +1,9 @@
 ---
 title: Cosma — Manuel de développement
-date: 2022-01-15
+date: Last Modified
 flag: fr
 layout: doc
+tags: dev
 ---
 
 Cette documentation est destinée aux développeurs souhaitant participer ou reprendre le projet (code source) Cosma. Nous vous recommandons vivement de lire la documentation des utilisateurs pour bien saisir l'ensemble des usages en jeu dans le code source présenté ci-dessous.

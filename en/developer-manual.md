@@ -1,8 +1,9 @@
 ---
-title: Cosma developer manual
-date: 2022-01-15
+title: Cosma — developer manual
+date: Last Modified
 flag: en
 layout: doc
+tags: dev
 ---
 
 🚧 Under construction 🚧

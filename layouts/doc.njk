@@ -1,3 +1,6 @@
+---
+permalink: "/{{ flag }}/{{ title | slug }}.html"
+---
 <!doctype html>
 {% include "head.njk" %}
 
@@ -5,10 +8,19 @@
     {% include "header-doc.njk" %}
 
     <main>
+        {% if flag === 'fr' %}
+        <p>Dernière mise à jour : {{ page.date | moment(flag) }}</p>
+        {% endif %}
+        {% if flag === 'en' %}
+        <p>Last update : {{ page.date | moment(flag) }}</p>
+        {% endif %}
+
         {{ content | safe }}
     </main>
 
     {% include "aside.njk" %}
+
+    {% include "footer.njk" %}
 
     {% include "toc-toggle.njk" %}
 </body>

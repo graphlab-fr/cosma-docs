@@ -7,16 +7,9 @@
 
 <nav class="nav-lang">
 	<ul>
-		{% if flag === 'fr' %}
-		<li>Français</li>
-		<li><a href="https://cosma.graphlab.fr/en/docs/">English</a></li>
+		{%- for post in collections[tags] -%}
+		<li><a href="{{ post.url }}">{{ flag_name[post.data.flag] }}</a></li>
+		{%- endfor -%}
 		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
-		{% endif %}
-
-		{% if flag === 'en' %}
-		<li>English</li>
-		<li><a href="https://cosma.graphlab.fr/docs/">Français</a></li>
-		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
-		{% endif %}
 	</ul>
 </nav>

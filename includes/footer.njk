@@ -1,3 +1,14 @@
 <footer>
-    <p>Cosma is free software.</p>
+    {% if flag === 'en' %}
+    <p>
+        Cosma is free software, under <a href="https://opensource.org/licenses/GPL-3.0">{{ pck.license }}</a> license.<br/>
+        This documentation was build with the awesome <a href="https://www.11ty.dev/">11ty</a>.
+    </p>
+    {% endif %}
+    {% if flag === 'fr' %}
+    <p>
+        Cosma is free software, under <a href="https://opensource.org/licenses/GPL-3.0">{{ pck.license }}</a> license.<br/>
+        Cette documentation a été fabriquée avec le génial <a href="https://www.11ty.dev/">11ty</a>.
+    </p>
+    {% endif %}
 </footer>

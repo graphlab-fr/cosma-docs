@@ -1,8 +1,9 @@
 ---
 title: Cosma — Manuel d’utilisation
-date: 2022-01-15
+date: Last Modified
 flag: fr
 layout: doc
+tags: user
 ---
 
 ## Présentation

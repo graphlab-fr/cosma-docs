@@ -1,14 +1,18 @@
-const markdown_it_container = require('markdown-it-container');
+const markdown_it_container = require('markdown-it-container')
+    , plugin_toc = require('eleventy-plugin-toc')
+    , moment = require('moment');
 
-const plugin_toc = require('eleventy-plugin-toc');
+const pckData = require('./package.json');
 
 module.exports = function(e) {
     // read YAML data from 'data' folder
     e.addDataExtension("yml", contents => require("js-yaml").load(contents));
 
+    e.addGlobalData('pck', pckData);
+
     e.addPlugin(plugin_toc, {
-      tags: ['h2', 'h3'],
-    	ul: true
+        tags: ['h2', 'h3'],
+        ul: true
     });
 
     e.setLibrary("md",
@@ -29,6 +33,11 @@ module.exports = function(e) {
         .use(markdown_it_container, 'astuce')
         .use(markdown_it_container, 'note')
     );
+
+    e.addFilter("moment", function(value, flag) {
+        moment.locale(flag);
+        return moment(value).format('LL');
+    });
 
     return {
         dir: {

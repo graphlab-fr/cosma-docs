@@ -1,8 +1,9 @@
 ---
-title: Cosma user manual
-date: 2022-01-15
+title: Cosma — user manual
+date: Last Modified
 flag: en
 layout: doc
+tags: user
 ---
 
 🚧 Under construction 🚧

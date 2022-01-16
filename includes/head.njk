@@ -4,7 +4,8 @@
 	<title>{{ title }}</title>
 
 	<meta name="description" content="{{ description }}">
-	<meta name="author" content="Arthur Perret, Guillaume Brioudes">
+	<meta name="author" content={{ pck.contributors }}">
+	<meta name="last_edit" content="{{ page.date.toUTCString() }}">
 
 	<style>
         {% include "styles.css" %}
