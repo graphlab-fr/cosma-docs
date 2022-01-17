@@ -1,8 +1,8 @@
 {
   "name": "cosma-docs",
   "version": "2.0.0",
-  "description": "Documentation for users and developpers of Cosma software.",
-  "homepage": "https://cosma.graphlab.fr/docs/",
+  "description": "User and developer documentation for Cosma.",
+  "homepage": "https://cosma.graphlab.fr/en/docs/",
   "repository": {
     "type": "git",
     "url": "https://github.com/graphlab-fr/cosma-docs.git"
