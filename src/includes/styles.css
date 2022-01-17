@@ -68,7 +68,7 @@ main h3 {
 }
 main h4 {
   font-size: 1em;
-  margin: 2.5rem 0 0 0;
+  margin: 2rem 0 0 0;
 }
 
 /* LINKS */
@@ -97,6 +97,7 @@ dt {
   font-weight: bold;
   float: left;
   padding: 0 0.5rem 0 0;
+  line-height: 1.4;
 }
 dd {
   padding: 0;
