@@ -1,5 +1,5 @@
 ---
-title: User manual
+title: Cosma — User manual
 date: Last Modified
 flag: en
 layout: doc

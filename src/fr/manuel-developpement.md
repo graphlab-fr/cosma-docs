@@ -1,5 +1,5 @@
 ---
-title: Manuel de développement
+title: Cosma — Manuel de développement
 date: Last Modified
 flag: fr
 layout: doc
@@ -11,52 +11,52 @@ Cette documentation est destinée aux développeurs souhaitant participer ou rep
 Cosma repose sur l'environnement de développement NodeJS et les **technologies du Web** (HTML, CSS). Il est intégralement développé en JavaScript (ES2019). Une bonne connaissance de ces langages est requise pour modifier le cœur de Cosma ou son interface en ligne de commande Cosma-cli.
 Modifier l'interface graphique nécessite en plus de maîtriser le *framework* [ElectronJS](https://www.electronjs.org/).
 
-# Code source
+## Code source
 
 Les principales fonctionnalités de Cosma sont programmées dans le [dépôt Cosma-core](https://github.com/graphlab-fr/cosma-core).
 
 - La lecture et le traitement d'un répertoire de fichier Mardown ;
-- La génération de données d'un graphe (nœuds et liens) format JSON ;
-- L'intégration des données (JSON), styles (CSS) et scripts (JavaScript) dans un *template* de fichier HTML ;
+- La génération de données d'un graphe (nœuds et liens) format JSON ;
+- L'intégration des données (JSON), styles (CSS) et scripts (JavaScript) dans un *template* de fichier HTML ;
 
 Ces fonctionnalités peuvent être utilisées via deux interfaces, stockées dans deux autres dépôts où est intégré (via [Git modules](https://git-scm.com/book/fr/v2/Utilitaires-Git-Sous-modules)) le Cosma-core.
 
 - Interface graphique (GUI), basée sur le *framework* [Electron,](https://www.electronjs.org/) stockée dans le dépôt [Cosma](https://github.com/graphlab-fr/cosma)
 - Interface en ligne de commande (CLI) stockée dans le dépôt [Cosma-cli](https://github.com/graphlab-fr/cosma-cli)
 
-# Architecture du logiciel
+## Architecture du logiciel
 
-## Vue générale
+### Vue générale
 
 Cosma est principalement implémenté en JavaScript. Le logiciel repose sur deux systèmes distincts, le cosmographe et le cosmoscope, programmées dans le [dépôt Cosma-core](https://github.com/graphlab-fr/cosma-core).
 
 Le **cosmographe** repose sur l'environnement Node.js. Il s'agit d'une série d'objets (`/cosma-core/models`) listés ci-dessous constituant l'API (interface de programmation) de Cosma. Elle permet d'appeler les principales fonctionnalités comme la création de fiche ou la génération de cosmoscopes. Cette API est manipulée par les deux interfaces que sont Cosma-Gui et Cosma-Cli pour rendre le même comoscope.
 
-- `Config.js` : vérifier et actualiser le fichier de configuration ;
-- `Record.js` :  générer des fichiers Markdown et leur entête ;
-- `Graph.js` : lire un répertoire pour en extraire les fichiers Markdown et analyser leur contenu (Markdown, métadonnées YAML et liens style wiki) afin de générer des données JSON ;
-- `Template.js` : assembler HTML (`/cosma-core/template.njk` et `/cosma-core/icons/**.svg`), CSS (`/cosma-core/**.css` et depuis `Graph.js`), JavaScript (`/cosma-core/scripts/**.js` et `/cosma-core/libs/**.js`) et données JSON (depuis `Graph.js`) pour rendre un cosmoscope ;
-- `Lang.js` : traduire les éléments d'interface depuis le fichier multilingue `/cosma-core/lang.yml`.
+- `Config.js` : vérifier et actualiser le fichier de configuration ;
+- `Record.js` :  générer des fichiers Markdown et leur entête ;
+- `Graph.js` : lire un répertoire pour en extraire les fichiers Markdown et analyser leur contenu (Markdown, métadonnées YAML et liens style wiki) afin de générer des données JSON ;
+- `Template.js` : assembler HTML (`/cosma-core/template.njk` et `/cosma-core/icons/**.svg`), CSS (`/cosma-core/**.css` et depuis `Graph.js`), JavaScript (`/cosma-core/scripts/**.js` et `/cosma-core/libs/**.js`) et données JSON (depuis `Graph.js`) pour rendre un cosmoscope ;
+- `Lang.js` : traduire les éléments d'interface depuis le fichier multilingue `/cosma-core/lang.yml`.
 
 Le **cosmoscope** est un fichier `.html` intégrant les éléments listés ci-dessous et généré via `Template.js`. Il peut être rendu sur navigateur web, que ce soit Chromium pour afficher le comoscope dans l'application ElectronJS, ou un autre navigateur choisi par un utilisateur pour lire un comoscope.
 
-- métadonnées (titre, auteur, description, mots-clés issus de la configuration) ;
+- métadonnées (titre, auteur, description, mots-clés issus de la configuration) ;
 - styles (CSS) issus de `/cosma-core` et de la configuration (types de fiches, de liens, couleur de surbrillance…)
-- scripts et bibliothèques JavaScript (outils de visualisation et de navigation) ;
-- des index (mots-clés, titre de fiche, vues) ;
+- scripts et bibliothèques JavaScript (outils de visualisation et de navigation) ;
+- des index (mots-clés, titre de fiche, vues) ;
 - les fiches.
 
-## Interfaces des classes
+### Interfaces des classes
 
 L'objet `Config.js` (`/cosma-core/models/config.js`) est connecté à tous les autres objets de Cosma-core. Il permet de retrouver le fichier où est inscrite la configuration (`Config.getFilePath()`) en fonction de l'envrionnement (ElectronJS ou pas) et de le rendre (`Config.get()`).
 
 En reposant sur cette première classe
 
-# Terminologie
+## Terminologie
 
-Les fichiers Markdown interprétés par Cosma sont qualifiés ici de « fiches » plutôt que de « notes », en référence à la tradition de la fiche érudite et à l'histoire de la documentation. L'acception documentaire de « fiche » n'a pas de traduction directe en anglais (sinon *index card*). En revanche, elle est conceptuellement proche du mot « *record* » issu du [*records management*](https://fr.wikipedia.org/wiki/Records_management). Le code de Cosma emploie donc le mot record pour désigner une fiche.
+Les fichiers Markdown interprétés par Cosma sont qualifiés ici de « fiches » plutôt que de « notes », en référence à la tradition de la fiche érudite et à l'histoire de la documentation. L'acception documentaire de « fiche » n'a pas de traduction directe en anglais (sinon *index card*). En revanche, elle est conceptuellement proche du mot « *record* » issu du [*records management*](https://fr.wikipedia.org/wiki/Records_management). Le code de Cosma emploie donc le mot record pour désigner une fiche.
 
-# Traduction
+## Traduction
 
 Pour ajouter une entrée de traduction au logiciel, il faut ajouter son code (norme [ISO 639-1](https://fr.wikipedia.org/wiki/Liste_des_codes_ISO_639-1)) à la variable `validLangages` de la classe Config (`/cosma-core/models/config`) tel que ci-dessous.
 
@@ -66,7 +66,7 @@ static validLangages = {
 	es: "Español"
 };
 ```
-Vous pouvez ensuite compléter le fichier `/cosma-core/lang.yml` en ajoutant ce drapeau comme dernier enfant d'une arboresence tel que ci-dessous :
+Vous pouvez ensuite compléter le fichier `/cosma-core/lang.yml` en ajoutant ce drapeau comme dernier enfant d'une arboresence tel que ci-dessous :
 
 ```yaml
 dialog:
