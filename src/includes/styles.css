@@ -87,6 +87,18 @@ a:hover {
   100% { background-color: #ffffff; }
 }
 
+/* TABLES */
+
+table {
+	border-collapse: collapse;
+	margin: 2rem 0;
+	text-align: left;
+	width: 100%;
+}
+
+tr { border: 1px solid gray; }
+th, td { border: 1px solid gray; padding: 0.5rem; }
+
 /* LISTS */
 
 ul, ol {
@@ -210,4 +222,3 @@ aside .toggle {
 footer {
   grid-area: footer;
 }
-
