@@ -6,840 +6,836 @@ layout: doc
 tags: user
 ---
 
-🚧 Under construction 🚧
+## About Cosma
+
+Cosma is a document graph visualization tool. It renders interlinked plain text files as an interactive network in a web interface. It can be used to explore and share collections of various sizes, from a few dozen up to several thousands of documents.
+
+Cosma was developed initially as part of the [HyperOtlet](https://hyperotlet.hypotheses.org/) research programme (grant number ANR-17-CE38-0011).
+
+### A unique tool
+
+Among tools for thought, Cosma stands out on **three key aspects**:
+
+First, **Cosma is not a note-taking app**. It is designed to work in conjunction with these programs. This is inspired by software such as [Deckset](https://www.deckset.com), which applies this principle to presentations (write in your favorite editor, visualize elsewhere).
+
+Secondly, **Cosma is based on interoperable, open and standardised writing conventions**. This allows you to use other tools that share these standards (such as [Zettlr](https://www.zettlr.com)) and to switch tools more freely. Overall, it increases the durability of your data.
+
+Finally, **Cosma allows you to simultaneously share your data and the tools to explore it**. What does this mean? Most visualization tools are packed with great functionality, but they only export static images, or structured data that requires software to make any use of. Cosma reverses this logic: what you see in the main window is actually a standalone HTML file, meaning you can share it and thus transmit not just your data, but a fully interactive representation of it.
+
+These three aspects make Cosma a unique proposition among tools for thought.
+
+### A high degree of user control
+
+**Cosma works with a directory of text-based files, and only reads them**. Installing, using and uninstalling the app does not alter your files, nor does it interfere with your existing practices for storage, editing and version control.
+
+**Many interface elements are customizable**, from the graph layout to the color of nodes and pattern of links. Interesting views can be saved as shortcuts. Users proficient with CSS can use a custom stylesheet.
+
+**You can add semantic metadata to records and links through simple writing conventions**. This is done through generic mechanisms, meaning you are free to invent and use any categories to describe your data.
+
+**Cosma is free software**. The code is public, its development is documented, it is accessible and reusable for free under the GNU GPL license. Our work can thus be evaluated, archived and continued by others.
+
+### A research experiment
+
+Cosma was imagined by Arthur Perret as part of his PhD research under the direction of Olivier Le Deuff. This means the project's DNA is very much experimental, and that its use is subject to caution.
+
+However, we also want to popularize plain text-based research and its possibilities to a wider audience of knowledge workers. This means we have tried to design Cosma as a relatively polished and accessible tool.
+
+Currently, there is no dedicated funding to this project. But Cosma is already in use in a few research projects and graduate programs. This encourages us to keep developing it, and to work on securing more funding in the coming years.
+
+Cosma is archived on Zenodo and can be referenced in scientific literature:
+
+> Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (1.0). Zenodo. <https://doi.org/10.5281/zenodo.5412315>
+
+## Installing
+
+Cosma is available in two versions: a graphical user interface (GUI) application and a command line interface (CLI) application. Information about the CLI version is detailed [in the dedicated section](#cosma-cli).
+
+The GUI version of Cosma is available for macOS and Windows. Visit the Releases page of the GitHub repository to get [the latest version](https://github.com/graphlab-fr/cosma/releases/latest). Please note that the application is not signed with a security certificate, so you must have administrator privileges on your session to run it.
+
+On macOS
+: Download and unzip `Cosma.app.zip`, then place it in `~/Applications`. For the first launch, right click on the application then select Open to run it.
+
+On Windows
+: Download and unzip `Cosma-win32-x64.zip`, then rename the folder `Cosma` and place it in `C:\Program Files` or `C:\Program Files (86)`.
 
 <!-- 
-Cosma is a document graph visualisation software. It allows you to represent interrelated notes as an interactive network in a web interface. Cosma is designed to work with Markdown text files and is suitable for both small collections (about a hundred documents) and sprawling knowledge bases (up to several thousand documents).
+Fiches de démo :
 
-Cosma was created through the [HyperOtlet](https://hyperotlet.hypotheses.org/) research programme, funded by the National Agency of Research (ANR, France).
+CLI :
 
-::: sommaire
-#. [Introduction](#introduction)
-#. [Installing](#installing)
-#. [Settings](#settings)
-#. [Using the cosmographer](#using-the-cosmographer)
-#. [Using the cosmoscope](#using-the-cosmoscope)
-#. [Development](#development)
-#. [Credits](#credits)
-:::
+- windows : `%USERPROFILE%\AppData\Roaming\npm\node_modules\@graphlab-fr\cosma\core\sample`
+- macOS, linux : `/usr/local/lib/node_modules/@graphlab-fr/cosma/core/sample`
 
-# Introduction
+GUI ?
 
-Cosma is a document graph visualisation software. It allows you to represent interrelated notes as an interactive network in a web interface. Cosma is not a note-taking application: it was designed to work in conjunction with note-taking software, only requiring that notes be structured according to a specific format.
-
-Most visualisation tools present themselves through a graphical user interface (GUI), from which it is possible to export structured data or static images. Cosma reverses this logic: the application part, which we call the **cosmographer**, is just a form; the export, an HTML file we call the **cosmoscope**, is the actual visualisation interface. This stand-alone file contains an interactive graph, internal navigation tools (index, search engine, filters) and the full text of the records; it also includes the source data as JSON and can be used offline.
-
-Cosma is designed to give a high degree of control to its users.
-
-Firstly, Cosma works with any directory of text-based files and only reads the data: using or uninstalling the software will not alter your files and therefore does not interfere with your storage, versioning and editing practices.
-
-Second, almost all of Cosma's interface elements are customisable: the network drawing algorithm, the colours, the stroke of links… You can even add permanent shortcuts to specific visual configurations (“views”) you may come across during navigation and want to access again later.
-
-Thirdly, documentary and semantic enrichments are possible through the addition of metadata on both nodes (documents) and links (relationships between documents). This is done through generic mechanisms, allowing you to use the typologies and ontologies of your choice.
-
-And fourthly, Cosma is modular, interoperable and portable, but above all free software. The code is public, documented, and it is accessible and reusable free of charge under the MIT license. Our work can thus be evaluated, archived and continued by others.
-
-# Installing
-
-## Pre-requisites
-
-Install [Node.js](https://nodejs.org/fr/download/) version 15 or higher.
-
-Using the cosmoscope requires a web browser. You can use the following browsers, in the version mentioned or higher:
-
-- Chrome (v.69)
-- Edge (v.79)
-- Firefox (v.62)
-- Opera (v.56)
-- Safari (v.12)
-
-The cosmoscope is not compatible with Internet Explorer.
-
-## Downloading Cosma
-
-Download the Cosma git repository by typing the command below in a terminal, or by clicking on the following link: <https://github.com/graphlab-fr/cosma/archive/master.zip>
-
-```
-git clone https://github.com/graphlab-fr/cosma.git
-```
-
-## Installing the dependencies
-
-Cosma relies on other programs called dependencies. Cosma uses the NPM dependency manager which is installed at the same time as Node.js. Install the dependencies necessary for the application to function properly with the command below:
-
-```
-npm install --only=production
-```
-
-
-# Settings
-
-Cosma uses a [YAML](http://yaml.org) configuration file. It is a hierarchical list of parameters whose values modify the behaviour of the software.
+Ancienne version :
 
 ::: astuce
-For an introduction to YAML, [click here](https://sweetohm.net/article/introduction-yaml.en.html). For Cosma, it is particularly important to know that in YAML the hierarchy of parameters is implemented by indentation, i.e. the presence of spaces at the beginning of a line, and that the use of tabs to indent lines is forbidden in YAML. It is recommended to choose an indentation unit corresponding to a multiple of 2 spaces (2 or 4) and to stick to it for the whole file.
+Depuis le dépôt Cosma-help, [téléchargez un répertoire de fiches d'exemple](https://github.com/graphlab-fr/cosma-help/archive/refs/heads/main.zip). Après avoir décompressé `cosma-help-main.zip` vous pouvez utiliser ces fiches pour tester Cosma et les lire pour apprendre à utiliser le logiciel. Indiquez le chemin du répertoire dans Préférences (`Ctrl + o` ou `Cmd + ,`) › Général › Répertoire des fiches.
 :::
+ -->
 
-Run the following command to create the configuration file (`config.yml`) if it does not already exist. You can also delete the file and use this command to reset it. The file generated by this command is a template with all the parameters that must be filled in for the configuration to be considered valid.
-
-```
-node app config
-node app c
-```
-
-## Obligatory parameters
-
-The configuration must contain the following parameters:
-
-`files_origin`
-: Path to the directory containing the Markdown files to be read.
-: Example: `/Users/user/Fiches/'`, `D:\repertoire\`
-
-`export_target`
-: Path to the directory where to export the cosmoscope.
-: Example: `./'`, `D:\repertoire\`
+## Creating content
 
 ::: important
-The `files_origin` and `export_target` paths must end in a slash.
+To create content in Cosma, you must first specify a directory in Preferences › General › Records directory. The directory can be empty or contain records. Cosma ignores subdirectories: only the records immediately present at the root of directory are taken into account.
 :::
 
-`record_types`
-: List of record types. Each type is defined by a `name: value` pair where `name` is the name of the type and `value` is a colour of your choice. The colours are declared [as in HTML](https://www.w3schools.com/html/html_colors.asp) with their predefined name or an RGB, HEX, HSL, RGBA or HSLA value in quotes.
+### Creating records
 
-Example:
+Click on File › New record (`Ctrl/Cmd + N`) to open the record creation form.
 
-```yaml
-record_types:
-  undefined: '#546de5'
-  very important: red
-  reading note: 'rgba(157, 62, 12, 0.7)'
-  concept: 'hsl(14, 100%, 80%)'
-```
+Only the title is mandatory. Other fields are optional.
 
-`link_types`
-: List of relationship types. Each type is defined by a `name` parameter whose value is a list of two parameters, which affect the representation of the links in the graph: `stroke` corresponds to the shape of the line and `color` to its colour. The value of `stroke` can be `single` (single solid line), `double` (double solid line), `dash` or `dotted`. Colours are declared as in HTML, in the same way as for the record types.
+You can assign a type to the new record. This type must be defined beforehand in Preferences › Record types.
 
-Example:
+You can also add keywords to the record. Keywords must be separated by commas. For example: `keyword 1, keyword 2`.
 
-```yaml
-link_types:
-  undefined:
-    stroke: simple
-    color: grey
-  special:
-    stroke: dash
-    color: 'rgba(157, 62, 12, 0.7)'
-```
+Click OK to create the record.
 
-::: important
-The default type `undefined` must be set for both record types and link types.
+::: note
+The filename will be generated from the title. For better interoperability between different operating systems, the filename contains only unaccented alphanumeric characters and dashes.
+
+Example: a record entitled “Déjà vu” will be saved as `deja-vu.md`.
 :::
 
-The links settings affects their readability in the graph. In the following example, the user has defined three types of qualified links in the manner of a thesaurus (specific `s`, generic `g` and associated `a`). The parameters are set to enhance the visibility of the qualified links: the default (`undefined`) links are discrete dotted grey lines, while qualified links are more legible, with solid lines and a brighter colour.
+### Data format
 
-```yaml
-link_types:
-  undefined:
-    stroke: dotted
-    color: grey
-  s:
-    stroke: simple
-    color: 'rgba(157, 62, 12, 0.7)'
-  g:
-    stroke: simple
-    color: 'rgba(157, 62, 12, 0.7)'
-  a:
-    stroke: dash
-    color: 'rgba(157, 62, 12, 0.7)'
-```
+Cosma does not require that you use any particular writing software. However, it only correctly interprets files that comply with the following rules:
 
-## Graph settings
+- content is written in Markdown, file extension is `.md`;
+- metadata is expressed in YAML, in a header at the beginning of the file;
+- internal links are expressed with a wiki-like syntax (double brackets `[[ ]]`) and based on unique identifiers.
 
-The following parameters define the default value of the graph parameters. Most of these parameters can be changed live in the cosmoscope interface, where you can test different values before setting them in the `config.yml` file: the values set there are restored each time the cosmoscope is reloaded.
+The following subsections explain these rules in detail.
 
-```yaml
-graph:
-  background_color: white
-  highlight_color: red
-  highlight_on_hover: true
-  text_size: 9
-  attraction:
-    force: -50
-    distance_max: 800
-    verticale: 0
-    horizontale: 0
-  arrows: false
-```
+::: note
+This combination of writing standards combines several textual cultures: documentation (enriching and indexing content with metadata); wikis (interrelating documents); the Zettelkasten method (organising one's notes); academic writing with Pandoc (using plain text as a source for exporting in various formats).
 
-`background_color`
-: Background color of the graph.
-: Example: `whitesmoke` ,`#ccc`, `rgb(57, 57, 57)`
+Therefore, Cosma works particularly well when used in tandem with writing environments that also adopt this approach, such as [Zettlr](https://zettlr.com) or the [Foam](https://foambubble.github.io/foam/) extension for Visual Studio Code and VSCodium.
+:::
 
-`highlight_color`
-: Highlight color for selected items.
-: Example: `red` ,`#0642ff `, `rgb(207, 52, 118)`
+You can create a Cosma-compliant file via the application's record creation form (click File › New record, or type `Ctrl + N`) or manually with the text editor of your choice. Some text editors can save you time with document templates, which you can use to quickly create records for Cosma.
 
-`text_size`
-: Size of node labels. The implicit unit is pixels. The minimum value is `5`; the maximum value is `15`.
+#### Metadata
 
-`attraction`
-: Parameters of the simulation of forces between nodes.
-: `force`: overall power. The lower it is, the looser the links between nodes are. Values below 50 tend to cause incessant collisions.
-: `distance_max`: maximum distance between nodes. Above `1000`, this parameter has no measurable effect. The value of `distance_max` also indicates the maximum effective value of `force`. For example, if `distance_max: 500`, then increasing `force` beyond 500 will have no effect.
-: `verticale`: The force of attraction towards the vertical axis. A value of `0` means that this parameter is disabled.
-: `horizontale`: force of attraction towards the horizontal axis. A value of `0` means that this parameter is disabled.
+In order to be correctly interpreted by Cosma, Markdown files (`.md`) must include a [YAML](http://yaml.org) header at the beginning of the file.
 
-`arrows`
-: Display arrows on links, depending on whether you want a directed or undirected graph. Boolean value: `true` or `false`.
-
-## Optional parameters
-
-You can add the following parameters to the configuration file:
-
-`bibliography`
-: Path to the file (JSON CSL) `.json` containing the list of bibliographic references. Enables the [bibliography of records](#bibliography).
-
-`csl`
-: Path to the style file (CSL) `.csl` containing the citation styles. Enables the [bibliography of records](#bibliography).
-
-`minify`
-: Reduces the size of the `cosmoscope.html` file, at the expense of the readability of the source code. Value: `true` or `false`. Disabled by default.
-
-`custom_css`
-: Applies any styles declared by the user in the `/template/custom.css` file. Value: `true` or `false`. Disabled by default.
-
-`history`
-: Exports a copy of the cosmoscope and its data to a time-stamped sub-folder of the `history` folder. Value: `true` or `false`. Enabled by default.
-
-`metadata`
-: List of metadata to be used as `meta` tags in the header of the` cosmoscope.html` file. You may use any metadata. When using the `--publish` / `-p` flag on the `modelize` command, some metadata will also be displayed in the interface if they exist: the title replaces the logo at the top of the menu pane; title, author, date and description are displayed in the About pane.
-
-Example:
-
-```yaml
-metadata:
-  author: Firstname Lastname
-  keywords:
-    - Zettelkasten
-    - document graph
-  description: "This is my personal knowledge base."
-  url: https://domaine.fr/cosmoscope.html
-```
-
-`focus_max`
-: Maximum focus distance. The value must be an integer greater than or equal to `0`.
-
-`views`
-: List of views appearing in the cosmoscope Views section. Each view is defined by a `name: value` pair, where `name` is the name of the view and `value` is a string generated via the Save current view button.
-
-`link_symbol`
-: Define one or more characters to replace the hyperlink text (target file identifier) in the records.
-
-Example:
-
-```yaml
-views:
-  A nice view: eyJmaWx0ZXJzIjpbImNvbmNlcHQiXX0%3D
-  Another view (with focus): eyJyZWNvcmRJZCI6MjAyMTAyMjExNDQ0NTF9
-```
-
-## Change the configuration from the command line
-
-The following commands allow you to quickly change the configuration.
-
-Generate a template configuration file:
-
-```
-node app config
-node app c
-```
-
-Modify the path to the source files:
-
-```
-node app import <chemin>
-```
-
-Modify the cosmoscope export path:
-
-```
-node app export <chemin>
-```
-
-Add a record type:
-
-```
-node app atype <nom> <couleur>
-```
-
-Create a `custom.css` file in the `/template` directory:
-
-```
-node app css
-```
-
-Add a view:
-
-```
-node app aview <nom> <code>
-```
-
-# Using the cosmographer
-
-## Data format
-
-Cosma does not prescribe writing software, but requires a specific data format which combines several writing standards aiming to increase interoperability and data durability:
-
-- YAML for software configuration and file metadata;
-- Markdown for file content;
-- wiki-like syntax (double brackets `[[ ]]`) to create internal links;
-- unique identifiers that serve as targets for internal links.
-
-This combination of writing standards lies at the intersection of several textual cultures: documentation; wikis; note-taking with the Zettelkasten method; academic writing with Pandoc. Therefore, Cosma works particularly well when used in tandem with writing environments that share this approach, such as [Zettlr](https://zettlr.com) or the [Foam](https://foambubble.github.io/foam/) extension for Visual Studio Code and VSCodium.
-
-To be correctly interpreted by Cosma, Markdown files must therefore respect a certain structure, and in particular the presence of a YAML header at the beginning of the file.
+This header is created automatically when you create a file via Cosma. You can also create it manually, or with the help of a template in certain text editors.
 
 Example:
 
 ```
 ---
-title: A clever title
+title: Title of the record
 id: 20201209111625
 type: undefined
 tags:
-- some relevant keywords
-- some more keywords
+- keyword 1
+- keyword 2
 ---
 ```
 
-The YAML header is delimited by two sets of three single dashes on a line (`---`). Cosma recognises and uses the following four fields:
+The YAML header is delimited by two sets of three single dashes on a line (`---`).
+
+In YAML, a field consists of a name and a value separated by a colon. Cosma recognises and uses the following four fields:
 
 `title`
 : Mandatory.
+: Title of the record.
 
 `id`
-: A unique identifier. Mandatory. By default, Cosma uses a timestamp (year, month, day, hours, minutes and seconds) to generate a 14-digit identifier, as some popular Zettelkasten note-taking software do – including [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
+: Mandatory.
+: Unique identifier of the record. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
 `type`
-: A record type. Optional. Only one type can be assigned to one record. If the `type` field is not included or its value does not match one of the types stored in the configuration under the `record_types` parameter, Cosma will interpret the type of the record as `undefined`.
+: Optional.
+: Record type. Only one type can be assigned to a record. If the `type` field is not specified or its value does not match one of the types declared in the configuration, Cosma will interpret the type of the record as `undefined`.
 
 `tags`
-: Any keyword(s) attached to the record. Optional. The value must be a list. A record can have as many keywords as you wish.
+: Optional.
+: Keywords assigned to the record. The value must be a list. A record can have as many keywords as you wish.
 
-According to the YAML specification, the list of keywords can be entered in *block* mode:
+In accordance with the YAML specification, the list of keywords can be written in *block* mode:
 
 ```yaml
 tags:
-- some relevant keywords
-- some more keywords
+- keyword 1
+- keyword 2
 ```
 
 Or in *flow* mode:
 
 ```yaml
-tags: [some relevant keywords, some more keywords]
+tags: [keyword 1, keyword 2]
 ```
 
-You can add additional fields arbitrarily, for example a `description` field.
+You can add additional YAML fields arbitrarily. You may for example include fields recognized by Pandoc.
 
-After the header, you can freely enter your content.
+::: note
+**Why a YAML header?**
 
-::: important
-The rendering of Markdown files as HTML in the cosmoscope is limited to textual elements. Images, for example, are not included and will be replaced by their alternative text when it has been set.
+Some applications opt to recognize file metadata heuristically. For example, if the first line of the file is a level 1 heading, then it will be interpreted as the title of the file; if the second line contains words prefixed with a `#` pound sign, then they will be interpreted as keywords.
+
+This method is not interoperable: each program has its own conventions, which limits the user's ability to change tools.
+
+Using a YAML header allows writers to declare different metadata explicitly and separately. This has the advantage of making the detection and manipulation of this metadata trivial, both by machines and humans. The use of a common format (such as YAML) increases the number of tools that can be used seamlessly with the same set of files. And widely used computer tools such as regular expressions and *shell* scripts allow people to convert their data themselves in a relatively simple way if needed.
 :::
 
-## Creating records with the cosmographer
+#### Content
 
-You can create a Cosma-compliant Markdown file by hand or by using the cosmographer through the command line. There are two options. The first one requires several inputs in succession:
+Cosma interprets files as being written in [CommonMark](https://spec.commonmark.org/0.30/), a strictly defined version of Markdown, a popular lightweight markup language.
 
+::: tip
+The [CommonMark tutorial](https://commonmark.org/help/) teaches you the basics of Markdown in 10 minutes.
+
+If you want to learn how to use Markdown and Pandoc together, check out this online lesson: [Sustainable Authorship in Plain Text using Pandoc and Markdown](https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown).
+:::
+
+Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code, as well as vector images in SVG.
+
+Bitmap images can also be rendered using the Markdown syntax. Example:
+
+```markdown
+![Alternative text](image.jpg)
 ```
-node app record
-node app r
+
+However, the actual image files are not included when exporting a cosmoscope. To ensure that images are displayed in the export, you should use images hosted on the web, including them via their URL. Example:
+
+```markdown
+![Alternative text](http://domain.com/image.jpg)
 ```
 
-The second option is a one-liner, allowing you to create a record in one command:
+#### Links
 
-```
-node app autorecord <titre> <type> <mots-clés>
-node app a <titre> <type> <mots-clés>
-```
-
-- The `<title>` is the title of the record, which is also the name of the generated file;
-- `<type>` is one of the types defined in the configuration;
-- `<keywords>` is a comma-separated list of keywords (**without spaces**).
-
-Only the title is mandatory.
-
-## Creating links between records
-
-Within a record, you can create a link to another record with the identifier of the target record in double brackets. The cosmographer recognises these links and uses them to model the structure of the graph.
+Within a record, you link to another record by writing its identifier between double brackets.
 
 Example:
 
 ```
-A link to [[20201209111625]] another record.
+A link to [[20201209111625]] record B.
 ```
 
-You can also qualify the link according to the typology you have specified under `link_types` in the configuration. The link type is then added as a prefix to the identifier, with a colon as a separator.
+Cosma allows you to define [link types](#link-types). Each link type is defined by a name, a colour and a stroke pattern. To apply a type to a link, add the name of the type followed by a colon before the identifier.
 
 Example:
 
 ```
-Concept B derives from [[generic:20201209111625]] concept A.
+Concept B is derived from [[generic:20201209111625]] concept A.
+
+Person D wrote against [[opponent:20201209111625]] person C.
 ```
 
-## Bibliography
+::: tip
+To improve the readability of records in the cosmoscope, Cosma includes an option to customise the text of the links. Under Preferences › Link symbol, enter one or more Unicode characters (letters, numbers, symbols…). Example: ☞. This string replaces the identifier and square brackets in the HTML rendering of the records.
+:::
 
-You can integrate citation keys into your records. They can be recorded with the bibliographic reference software [Zotero](https://www.zotero.org/) and then exported with a unique identifier into a JSON CSL file thanks to its extension [Better BibTeX](https://retorque.re/zotero-better-bibtex/). This identifier can then be wrote in your records (in the style of Pandoc software), between square brackets as below.
+#### Unique identifiers
 
-```
-According to [@ledeuffTempsHumanitesDigitales2014, 22; @perretFonctionDocumentairePreuve2020].
-```
+To be correctly interpreted by Cosma, each record must have a unique identifier. This identifier serves as a target for links between records.
 
-You must target from the configuration the JSON CSL file exported with Zotero and the citation system.
+By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
-```
-bibliography: 'D:\documents\my_library.json'
-csl: 'D:\documents\y_style.csl'
-```
+::: note
+Many interrelated note-taking applications use file names as targets for links between files. They maintain links automatically when file names are changed. By choosing to use unique identifiers instead, we have designed Cosma with a more traditional, stricter, WWW-like approach. We believe this is the easiest way to avoid [link rot](https://en.wikipedia.org/wiki/Link_rot) in a sustainable way. Avoiding the reliance on automatic link maintenance is especially important if you wish to make your data less dependent on specific applications.
+:::
 
-The following commands are used to generate a cosmoscope using Cosma's built-in Citeproc converter
+::: tip
+Links based on unique identifiers have disadvantages, mainly in terms of user experience: they are cumbersome to write and to read, especially when the identifier is a long series of numbers. In Preferences › Link symbol, you can define a string of characters (as small and visually distinct as the manicle ☞), which Cosma will display instead of the identifiers as the text of links in the cosmoscope.
+:::
 
-```
-node app modelize --citeproc
-node app modelize -c
-```
+## Creating a cosmoscope
 
-Each citation key is then replaced by a short reference and an entry in the bibliography (placed at the bottom of the cards).
+Click on New cosmoscope (`Cmd/Ctrl + R`) to generate a new cosmoscope. It will automatically appear in the main window.
 
-```
-According to (Le Deuff 2014, p. 22; Perret 2020).
+Cosma automatically creates an error report that describes any problems encountered during the generation of a cosmoscope. Click on File › History (`Cmd/Ctrl + H`) and select an entry to view the associated error report.
 
-Bibliographie
--------------
+## Citations and bibliographies
 
-LE DEUFF, Olivier, 2014. Le temps de humanités digitales. FYP. ISBN 978-2-36405-155-5.
+Cosma includes the option to automatically process citations and generate bibliographies. This is based on the same ecosystem as [Zettlr](https://www.zettlr.com): bibliographic data and styles use the [Citation Style Language (CSL)](https://citationstyles.org) standard, while the insertion of citations within Markdown files uses the [Pandoc citation syntax](https://pandoc.org/MANUAL.html#citation-syntax).
 
-PERRET, Arthur, 2020. Fonction documentaire de preuve et données numériques. Arthurperret.fr [en ligne]. 9 septembre 2020. [Consulté le 14 septembre 2020]. Disponible à l’adresse : https://www.arthurperret.fr/fonction-documentaire-preuve-donnees-numeriques.html
-```
+### Required files
 
-You can change the citation style (default: ISO690-author-date-fr) by replacing the `/template/citeproc/styles.csl` file. Download a new style from the [Zotero database](https://www.zotero.org/styles).
+To process citations, Cosma requires three files:
 
-You can change the translation of the keywords of the bibliographic record (default: French) by replacing the file `/template/citeproc/locales.xml`. Download a new translation from the [CSL database](https://github.com/citation-style-language/locales/tree/6b0cb4689127a69852f48608b6d1a879900f418b).
+Bibliographic data
+: File containing metadata describing bibliographic references. The required format is CSL JSON (extension `.json`).
 
-All data for all cited references is stored in the cosmoscope as JSON data, into the `<article id="citation-references">` record. You can find and download this data by clicking on the 'Data' link at the bottom of the left side menu.
+Bibliographic style
+: File containing formatting rules for citations and bibliographies. The required format is CSL (extension `.csl`). You can download style files from the [Zotero CSL styles directory](https://www.zotero.org/styles).
 
-## Exporting
+Bibliographic localization
+: File containing localized bibliographic terms (e.g. publisher, issue…) in the language of your choice. The required format is XML (extension `.xml`). You can download localisation files from the [CSL project GitHub repository](https://github.com/citation-style-language/locales/tree/6b0cb4689127a69852f48608b6d1a879900f418b).
 
-To create the `cosmoscope.html` file, use one of these commands:
+In the bibliographic data file, each reference must have a unique identifier (`id`) which serves as a citation key. Example:
 
-```
-node app modelize
-node app m
-```
-
-You can also obtain a published version of the cosmoscope with the following command. It allows you to name, introduce and sign your export from the "About" menu (accessible from the button at the bottom of the left-hand menu). It integrates the `title`, `author` and `description` metadata entered in the [configuration (option `metas`)](#optional-parameters). If it is filled in, the `title` metadata also replaces the logo at the top of the left-hand menu.
-
-```
-node app modelize --publish
-node app m -p
-```
-
-You can combine the different export options as follows:
-
-```
-node app modelize --publish --citeproc
-node app m -p -c
+```json
+[
+  {
+    "id":"goody1977",
+    "author":[{"family":"Goody","given":"Jack"}],
+    "citation-key":"goody1977",
+    "event-place":"Cambridge",
+    "ISBN":"978-0-521-21726-2",
+    "issued":{"date-parts":[[1977]]},
+    "language":"en",
+    "number-of-pages":"179",
+    "publisher":"Cambridge University Press",
+    "publisher-place":"Cambridge",
+    "title":"The Domestication of the Savage Mind",
+    "type":"book"
+  },
+]
 ```
 
-The `cosmoscope.html` file is exported to the directory defined by `export_target` in the configuration. If the file already exists in the same location, it is overwritten.
+::: tip
+You can use the bibliographic reference manager [Zotero](https://www.zotero.org/) with the [Better BibTeX](https://retorque.re/zotero-better-bibtex/) extension to create unique citation keys for each reference and have an automatically updated export of your library that Cosma can use.
+:::
 
-If the `history` parameter is set to `true`, a time-stamped subdirectory (according to the export date, to the second) is also created in the `/history` directory with the following contents:
+### Citation syntax
 
-- a copy of the `cosmoscope.html` file ;
-- a `data` directory containing the `links.json` and `nodes.json` files, respectively the list of links and nodes, with their respective metadata.
+To cite a reference in a record, include the citation key for that reference using the [Pandoc citation syntax](https://pandoc.org/MANUAL.html#citation-syntax).
 
-This export facilitates data sharing and reuse in other visualisation software.
+Example:
 
-## Alerts and errors
+```
+On writing as a technology of the intellect [@goody1977, 46-52]...
+```
 
-During the process of parsing your Markdown files, system conflicts may occur (without interrupting the export process). There are two types of notifications:
+### Creating a cosmoscope with citations
 
-- some data must be replaced (unrecognised type, link without target...), you will receive a **warning*;
-- some information prevents the processing of a file (lack of a title, non-unique identifier...), then you receive an **error*.
+Click on File › New cosmoscope with citations (`Cmd/Ctrl + Shift + R`) to generate a cosmoscope with citation processing enabled. Citation processing is also available when [exporting](#sharing). Each citation key is then replaced with formatted text, and a bibliography is generated below the body of each record containing references.
 
-Alerts can be ignored. You must correct all errors to make the cosmoscope complete with your library.
+Example:
 
-Alerts (in yellow) and errors (in red) are displayed in the console. If there are more than 5 notifications per type, only their number is announced. You can read them in an `error.log` file. If there are any notifications, they are saved in a subdirectory with a time stamp (according to the export date, to the second) in the `history` directory.
+```
+On writing as a technology of the intellect [@goody1977, 46-52]...
 
-# Using the cosmoscope
+Bibliography
+------------
 
-The `cosmoscope.html` file can be opened with a web browser. It can also be shared online, e.g. by uploading on a server via FTP. You can link to a specific record within an online cosmoscope by adding its ID preceded by a `#` at the end of the URL. Example:
+GOODY, Jack, 1977. The Domestication of the Savage Mind.
+  Cambridge University Press. ISBN 978-0-521-21726-2.
+```
 
-`https://site.tld/cosmoscope.html#20210427185546`
+The CSL JSON data matching the cited references is embedded in the cosmoscope. You can view and download this data in the cosmoscope by clicking on the “Data” button at the bottom of the left-hand side menu. You can also access it from within the cosmoscope source code, under the `<article id="citation-references">` tag.
 
-## Interface overview
+## History
 
-The interface is organised in three columns:
+By default, Cosma automatically exports each cosmoscope to a `cosma-history` directory located in the operating system's temporary directories.
+
+To enable or disable this, click Preferences › Automatically save cosmoscopes to history.
+
+The active cosmoscope is always recorded in the history as the last entry. This last entry is opened when the application is launched. If the automatic recording of cosmoscopes is deactivated, this last entry will simply be overwritten with each new cosmoscope generated.
+
+Click on File › History (`Cmd/Ctrl + H`) to view and manage the history entries using the following buttons:
+
+Edit description
+: Add or edit the text describing the history entry.
+
+Open in Cosma
+: Open the cosmoscope in the main window.
+
+Locate file
+: Reveal the cosmoscope in the operating system file explorer.
+
+Error report
+: Display the error report created during the generation of the cosmoscope.
+
+Delete
+: Delete a history entry.
+
+Empty History…
+: Delete the temporary directory `cosma-history` and all history entries it contains.
+
+## Using the cosmoscope
+
+### Layout
+
+The cosmoscope is organised in three columns:
 
 Left side panel (Menu)
-: Displays the main navigational features, including search, keywords, index and views, as well as controls for the force-based layout algorithm and other graphical parameters.
+: Displays exploratory features such as the index, search bar, filters, views and graph settings.
 
 Central area (Graph)
 : Displays the graph and associated controls (zoom, focus).
 
 Right side panel (Record)
-: Displays the records' metadata and contents, as well as a list of outgoing and incoming links (the latter called backlinks).
+: Displays the records with a list of outgoing links (Links) and incoming links (Backlinks).
 
-[![Interface of Cosma (click on the image to extend it)](https://hyperotlet.huma-num.fr/cosma/img/cosma-interface-schema-en.png)](https://hyperotlet.huma-num.fr/cosma/img/cosma-interface-schema-en.png)
+Cosmoscopes opened in Cosma or exported and opened in a Web browser are functionally identical, with only one difference: the buttons at the top of the Menu are correspond to GUI features (creating records, generating cosmoscopes, etc.) and therefore are only displayed in Cosma.
 
-## Graph
+### Graph
 
-The central area of the interface displays the graph. Each node corresponds to a record; the label corresponds to the title of the record. The links correspond to the links established between the records via their identifiers in double brackets.
+The central area of the cosmoscope is an interactive graph of labelled nodes. Each node corresponds to a record; the label corresponds to the title of the record. The links correspond to the links established between the records via their identifiers.
 
-If `highlight_on_hover` is set to `true`, hovering over a node temporarily highlights it and its connections. Clicking on a node highlights it and its connections and opens the corresponding record.
+Hovering over a node temporarily highlights it and its connections. Clicking on a node highlights it and its connections and opens the corresponding record.
 
-You can zoom into the graph with a mouse or touchpad, by double-clicking on the graph background or with the dedicated buttons at the bottom left. The Refocus button (shortcut: `R` key) resets the zoom.
+You can zoom in and out of the graph freely with a mouse or touchpad, by double-clicking on the graph background or with the dedicated buttons at the bottom left. Press `C` to zoom in on a selected node (whose record is open). The Reset button (shortcut: `R`) resets the zoom.
 
-::: tip
-The keyboard shortcut (on the key) `C` allows you to zoom in on the selected node.
-:::
-
-The nodes' positions are set by a force-based layout algorithm. A coloured bar under the Cosma logo indicates the status of the simulation. Click on it (shortcut: `Space` key) to restart the simulation.
+Nodes are organised in space by a force simulation algorithm. A coloured bar at the top of the Menu indicates the state of the drawing process (active or finished). Click on this bar (shortcut: `Space`) to start an additional simulation cycle. This does not reset the graph but re-runs the algorithm on the existing graph, improving its layout.
 
 ::: tip
-Press the `Space` key repeatedly to progressively “unfold” a tangled graph.
+If you have a particularly tangled graph, pressing `Space` a few times will progressively untangle it.
 :::
 
-The nodes can be moved around slightly by clicking and dragging, but stay subjected to the simulation, so they will snap back to their position.
+The graph is not fixed: nodes can be moved by click and drag. However, the nodes and links remain permanently subject to the simulation, so it is not possible to arrange them manually. Modifying the records may change the arrangement of the nodes in space.
 
-The controls at the bottom of the left side panel allow you to change the way the graph is displayed:
-
-- show or hide links ;
-- show or hide labels ;
-- enable or disable highlight on hover;
-- modify the forces simulated by the layout algorithm;
-- modify the position of the graph in space;
-- modify the size of labels.
-
-These changes will be overwritten each time the page is reloaded. To make them permanent, change the default values set under `graph_config` in the `config.yml` file.
+The way the graph is displayed can be changed temporarily via the controls under Graph settings in the Menu. To change the display permanently, change the default values of the corresponding settings in Preferences › Graph.
 
 ::: tip
-Modify `force` and `distance_max` to adapt the display to your screen resolution and size. Modify `verticale` and `horizontale` to apply a centripetal force towards the corresponding axis, which in particular helps to bring isolated islands and nodes closer to the centre.
+Change the strength and maximum distance between nodes to adapt the display to your screen resolution and size. Add vertical/horizontal attraction to tighten the graph and bring isolated nodes closer to the center.
 :::
 
-The cosmoscope can be displayed on all types of screens but is not optimised for mobile terminals: hovering does not work with touch-based interaction, and small screens limit the usefulness of the graph.
+The graph can be displayed on all types of screens but is not optimised for mobile devices: touch does not give access to certain interactions such as hovering, and small screens greatly limit the usefulness of the graph.
 
+### Records
 
-## Records
+Records can be opened by clicking on a node, an index entry, a search engine suggestion, or a link in the body or footer of a record. Opening a record displays its contents in the right side panel.
 
-Records can be opened by clicking on a node, an index entry, a search engine suggestion, or a link in the body of another record. Opening a record displays its contents in the right-hand side panel. This also updates the URL of the page with the record ID: this allows you to navigate between the records you have visited via the browser's Previous / Next functions, but also you browser's history, and to link directly to a record.
+In Cosma, you can go forward or backward with the Previous / Next buttons located in the left side panel. In a web browser, you can do the same via the browser's Previous / Next functions. Opening a record adds the corresponding identifier at the end of the URL. This allows you to copy direct links to records.
 
-Clicking on the “Close” button closes the pane and deselects the corresponding node in the graph.
+Clicking on the “Close” button closes the right side panel and deselects the corresponding node in the graph.
 
-The links in the body of the records are clickable. You can open these links in a new tab by right-clicking them. The title of the link (displayed in a tooltip after 1-2 seconds of hovering) is that of the corresponding record.
+The links in the records are clickable. In a browser, you can open these links in a new tab via a right click. The title of the link (displayed in a tooltip after 1-2 seconds of hovering) is the title of the corresponding card.
 
 ::: tip
-You can replace the text in links with one or more characters from the configuration. The `link_symbol` option allows you to replace all identifiers in the links with a symbol or text such as `☞`.
+To improve the readability of the records in the cosmoscope, Cosma includes an option to customise the text of the links. In Preferences › Link symbol, enter one or more Unicode characters (letters, numbers, symbols...). Example: ☞. This string replaces the identifier in square brackets in the HTML rendering of the records.
 :::
 
-At the bottom of the record is a list of the records to which it refers (outgoing links), as well as the records that points to it (incoming links or backlinks). Links and backlinks are contextualised: when hovering over them, a tooltip is displayed showing the paragraph in which the link is located in the corresponding record.
+At the bottom of each record is a list of outgoing and incoming links (or backlinks). The links and backlinks are contextualised: when hovering over them, a tooltip is displayed, showing the paragraph that surrounds this link in the corresponding record.
 
-## Focus mode
+::: note
+This is one the most useful features in hypertext systems. It is famously absent from the Web. Many interrelated note-taking applications treat links as “first-class citizens”, and this includes contextualised backlinks. However, when these notes are shared on the Web, this feature is not always included, or it is only inclued in a paid plan. With Cosma, contextualised backlinks are part of the package, whether you're the author of a cosmoscope working locally, or someone exploring a cosmoscope on the Web.
+:::
 
-The Focus button (shortcut: `F` key) at the bottom left of the graph allows you to restrict the display to the selected record and its direct connections. Focus mode only works if you have selected a record.
+### Focus mode
 
-At the focus mode activation, you automatically zoom in on the selected node.
+Activate Focus mode (shortcut: `F`) by ticking the “Focus” box at the bottom left of the graph. In Focus mode, only direct connections to the selected node are displayed in the interface. Focus mode only works if you have selected a record.
 
-The slider under the Focus button allows you to increase and decrease the focus' range, i.e. the distance up to which connections are displayed. The maximum range is defined by the value of the `focus_max` parameter in the configuration.
+You can increase the maximum distance displayed in Focus mode with the slider located beneath the Focus button. The slider's maximum value can be set in Preferences › Maximum focus level. A value of 1 means only the immediate connections will be displayed when in Focus mode. A value of 2 means you can extend the focus two connections of connections, and so on.
 
 ::: tip
-The focus range slider can be controlled with the arrow keys. You can chain shortcuts: `F` to activate the focus, then the arrows to vary the focus range.
+The focus level slider can be controlled with the arrow keys. You can combine shortcuts: `F` to activate Focus mode, then arrow keys to increase and decrease the focus level.
 :::
 
-## Searching
+### Search bar
 
-The text field at the top of the left side panel is a search engine. It suggests a list of records whose title is close to your input, using fuzzy search. Clicking on a suggestion selects the corresponding node in the graph and opens the corresponding record in the right side panel.
+The text field at the top of the Menu allows you to search record titles. It suggests a list of records whose title is closest to what you type in the search bar (using fuzzy search). Clicking on a suggestion selects the corresponding node in the graph and opens the corresponding record in the right side panel.
 
 ::: important
-The available suggestions are constrained by the record type filters and the focus mode: a record hidden by any of these features will not be accessible via the search engine.
+The available suggestions are constrained by the [filters](#filter-display-by-types) and the [focus-mode](#focus-mode): a record hidden by either of these features will not be accessible via the search engine. When you want to start from scratch for a new query, you can click on Reset display (shortcut: `Alt` + `R`).
 :::
 
-## Filtering by record type
+### Filtering by record type
 
-The list of record types at the top of the left-hand side panel allows you to filter the display. Clicking on a type will hide all corresponding records from the graph, index and search engine suggestions. Clicking on a type while holding down the `Alt` key hides all records of the other types.
+The list of record types in the Menu allows you to filter the display. Deselecting a type hides the corresponding records in the graph, index and search engine suggestions. Deselecting a type while holding down the `Alt` key hides the records of all the other types.
 
-For a record type to appear, it must be declared under `record_types` in the configuration and be assigned to at least one record.
+For a type to appear in this list, it must be declared in Preferences › Record types and be assigned to at least one record.
 
-## Tags
+### Filtering by keywords
 
-The list of tags in the left-hand side panel allows you to highlight the records that use each tag. Selecting a tag highlights the label of the corresponding nodes in the graph and restricts the index to the corresponding records. You can activate several keywords simultaneously. To deactivate a keyword, click the corresponding button again.
+The list of keywords in Menu allows you to highlight records that use the selected keywords. Selecting a keyword highlights the label of the corresponding nodes in the graph and restricts the index to the corresponding records. You can activate several keywords simultaneously. To deactivate a keyword, click the corresponding button again.
 
-For a tag to appear, it must have been added in at least one record via the `tags` field.
+For a keyword to appear, it must have been declared in the `tags` field of the YAML header of at least one record.
 
-## Index
+### Index
 
-The alphabetical index of records in the left side panel allows you to access records without going through the graph. Clicking on a title selects the corresponding node in the graph and opens the corresponding record. The index can be sorted in ascending or descending alphabetical order. Filters, keywords and focus mode modify the display of the index.
+The alphabetical index of records in the Menu allows you to select a record from a list rather than through the graph. Clicking on a title selects the corresponding node in the graph and opens the corresponding record. The index can be sorted in ascending or descending alphabetical order.
 
-## Views
+::: important
+Record type filters, keywords and Focus mode all modify the display of the index. A record hidden by either of these features will not be accessible via the search engine. You can reset all these effects by clicking on the “Reset current view” button under Views in the Menu (shortcut: `Alt` + `R`).
+:::
 
-At any time, the current state of the graph (selected record, active filters, focus mode) can be saved for quick access. Think of browser bookmarks, but for visual configurations. Clicking on the Save View button copies a code to your clipboard. This code must then be added with a name under the `views` parameter in the configuration:
+### Views
 
-```
-views:
-  An interesting view: eyJwb3MiOnsieCI6MCwieSI6MCwiem9vbSI6MX19
-```
+At any time, the state of the graph (selected record, active filters, focus mode) can be saved for quick access. This works like a bookmark. Click the Save view button under Views in the Menu and enter a name. This adds an eponymous button to the Views section. Clicking this button applies all settings that were active at the time the view was saved. Clicking the button again restores the normal view.
 
-This adds an button with that name to the Views section in the left side panel. Clicking the button applies all settings that were active when the view was saved. Clicking the button again restores the normal view.
+Views are preserved when exported. However, it is not possible to create a new view from an export. This is only possible from within Cosma.
 
-## Customizing the interface
+## Sharing a cosmoscope
 
-The interface is built from a Nunjucks (`.njk`) template file and CSS stylesheets stored in the `/template` subdirectory.
+Click on File › Share (`Cmd/Ctrl + E`) to export a comoscope to be used outside of the application.
 
-The interface can be customised by adding a `custom.css` file in the `/template` folder. You can create the file manually or run the following command:
+Two options are available:
 
-```
-node app css
-```
+Process citations
+: Process citation keys to generate bibliographies within the records and add bibliographic data to the cosmoscope.
 
-The `custom_css` parameter in the configuration allows you to enable or disable the use of this file without having to delete it.
+Custom CSS
+: Apply a custom CSS stylesheet to modify the appearance of the cosmoscope.
 
-The CSS declarations in `custom.css` replace those in `/template/styles.css` and `/template/print.css` (for print styles) and apply to the `/template/template.njk` file. Check these files directly or with your web browser's inspector to find out which selectors to use for which declarations. For example, the cosmoscope stylesheets use CSS variables to define the colours and fonts used. You can redefine only these variables to quickly change all the interface elements to which they apply.
+::: note
+If the options are greyed out, it means that the corresponding settings in Preferences are not filled in.
+:::
 
-In the example below, the custom.css file contains statements that modify the fonts used in the cosmoscope:
+Cosmoscopes exported via the Share menu include metadata (title, author, description, keywords) if they are set in Preferences › Metadata. These are displayed in the “About” panel. They are also included in the cosmoscope source code in the form of `meta` tags.
+
+The toolbar at the top of the Menu only works in Cosma. It is therefore hidden in cosmoscopes exported via the Share menu. If a title has been set in Preferences › Metadata, it will be displayed instead.
+
+The exported `cosmoscope.html` file can be shared like any other computer file: email, file transfer, messaging, uploading to a server…
+
+In the case of a cosmoscope published on the Web, it is possible to link directly to a record by adding its identifier preceded by a `#` pound sign at the end of the URL. Example:
+
+`https://domain.com/cosmoscope.html#20210427185546`
+
+## Configuration
+
+Click Preferences (`Ctrl + o` or `Cmd + ,`) to configure Cosma.
+
+::: important
+Most of the configuration options will only work if a directory is set in Preferences › General › Records directory.
+:::
+
+### General
+
+Select a display language
+: Allows you to choose the language you wish to apply to the application interface and to the cosmoscopes.
+: The application must be restarted for the language change to take effect. Cosma also does not automatically re-generate a cosmoscope following a change of language. It is therefore necessary to manually re-generate a cosmoscope to see the change take effect.
+
+Records directory
+: Path to the directory containing the Markdown files. New records created with Cosma are added to this directory.
+
+Automatically save cosmoscopes in the history
+: By default, Cosma automatically exports each cosmoscope to a `cosma-history` directory located in the operating system's temporary directories. Uncheck this option to disable this automatic export. The active cosmoscope is always recorded in the history as the last entry. This last entry is opened when the application is launched. If the automatic recording of cosmoscopes is deactivated, this last entry will simply be overwritten with each new cosmoscope generated..
+
+Link symbol
+: Enter one or more Unicode characters (letters, numbers, symbols…). Example: ☞. This string replaces the identifier and square brackets in the HTML rendering of the records.
+
+### Record types
+
+This section allows you to define different types of records. For each type, enter a name and a colour.
+
+To assign a type to a record, add `type: name` to its YAML header. Only one type can be assigned to a record. If the `type` field is not specified or its value does not match one of the types stored in the configuration, Cosma will interpret the type of the record as `undefined`.
+
+::: note
+The colour of the `undefined` type can be changed, but the type cannot be removed.
+:::
+
+### Link types
+
+This section allows you to define different types of links. For each type, enter a name, a colour and a stroke type. The available stroke types are:
+
+- single
+- double
+- dash
+- dotted
+
+To apply a type to a link, add the name of the type followed by a colon before the identifier.
+
+::: note
+The colour and stroke type of the `undefined` type can be changed, but the type cannot be removed.
+:::
+
+::: tip
+The graphic settings of the links affect their readability in the graph. For example, if you set undefined links to grey dotted lines and a special link type to black solid lines, the special links will be more visible in the graph.
+:::
+
+### Graph
+
+The graph parameters can be changed live in the cosmoscope. This allows you to test different values before transferring them to the configuration. The values set in the configuration are restored each time the cosmoscope is reloaded and each time a new one is generated.
+
+Background colour
+: The background colour of the graph.
+
+Highlight colour
+: The colour that is applied to nodes and links when hovering and selecting.
+
+::: note
+We made these two colour settings accessible via the interface as they are likely to be changed by many users. But all interface colours can be changed using a custom CSS style sheet (see Configuration › Advanced).
+:::
+
+Label text size
+: Defines the size of the text of the labels of the nodes of the graph. The size is in pixels. The value must be between 5 and 15.
+
+Maximum focus level
+: Defines the maximum distance between the selected nodes and the connections showed when in Focus mode. A value of 1 means only the immediate connections will be displayed when in Focus mode. A value of 2 means you can extend the focus two connections of connections, and so on.
+
+Show arrows on links
+: This allows you to obtain a directed or undirected graph.
+
+#### Spatialisation
+
+Strength of attraction
+: The overall strength of the simulated attraction between nodes. The lower the value, the looser the links between the nodes.
+
+Maximum distance between nodes
+: Maximum threshold of repulsion between nodes. Above a value of 1000, this parameter has no measurable effect.
+
+Vertical/horizontal attraction
+: A value of 0 means that the parameter is disabled. Applying a vertical/horizontal force tightens the graph and brings isolated nodes closer to the centre.
+
+### Metadata
+
+You can define global metadata for the cosmoscope:
+
+- title
+- author
+- keywords
+- description
+
+Cosmoscopes exported via the Share menu include this metadata when it exists. The title replaces the buttons at the top left of the menu, which are only displayed in the application. The metadata is displayed in the “About” panel. It is also included in the cosmoscope source code as `meta` tags.
+
+### Bibliography
+
+Indicate here the paths to the data, style and bibliographic localisation files. All three files are required for [citation processing](#citations-and-bibliographies).
+
+Bibliographic data
+: File containing metadata describing bibliographic references. The required format is CSL JSON (extension `.json`).
+
+Bibliographic style
+: File containing formatting rules for citations and bibliographies. The required format is CSL (extension `.csl`). You can download style files from the [Zotero CSL styles directory](https://www.zotero.org/styles).
+
+Bibliographic localization
+: File containing localized bibliographic terms (e.g. publisher, issue…) in the language of your choice. The required format is XML (extension `.xml`). You can download localisation files from the [CSL project GitHub repository](https://github.com/citation-style-language/locales/tree/6b0cb4689127a69852f48608b6d1a879900f418b).
+
+### Views
+
+This section allows you to manage the [views](#views) saved in the cosmoscope.
+
+### Advanced
+
+Show development tools
+: This option allows you to display development tools by clicking on View › Development Tools. Click on Show Web Inspector to inspect the HTML and CSS code of the interface.
+
+Custom CSS
+: Load a custom CSS file which will apply to the cosmoscope. Re-generating a cosmoscope is required for the custom CSS to be taken into account.
+
+::: tip
+To find out which selectors to use for which declaration, you can:
+
+- click on View › Development Tools (if Show development tools is on);
+- open the cosmoscope in a web browser and use the browser's development tools;
+- look at the Cosma source code, specifically `/cosma-core/template.njk` (for the HTML structure of the cosmoscope), `/cosma-core/styles.css` and `/cosma-core/print.css` (for the print styles).
+
+The cosmoscope stylesheets use CSS variables to define the colours and fonts used. You can redefine only these variables to change all the interface elements to which they apply. In the example below, the `custom.css` file contains declarations that change the fonts used in the cosmoscope:
 
 ```css
 :root {
-  --sans: "IBM Plex Serif", sans-serif;
+  --sans: "IBM Plex Sans", sans-serif;
   --serif: "IBM Plex Serif", serif;
   --mono: "IBM Plex Mono", monospace;
-  --condensed: 'IBM Plex Sans Condensed', sans-serif;
+  --condensed: 'Avenir Next Condensed', sans-serif;
 }
 ```
+:::
 
-# Development
+## Cosma CLI
 
-This part of the documentation is aimed at experienced JavaScript developers. It presents the tree structure and the concepts on which the two parts forming Cosma, the **cosmographer** and the **cosmoscope**, are based.
+### Installing (CLI)
 
-We strongly recommend that you read the rest of the documentation in order to fully understand the uses of the source code presented below.
+The CLI version of Cosma is available on macOS, Windows and Linux.
 
-## Terminology
+The installation of [NodeJS](https://nodejs.org/) version 15 or higher is required.
 
-The Markdown files interpreted by Cosma are referred to here as “cards” or “records” rather than “notes”, in reference to the tradition of the index card in scholarly practice and documentation. In French, we use the word “fiche”, which has no direct translation into English (although “index card” is often used). However, it is conceptually very close to the word “record” from [records management](https://en.wikipedia.org/wiki/Records_management). Cosma's source code therefore uses the word record to designate a card.
-
-## Code architecture overview
-
-Cosma is mainly implemented in JavaScript. The software is based on two distinct systems, the cosmographer and the cosmoscope.
-
-The **cosmographer** is based on the Node.js environment. A series of scripts are used to :
-
-- check and update the configuration file ;
-- generate Markdown files and their headers;
-- read a directory to extract Markdown files and analyse their content (Markdown, YAML metadata and wiki-style links) to generate :
-	- JSON files ;
-	- the cosmoscope (its data and CSS variables).
-
-The **cosmoscope** is an HTML file run on web browsers, created from a [Nunjucks](https://mozilla.github.io/nunjucks/) template (`template.njk`). It incorporates :
-
-- web metadata and styles from the configuration ;
-- JavaScript scripts and libraries;
-- indexes (keywords, record title, views);
-- records.
-
-## File tree
-
-Below you will find a complete description of the software's tree structure, allowing you to distinguish between cosmographer-related files and cosmoscope-related files.
+Enter the following command in your terminal to install Cosma CLI:
 
 ```
-.
-├── docs/                   | documentation directory
-│   ├── api/                | API index directory
-│   │   └── [x].md          | introduction to API index of [x]
-│   └── api-config-[x].json | config. of the API index of [x]
-├── functions/              | cosmographer functions
-│   ├── autorecord.js       | command-line one-liner for creating Markdown files
-│   ├── history.js          | creation of export history directories
-│   ├── links.js            | analysis of wiki-style links and their attributes
-│   ├── log.js              | display alerts and create logs
-│   ├── modelize.js         | Markdown file analysis and data model creation
-│   ├── record.js           | command-line form for creating Markdown files
-│   ├── template.js         | integration of data, style and body of cosmoscope
-│   └── verifconfig.js      | configuration validation and modification
-├── template/               | 
-│   ├── libs/               | JavaScript libraries
-│   ├── scripts/            | cosmoscope functions
-│   │   ├── bibliography.js | download bibliographic data
-│   │   ├── counter.js      | activate entity counters
-│   │   ├── filter.js       | apply filters
-│   │   ├── focus.js        | apply focus
-│   │   ├── graph.js        | graph displaying and interactions
-│   │   ├── history.js      | history of navigation between sheets
-│   │   ├── index.js        | control of the left menu panes and buttons
-│   │   ├── keyboard.js     | assignment of keyboard shortcuts
-│   │   ├── main.js         | global variables and logo animation
-│   │   ├── record.js       | opening/closing the right side panel
-│   │   ├── search.js       | search engine settings
-│   │   ├── tag.js          | apply tags
-│   │   ├── view.js         | save and apply a view
-│   │   └── zoom.js         | set the movement (lateral, zoom) within the graph
-│   ├── cosmalogo.svg       | software logo
-│   ├── template.njk        | cosmoscope structure
-│   ├── print.css           | cosmoscope printing styles
-│   └── styles.css          | cosmoscope styles
-├── app.js                  | addressing of the terminal commands
-└── package.json            | list of Node.js dependencies
+npm i @graphlab-fr/cosma -g
 ```
 
-## API index
+### Configuration (CLI)
 
-Click on the links below to view the list of functions used by the cosmograph and cosmoscope:
+The configuration of the CLI version is done in a `config.yml` file written in YAML. This file is generated at the root of the application directory by running `cosma` for the first time:
 
-- [Consulter l'API du cosmographe](./api/cosmographe/index.html)
-- [Consulter l'API du cosmoscope](./api/cosmoscope/index.html)
+- Windows: `%USERPROFILE%AppData\Roaming\npm\node_modules\@graphlab-encosma\config.yml`
+- macOS, Linux: `/usr/local/lib/node_modules/@graphlab-fr/cosma/config.yml`
 
-## How the cosmograph works
+The `config.yml` file generated by Cosma contains the default values for all the parameters. These settings are identical to the GUI version. See the [Configuration](#configuration) section. If you remove a parameter from the file, the default value will be used by Cosma.
 
-There are three possible uses of the cosmographer via the command line. These different requests are received by `app.js` which returns them:
+::: important
+The `undefined` record and link types are required for the application to work, do not remove them.
+:::
 
-- read and modelize (`modelize.js`), then integrate (`template.js`) the data into a cosmoscope ;
-- generate formatted Markdown files (`record.js` and `autorecord.js`);
-- modify the configuration (`verifconfig.js`).
+### Commands
 
-The configuration (the contents of the `config.yml` file turned into a JavaScript object) is exported globally (from `verifconfig.js`). It can be called as demonstrated below:
+Cosma CLI commands have a long form and a short form. They have the same behaviour. The short form is there to save time should you wish it.
 
-```javascript
-const config = require('./verifconfig').config;
+#### Generate a configuration file
 
-const folderToExport = config.export_target;
+```
+cosma config
+cosma c
 ```
 
-## Reading files
+#### Create a record (form mode)
 
-From the `modelize.js` file, we extract from each Markdown file the metadata (the YAML header) and the content (following the YAML header) (`modelize.js` file).
-
-[`catchLinksFromContent()`](./api/cosmograph/global.html#catchLinksFromContent)
-: The content is first read by a series of regular expressions to extract the paragraphs, and for each paragraph the *wikilinks* contained. The paragraph becomes the context of its links and is translated into HTML.
-
-[`convertLinks()`](./api/cosmograph/global.html#convertLinks)
-: The contents of the file are then transformed to turn the *wikilinks* into Markdown links
-
-[`cosmoscope()`](./api/cosmograph/global.html#cosmoscope)
-: The content of the file is fully translated from Markdown to HTML.
-
-The first and third functions use the markdown-it library. It can be replaced.
-
-## Generating the cosmoscope
-
-The cosmoscope is generated using the function [`cosmoscope()`](./api/cosmograph/global.html#cosmoscope).
-
-This instantiates the Nunjucks template `/template/template.njk` and injects the configuration data, records, graph entities and styles (serialized by the [`colors()`](./api/cosmograph/global.html#colors) function).
-
-Nunjucks also imports CSS stylesheets and JavaScript libraries in the `head`, as well as JavaScript functions in `script` tags at the end of the document. The record and configuration data are integrated via loops and other Nunjucks control structures.
-
-The whole thing is saved in a `cosmoscope.html` file and then [exported](#exporting).
-
-## Displaying the graph
-
-Generating and animating the graph relies on the [D3.js] library (https://d3js.org/). It receives its data from the global object `graph`. This object is composed of two arrays.
-
-`graph.nodes`
-: This array contains all the data relating to the nodes, including a series of booleans to indicate their display status (see the serialization by the [`registerNodes()`](./api/cosmograph/global.html#registerNodes) function). This indicated state is updated each time the display changes.
-
-`graph.links`
-: This array contains all data relating to links (see serialization by the [`registerLinks()`](./api/cosmograph/global.html#registerLinks) function).
-
-## Displaying the graph with other libraries
-
-The arrays presented in the previous section can be injected into other graph generation JavaScript libraries.
-
-**Example 1:** Vis.js Network ([repository](https://github.com/visjs/vis-network), [code sample](https://github.com/visjs/vis-network#example)).
-
-In `/functions/modelize.js`:
-
-```javascript
-function registerLinks(file) {
-// ...
-  for (const link of file.links) {
-  // ...
-    entities.links.push({
-      // ...
-      from: Number(link.source.id),
-      to: Number(link.target.id),
-      // ...
-    });
-  }
-}
+```
+cosma record
+cosma r
 ```
 
-In `/template/scripts/graph.js`:
+This command prompts you for a title, a type and some keywords. Only the title is mandatory.
 
-```javascript
-const network = new vis.Network(
-  document.getElementById('network')
-  , data = {
-    nodes: new vis.DataSet(graph.nodes),
-    edges: new vis.DataSet(graph.links)
-  }
-  , {  } // options
-);
+#### Create a record (one-liner mode)
+
+```
+cosma autorecord <titre> <type> <keywords>
+cosma a <titre> <type> <keywords>
 ```
 
-**Example 2:** Sigma.js ([repository](https://github.com/jacomyal/sigma.js/), [code sample](https://github.com/jacomyal/sigma.js/blob/master/examples/basic.html#L70)).
+This command allows you to create a record in just one command.
 
-```javascript
-const network = new sigma({
-  graph: {
-    nodes: graph.nodes,
-    edges: graph.links
+`<title>`
+: Mandatory.
+: The title of the record.
+
+`<type>`
+: Optional.
+: One of the types defined in the configuration (`undefined` by default).
+
+`<keywords>`
+: Optional.
+: A comma-separated list of keywords (no spaces). Example: `keyword1,keyword2`.
+
+#### Create records (batch mode)
+
+```
+cosma batchrecord <path>
+cosma b <path>
+```
+
+This command allows you to create multiple records in one command.
+
+`<path>`
+: The location of a file in JSON format describing the records to be created.
+: The file should be structured as follows:
+
+```json
+[
+  {
+    "title": "Title of the record",
+    "type": "undefined",
+    "tags": "keyword1,keyword2",
+    "content": "Contents of the record, including [[20210704100343]] links."
   },
-  container: 'network'
-});
+  ...
+]
 ```
 
-## Graph parameters
+As with all other record creation modes, the title (`title`) is mandatory and the other fields are optional.
 
-The graph parameters are extracted from the `graph_config` part of the `config.yml` configuration file. It is injected into the Nunjucks `/template/template.njk` template via the [`cosmoscope()`](./api/cosmograph/global.html#cosmoscope) function. In the template, it is both used as the default value for forms in the “Graph settings” menu and implemented as a global JavaScript object `graphProperties`.
+::: note
+**Batch record creation and identifiers**
 
-This same global object is updated by the various forms in the “Graph settings” menu. The forms then call the [`updateForces()`](./api/cosmograph/global.html#updateForces) function to restart the evaluation of these parameters by D3.js.
+Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This means you can manually create one record per second, or 86,400 records per day. Another way to phrase it is to say there is a range of 86,400 identifiers reserved for manual record creation each day. For example, on 15 January 2022, these identifiers range from 20220115000000 to 20220115235959.
 
-## Keyboard shortcuts
+To prevent generating duplicate identifiers, the batch creation mode generates identifiers by pseudo-timestamp. The first 8 digits, corresponding to the date (year, month, day), are real. Example: 20220115 (15 January 2022). On the other hand, those corresponding to the hours, minutes and seconds are false, generated outside of real time ranges. Example: 256495. As it is impossible to create a record manually at 25h 64min and 95s, there is no risk of generating duplicate identifiers by using both methods simultaneously. 
 
-Keyboard shortcuts for the cosmoscope are implemented in the `/template/scripts/keyboard.js` file. The global `pressedKeys` object contains the list of keys that are monitored for behavioural changes. Other keys (letters) are listed to call certain functions and are not added to the global `pressedKeys` object.
+Because of this operation, it is possible to create up to 913,599 records per day and per directory in batch mode before running out of identifiers.
+:::
 
-The global boolean `keyboardShortcutsAreWorking` defines whether shortcuts can be used or not. When entering text in a field, the letters must not be used for anything other than writing.
+#### Create a cosmoscope (CLI)
 
-# Credits
+```
+cosma modelize
+cosma m
+```
 
-## Team
+### Options
 
-- [Arthur Perret](https://www.arthurperret.fr/) (principal investigator)
+Various options can be added to the `modelize` command.
+
+Like commands, options have a long and a short form, which are functionally identical, the short form is simply there to save time if needed.
+
+Options are also used to modify configuration values on the fly. 
+
+#### Create a cosmoscope with citations (CLI)
+
+```
+cosma modelize --citeproc
+cosma m -c
+```
+
+#### Create a cosmoscope to share (publish mode)
+
+```
+cosma modelize --publish
+cosma m -p
+```
+
+This adds metadata set in the configuration to the “About” panel of the cosmoscope, and corresponding `meta` tags in the source code. This is functionally similar to exporting via File › Share in the GUI version of Cosma.
+
+#### Include a custom CSS stylesheet
+
+```
+cosma modelize --load_css_custom
+cosma m -css
+```
+
+This option applies the custom CSS stylesheet specified in the configuration.
+
+::: tip
+You can combine the different export options as follows:
+
+```
+cosma modelize --publish --citeproc --load_css_custom
+cosma m -p -c -css
+```
+:::
+
+#### Specify a records directory path
+
+```
+cosma modelize --files_origin:"D:\fiches"
+cosma m -f:"D:\fiches"
+```
+
+#### Specify a cosmoscope export path
+
+```
+cosma modelize --export_target:"C:\desktop"
+cosma m -e:"C:\desktop"
+```
+
+#### Specify a language
+
+```
+cosma modelize --lang:"en"
+cosma m -l:"en"
+```
+
+#### Specify if the cosmoscope should be saved in the history
+
+```
+cosma modelize --history:false
+cosma m -h:false
+```
+
+#### Rewrite the configuration with the options used
+
+```
+cosma modelize --save
+cosma m -s
+```
+
+This option rewrites the values of the various parameters in the configuration with the values used in the command.
+
+Example :
+
+```
+cosma m -l:"en" -s
+```
+
+## Credits
+
+### Team
+
+- [Arthur Perret](https://www.arthurperret.fr/) (project lead)
 - [Guillaume Brioudes](https://myllaume.fr/) (developer)
 - [Clément Borel](https://mica.u-bordeaux-montaigne.fr/borel-clement/) (researcher)
 - [Olivier Le Deuff](http://www.guidedesegares.info/) (researcher)
 
-## Dependencies
+### Dependencies
 
-To improve the maintainability and readability of the source code, the development team used the following libraries:
+To improve the maintainability and readability of the source code, the development team resorted to the following libraries:
 
-- [D3.js](https://d3js.org/) v4.13.0 (BSD 3-Clause) : graph visualization.
-- [Nunjucks](https://mozilla.github.io/nunjucks/) v3.2.3 (BSD 2-Clause) : templating.
-- [Js-yaml](https://github.com/nodeca/js-yaml) v3.14.0 (MIT License) : parsing the configuration file.
-- [Js-yaml-front-matter](https://github.com/dworthen/js-yaml-front-matter) v4.1.0 (MIT License) : parsing record metadata.
-- [Markdown-it](https://github.com/markdown-it/markdown-it) v12.0.2 (MIT License) : Markdown to HTML conversion.
-- [Markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) v4.0.0  (MIT License) : processing hyperlinks within records.
-- [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.59 (CPAL et AGPL) : Conversion of citation keys
-- [Minify-html](https://github.com/wilsonzlin/minify-html) v0.4.3 (MIT License) : reducing the weight of the cosmoscope file.
-- [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0) : search engine.
-- [Moment](https://momentjs.com/) v2.29.1 (MIT License) : time stamping.
-
-## Project history
-
-August 2020
-: The “Lexicographer”, a prototype based on the [Otletosphere](https://github.com/hyperotlet/otletosphere).
-
-Décembre 2020
-: Cosma has a name, a logo and specifications for development.
-
-Avril 2021
-: Cosma v1.0 is released [on GitHub](https://github.com/graphlab-fr/cosma/releases/tag/v1.0.0) and archived [on Zenodo](https://zenodo.org/record/4744309).
- -->
+- [D3.js](https://d3js.org/) v4.13.0 (BSD 3-Clause) : Generating the graph
+- [Nunjucks](https://mozilla.github.io/nunjucks/) v3.2.3 (BSD 2-Clause) : Generating the cosmoscope template
+- [Js-yaml](https://github.com/nodeca/js-yaml) v4.1.0 (MIT License) : Reading the configuration file and writing the YAML header
+- [Js-yaml-front-matter](https://github.com/dworthen/js-yaml-front-matter) v4.1.1 (MIT License): Reading the YAML header of Markdown files
+- [Markdown-it](https://github.com/markdown-it/markdown-it) v12.3.0 (MIT License): Converting Markdown to HTML
+- [Markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) v4.0.0 (MIT License): Handling Markdown hyperlinks within records
+- [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.62 (CPAL and AGPL): Converting citation keys
+- [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0): Search engine
+- [Moment](https://momentjs.com/) v2.29.1 (MIT License): Managing time and timestamps

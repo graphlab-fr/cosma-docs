@@ -149,7 +149,7 @@ Un champ en YAML est composé d'un nom et d'une valeur séparés par un double-p
 : Identifiant unique de la fiche. Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) ou [Zettlr](https://www.zettlr.com).
 
 `type`
-: Type de la fiche. Facultatif. Un seul type peut être assigné à une fiche. Si le champ `type` n'est pas spécifié ou bien que sa valeur ne correspond à l'un des types enregistrés dans la configuration sous le paramètre `record_types`, Cosma interprètera le type de la fiche comme non défini (`undefined`).
+: Type de la fiche. Facultatif. Un seul type peut être assigné à une fiche. Si le champ `type` n'est pas spécifié ou bien que sa valeur ne correspond à l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
 
 `tags`
 : Mots-clés de la fiche. Facultatif. La valeur doit être une liste. Une fiche peut disposer d'autant de mot-clés que vous souhaitez.
@@ -405,13 +405,15 @@ Pour améliorer la lisibilité des fiches dans le cosmoscope, Cosma inclut une o
 
 En bas de chaque fiche se trouve une liste des liens sortants et des liens entrants (ou rétroliens). Les liens et rétroliens sont contextualisés : au survol, une infobulle s'affiche, montrant le paragraphe qui entoure ce lien dans la fiche correspondante.
 
+::: note
+Les liens et rétroliens contextualisés font partie des fonctionnalités les plus utiles des systèmes hypertextuels. C'est une fonctionnalité notoirement absente du Web. En revanche, de nombreuses applications de prise de notes interreliées traitent les liens comme un élément de première importance, et cela inclut les rétroliens contextualisés. Cependant, lorsque ces notes sont partagées sur le Web, cette fonctionnalité n'est pas toujours incluse, ou alors elle fait partie d'un service de publication payant. Avec Cosma, les rétroliens contextualisés font partie du logiciel, que vous soyez l'auteur d'un cosmoscope travaillant sur sa machine, ou quelqu'un qui explore un cosmoscope sur le Web.
+:::
+
 ### Mode focus
 
 Le bouton Activer le focus (raccourci : touche `F`) situé en bas à gauche du graphe permet de restreindre l'affichage au nœud sélectionné : en mode focus, seules les connexions directes à la fiche sélectionnée sont affichées dans l'interface. Le mode focus ne fonctionne que si vous avez sélectionné une fiche.
 
-Une fois le mode focus activé, vous zoomez automatiquement sur le nœud sélectionné.
-
-Le curseur qui apparaît sous le bouton Activer le focus permet de faire varier la distance d'affichage, jusqu'au maximum indiqué dans Préférences › Niveau maximum de focus.
+Le curseur qui apparaît sous le bouton Activer le focus permet de faire varier la distance d'affichage, jusqu'au maximum indiqué dans Préférences › Niveau maximum de focus. Une valeur de 1 signifie que seules les connexions immédiates seront affichées en mode Focus. Une valeur de 2 signifie que vous pouvez étendre le focus aux connexions des connexions, et ainsi de suite.
 
 ::: astuce
 Le curseur du niveau de focus est contrôlable via les flèches du clavier. Vous pouvez enchaîner les raccourcis : `F` pour activer le focus, puis les flèches pour augmenter le niveau de focus.
@@ -501,7 +503,7 @@ Symbole de lien
 
 Cette section permet de définir différents types de fiches. Pour chaque type de fiche, renseignez un nom et une couleur.
 
-Ajoutez `type: nom` à l'en-tête en YAML d'une fiche pour lui attribuer ce type et ainsi attribuer une couleur au nœud correspondant à la fiche. Un seul type peut être assigné à une fiche. Si le champ `type` n'est pas spécifié ou bien que sa valeur ne correspond à l'un des types enregistrés dans la configuration sous le paramètre `record_types`, Cosma interprètera le type de la fiche comme non défini (`undefined`).
+Ajoutez `type: nom` à l'en-tête en YAML d'une fiche pour lui attribuer ce type. Un seul type peut être assigné à une fiche. Si le champ `type` n'est pas spécifié ou bien que sa valeur ne correspond à l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
 
 ::: note
 Le type "undefined" (couleur par défaut des nœuds) peut être modifié, mais ne peut être retiré.
@@ -660,6 +662,8 @@ cosma record
 cosma r
 ```
 
+Cette commande permet de créer une fiche en mode formulaire. Elle demande successivement un titre, un type et un ou plusieurs mots clés. Seul le titre est obligatoire.
+
 #### Créer une fiche (mode *one-liner*)
 
 ```
@@ -667,11 +671,21 @@ cosma autorecord <titre> <type> <mots-clés>
 cosma a <titre> <type> <mots-clés>
 ```
 
+Cette commande vous permet de créer une fiche en une seule commande.
+
 Dans la commande ci-dessus :
 
-- `<titre>` correspond au titre de la fiche, qui est aussi le nom du fichier généré ;
-- `<type>` (facultatif) correspond à l’un des types définis dans la configuration (« undefined » par défaut) ;
-- `<mots-clés>` (facultatif) est une liste de mots-clés séparés par des virgules (sans espaces).
+`<titre>`
+: Obligatoire.
+: Le titre de la fiche.
+
+`<type>`
+: Facultatif.
+: L’un des types définis dans la configuration (`undefined` par défaut).
+
+`<mots-clés>`
+: Facultatif.
+: Une liste de mots-clés séparés par des virgules (sans espaces). Exemple : `mot-clé1,mot-clé2`.
 
 #### Créer un lot de fiches
 
@@ -680,7 +694,10 @@ cosma batchrecord <path>
 cosma b <path>
 ```
 
-Dans la commande ci-dessus, `<path>` correspond à l'emplacement d'un fichier au format JSON décrivant les fiches à créer. Le fichier doit être structuré de la manière suivante :
+Cette commande permet de créer plusieurs fiches d'un coup.
+
+`<path>`
+: Emplacement d'un fichier au format JSON décrivant les fiches à créer. Le fichier doit être structuré de la manière suivante :
 
 ```json
 [
@@ -715,7 +732,7 @@ cosma m
 
 ### Options
 
-Différentes options peuvent être ajoutées à la commande de création de cosmoscope.
+Différentes options peuvent être ajoutées à la commande `modelize`.
 
 Comme les commandes, les options existent en version longue et version courte, qui sont fonctionnellement identiques, la version courte servant simplement à gagner du temps en raccourcissant la commande.
 
@@ -803,7 +820,7 @@ cosma m -l:"en" -s
 
 ### Bibliothèques utilisées
 
-Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes.
+Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes :
 
 - [D3.js](https://d3js.org/) v4.13.0 (BSD 3-Clause) : Génération du graphe
 - [Nunjucks](https://mozilla.github.io/nunjucks/) v3.2.3 (BSD 2-Clause) : Génération du template du cosmoscope
