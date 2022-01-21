@@ -646,7 +646,12 @@ Les types de fiches et de liens « undefined » sont requis pour le fonctionne
 
 ### Commandes
 
-La plupart des commandes de Cosma CLI existent en deux versions : une version longue et une version courte. Les deux versions ont le même comportement. La version courte sert simplement à gagner du temps.
+Vous pouvez afficher la liste des commandes avec la commande suivante. Vous pouvez également afficher les options disponibles pour une commande précise.
+
+```
+cosma --help
+cosma modelize --help
+```
 
 #### Générer un fichier de configuration
 

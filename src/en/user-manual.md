@@ -14,7 +14,7 @@ Cosma was developed initially as part of the [HyperOtlet](https://hyperotlet.hyp
 
 ### A unique tool
 
-Among tools for thought, Cosma stands out on **three key aspects**:
+Among tools for thought, Cosma stands out with **three key aspects**:
 
 First, **Cosma is not a note-taking app**. It is designed to work in conjunction with these programs. This is inspired by software such as [Deckset](https://www.deckset.com), which applies this principle to presentations (write in your favorite editor, visualize elsewhere).
 
@@ -649,7 +649,12 @@ The `undefined` record and link types are required for the application to work, 
 
 ### Commands
 
-Cosma CLI commands have a long form and a short form. They have the same behaviour. The short form is there to save time should you wish it.
+You can display the list of commands with the following command. You can also display the options available for a specific command.
+
+```
+cosma --help
+cosma modelize --help
+```
 
 #### Generate a configuration file
 

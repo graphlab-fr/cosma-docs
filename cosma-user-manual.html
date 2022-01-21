@@ -6,7 +6,7 @@
 
 	<meta name="description" content="">
 	<meta name="author" content=Arthur Perret,Guillaume Brioudes">
-	<meta name="last_edit" content="Fri, 21 Jan 2022 18:10:44 GMT">
+	<meta name="last_edit" content="Fri, 21 Jan 2022 19:01:33 GMT">
 
 	<style>
         :root {
@@ -276,9 +276,9 @@ footer {
 <nav class="nav-lang">
 	<ul>
 		
-		<li><a href="../cosma-manuel-d-utilisation.html">🇫🇷 FR</a></li>
-		
 		<li><a href="../cosma-user-manual.html">🇬🇧 EN</a></li>
+		
+		<li><a href="../cosma-manuel-d-utilisation.html">🇫🇷 FR</a></li>
 		
 		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
 	</ul>
@@ -294,7 +294,7 @@ footer {
 <p>Cosma is a document graph visualization tool. It renders interlinked plain text files as an interactive network in a web interface. It can be used to explore and share collections of various sizes, from a few dozen up to several thousands of documents.</p>
 <p>Cosma was developed initially as part of the <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a> research programme (grant number ANR-17-CE38-0011).</p>
 <h3 id="a-unique-tool" tabindex="-1">A unique tool</h3>
-<p>Among tools for thought, Cosma stands out on <strong>three key aspects</strong>:</p>
+<p>Among tools for thought, Cosma stands out with <strong>three key aspects</strong>:</p>
 <p>First, <strong>Cosma is not a note-taking app</strong>. It is designed to work in conjunction with these programs. This is inspired by software such as <a href="https://www.deckset.com">Deckset</a>, which applies this principle to presentations (write in your favorite editor, visualize elsewhere).</p>
 <p>Secondly, <strong>Cosma is based on interoperable, open and standardised writing conventions</strong>. This allows you to use other tools that share these standards (such as <a href="https://www.zettlr.com">Zettlr</a>) and to switch tools more freely. Overall, it increases the durability of your data.</p>
 <p>Finally, <strong>Cosma allows you to simultaneously share your data and the tools to explore it</strong>. What does this mean? Most visualization tools are packed with great functionality, but they only export static images, or structured data that requires software to make any use of. Cosma reverses this logic: what you see in the main window is actually a standalone HTML file, meaning you can share it and thus transmit not just your data, but a fully interactive representation of it.</p>
@@ -724,7 +724,10 @@ To find out which selectors to use for which declaration, you can:</p>
 <p>The <code>undefined</code> record and link types are required for the application to work, do not remove them.</p>
 </div>
 <h3 id="commands" tabindex="-1">Commands</h3>
-<p>Cosma CLI commands have a long form and a short form. They have the same behaviour. The short form is there to save time should you wish it.</p>
+<p>You can display the list of commands with the following command. You can also display the options available for a specific command.</p>
+<pre><code>cosma --help
+cosma modelize --help
+</code></pre>
 <h4 id="generate-a-configuration-file" tabindex="-1">Generate a configuration file</h4>
 <pre><code>cosma config
 </code></pre>
