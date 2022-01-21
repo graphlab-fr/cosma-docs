@@ -652,14 +652,12 @@ La plupart des commandes de Cosma CLI existent en deux versions : une version l
 
 ```
 cosma config
-cosma c
 ```
 
 #### Créer une fiche (mode formulaire)
 
 ```
 cosma record
-cosma r
 ```
 
 Cette commande permet de créer une fiche en mode formulaire. Elle demande successivement un titre, un type et un ou plusieurs mots clés. Seul le titre est obligatoire.
@@ -668,7 +666,6 @@ Cette commande permet de créer une fiche en mode formulaire. Elle demande succe
 
 ```
 cosma autorecord <titre> <type> <mots-clés>
-cosma a <titre> <type> <mots-clés>
 ```
 
 Cette commande vous permet de créer une fiche en une seule commande.
@@ -690,8 +687,7 @@ Dans la commande ci-dessus :
 #### Créer un lot de fiches
 
 ```
-cosma batchrecord <path>
-cosma b <path>
+cosma batch <path>
 ```
 
 Cette commande permet de créer plusieurs fiches d'un coup.
@@ -727,7 +723,6 @@ Du fait de ce fonctionnement, il est possible de créer par lot jusqu'à 913 59
 
 ```
 cosma modelize
-cosma m
 ```
 
 ### Options
@@ -742,20 +737,13 @@ Les options servent également à réécrire à la volée les paramètres de la 
 
 ```
 cosma modelize --citeproc
-cosma m -c
-```
-
-#### Créer un cosmoscope à partager (mode publication)
-
-```
-cosma modelize --publish
-cosma m -p
+cosma modelize -c
 ```
 
 #### Inclure une feuille de style CSS personnalisée
 
 ```
-cosma modelize --load_css_custom
+cosma modelize --custom_css
 cosma m -css
 ```
 
@@ -763,51 +751,10 @@ cosma m -css
 Vous pouvez combiner les différentes options d'export comme suit :
 
 ```
-cosma modelize --publish --citeproc --load_css_custom
-cosma m -p -c -css
+cosma modelize --citeproc --custom_css
+cosma modelize -c -css
 ```
 :::
-
-#### Réécrire le chemin du répertoire des fiches
-
-```
-cosma modelize --files_origin:"D:\fiches"
-cosma m -f:"D:\fiches"
-```
-
-#### Réécrire le chemin d'export du cosmoscope
-
-```
-cosma modelize --export_target:"C:\desktop"
-cosma m -e:"C:\desktop"
-```
-
-#### Réécrire la langue utilisée
-
-```
-cosma modelize --lang:"en"
-cosma m -l:"en"
-```
-
-#### Réécrire l'enregistrement de l'historique
-
-```
-cosma modelize --history:false
-cosma m -h:false
-```
-
-#### Enregistrer dans la configuration les paramètres réécrits
-
-```
-cosma modelize --save
-cosma m -s
-```
-
-Exemple :
-
-```
-cosma m -l:"en" -s
-```
 
 ## Crédits
 

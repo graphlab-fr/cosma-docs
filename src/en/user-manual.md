@@ -655,14 +655,12 @@ Cosma CLI commands have a long form and a short form. They have the same behavio
 
 ```
 cosma config
-cosma c
 ```
 
 #### Create a record (form mode)
 
 ```
 cosma record
-cosma r
 ```
 
 This command prompts you for a title, a type and some keywords. Only the title is mandatory.
@@ -671,7 +669,6 @@ This command prompts you for a title, a type and some keywords. Only the title i
 
 ```
 cosma autorecord <titre> <type> <keywords>
-cosma a <titre> <type> <keywords>
 ```
 
 This command allows you to create a record in just one command.
@@ -691,8 +688,7 @@ This command allows you to create a record in just one command.
 #### Create records (batch mode)
 
 ```
-cosma batchrecord <path>
-cosma b <path>
+cosma batch <path>
 ```
 
 This command allows you to create multiple records in one command.
@@ -729,7 +725,6 @@ Because of this operation, it is possible to create up to 913,599 records per da
 
 ```
 cosma modelize
-cosma m
 ```
 
 ### Options
@@ -744,23 +739,14 @@ Options are also used to modify configuration values on the fly.
 
 ```
 cosma modelize --citeproc
-cosma m -c
+cosma modelize -c
 ```
-
-#### Create a cosmoscope to share (publish mode)
-
-```
-cosma modelize --publish
-cosma m -p
-```
-
-This adds metadata set in the configuration to the “About” panel of the cosmoscope, and corresponding `meta` tags in the source code. This is functionally similar to exporting via File › Share in the GUI version of Cosma.
 
 #### Include a custom CSS stylesheet
 
 ```
-cosma modelize --load_css_custom
-cosma m -css
+cosma modelize --custom_css
+cosma modelize -css
 ```
 
 This option applies the custom CSS stylesheet specified in the configuration.
@@ -769,53 +755,10 @@ This option applies the custom CSS stylesheet specified in the configuration.
 You can combine the different export options as follows:
 
 ```
-cosma modelize --publish --citeproc --load_css_custom
-cosma m -p -c -css
+cosma modelize --citeproc --custom_css
+cosma m -c -css
 ```
 :::
-
-#### Specify a records directory path
-
-```
-cosma modelize --files_origin:"D:\fiches"
-cosma m -f:"D:\fiches"
-```
-
-#### Specify a cosmoscope export path
-
-```
-cosma modelize --export_target:"C:\desktop"
-cosma m -e:"C:\desktop"
-```
-
-#### Specify a language
-
-```
-cosma modelize --lang:"en"
-cosma m -l:"en"
-```
-
-#### Specify if the cosmoscope should be saved in the history
-
-```
-cosma modelize --history:false
-cosma m -h:false
-```
-
-#### Rewrite the configuration with the options used
-
-```
-cosma modelize --save
-cosma m -s
-```
-
-This option rewrites the values of the various parameters in the configuration with the values used in the command.
-
-Example :
-
-```
-cosma m -l:"en" -s
-```
 
 ## Credits
 

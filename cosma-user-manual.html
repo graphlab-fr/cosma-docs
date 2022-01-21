@@ -6,7 +6,7 @@
 
 	<meta name="description" content="">
 	<meta name="author" content=Arthur Perret,Guillaume Brioudes">
-	<meta name="last_edit" content="Tue, 18 Jan 2022 15:55:29 GMT">
+	<meta name="last_edit" content="Fri, 21 Jan 2022 18:10:44 GMT">
 
 	<style>
         :root {
@@ -287,7 +287,7 @@ footer {
     <main>
         
         
-        <p>Last update : January 18, 2022</p>
+        <p>Last update : January 21, 2022</p>
         
 
         <h2 id="about-cosma" tabindex="-1">About Cosma</h2>
@@ -727,16 +727,13 @@ To find out which selectors to use for which declaration, you can:</p>
 <p>Cosma CLI commands have a long form and a short form. They have the same behaviour. The short form is there to save time should you wish it.</p>
 <h4 id="generate-a-configuration-file" tabindex="-1">Generate a configuration file</h4>
 <pre><code>cosma config
-cosma c
 </code></pre>
 <h4 id="create-a-record-(form-mode)" tabindex="-1">Create a record (form mode)</h4>
 <pre><code>cosma record
-cosma r
 </code></pre>
 <p>This command prompts you for a title, a type and some keywords. Only the title is mandatory.</p>
 <h4 id="create-a-record-(one-liner-mode)" tabindex="-1">Create a record (one-liner mode)</h4>
 <pre><code>cosma autorecord &lt;titre&gt; &lt;type&gt; &lt;keywords&gt;
-cosma a &lt;titre&gt; &lt;type&gt; &lt;keywords&gt;
 </code></pre>
 <p>This command allows you to create a record in just one command.</p>
 <dl>
@@ -751,8 +748,7 @@ cosma a &lt;titre&gt; &lt;type&gt; &lt;keywords&gt;
 <dd>A comma-separated list of keywords (no spaces). Example: <code>keyword1,keyword2</code>.</dd>
 </dl>
 <h4 id="create-records-(batch-mode)" tabindex="-1">Create records (batch mode)</h4>
-<pre><code>cosma batchrecord &lt;path&gt;
-cosma b &lt;path&gt;
+<pre><code>cosma batch &lt;path&gt;
 </code></pre>
 <p>This command allows you to create multiple records in one command.</p>
 <dl>
@@ -779,7 +775,6 @@ cosma b &lt;path&gt;
 </div>
 <h4 id="create-a-cosmoscope-(cli)" tabindex="-1">Create a cosmoscope (CLI)</h4>
 <pre><code>cosma modelize
-cosma m
 </code></pre>
 <h3 id="options" tabindex="-1">Options</h3>
 <p>Various options can be added to the <code>modelize</code> command.</p>
@@ -787,48 +782,19 @@ cosma m
 <p>Options are also used to modify configuration values on the fly.</p>
 <h4 id="create-a-cosmoscope-with-citations-(cli)" tabindex="-1">Create a cosmoscope with citations (CLI)</h4>
 <pre><code>cosma modelize --citeproc
-cosma m -c
+cosma modelize -c
 </code></pre>
-<h4 id="create-a-cosmoscope-to-share-(publish-mode)" tabindex="-1">Create a cosmoscope to share (publish mode)</h4>
-<pre><code>cosma modelize --publish
-cosma m -p
-</code></pre>
-<p>This adds metadata set in the configuration to the “About” panel of the cosmoscope, and corresponding <code>meta</code> tags in the source code. This is functionally similar to exporting via File › Share in the GUI version of Cosma.</p>
 <h4 id="include-a-custom-css-stylesheet" tabindex="-1">Include a custom CSS stylesheet</h4>
-<pre><code>cosma modelize --load_css_custom
-cosma m -css
+<pre><code>cosma modelize --custom_css
+cosma modelize -css
 </code></pre>
 <p>This option applies the custom CSS stylesheet specified in the configuration.</p>
 <p>::: tip<br>
 You can combine the different export options as follows:</p>
-<pre><code>cosma modelize --publish --citeproc --load_css_custom
-cosma m -p -c -css
+<pre><code>cosma modelize --citeproc --custom_css
+cosma m -c -css
 </code></pre>
 <p>:::</p>
-<h4 id="specify-a-records-directory-path" tabindex="-1">Specify a records directory path</h4>
-<pre><code>cosma modelize --files_origin:&quot;D:\fiches&quot;
-cosma m -f:&quot;D:\fiches&quot;
-</code></pre>
-<h4 id="specify-a-cosmoscope-export-path" tabindex="-1">Specify a cosmoscope export path</h4>
-<pre><code>cosma modelize --export_target:&quot;C:\desktop&quot;
-cosma m -e:&quot;C:\desktop&quot;
-</code></pre>
-<h4 id="specify-a-language" tabindex="-1">Specify a language</h4>
-<pre><code>cosma modelize --lang:&quot;en&quot;
-cosma m -l:&quot;en&quot;
-</code></pre>
-<h4 id="specify-if-the-cosmoscope-should-be-saved-in-the-history" tabindex="-1">Specify if the cosmoscope should be saved in the history</h4>
-<pre><code>cosma modelize --history:false
-cosma m -h:false
-</code></pre>
-<h4 id="rewrite-the-configuration-with-the-options-used" tabindex="-1">Rewrite the configuration with the options used</h4>
-<pre><code>cosma modelize --save
-cosma m -s
-</code></pre>
-<p>This option rewrites the values of the various parameters in the configuration with the values used in the command.</p>
-<p>Example :</p>
-<pre><code>cosma m -l:&quot;en&quot; -s
-</code></pre>
 <h2 id="credits" tabindex="-1">Credits</h2>
 <h3 id="team" tabindex="-1">Team</h3>
 <ul>
