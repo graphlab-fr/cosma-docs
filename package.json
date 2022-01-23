@@ -10,10 +10,9 @@
   "bugs": {
     "url": "https://github.com/graphlab-fr/cosma-docs/issues"
   },
-  "main": ".eleventy.js",
+  "main": "./src/.eleventy.js",
   "scripts": {
-    "start": "cd src && npx @11ty/eleventy --serve",
-    "man": "node_modules/marked-man/bin/marked-man man.md > man.1"
+    "start": "cd src && npx @11ty/eleventy --serve"
   },
   "contributors": [
     "Arthur Perret",
@@ -29,7 +28,6 @@
     "markdown-it-container": "^3.0.0",
     "markdown-it-deflist": "^2.1.0",
     "moment": "^2.29.1",
-    "slugify": "^1.6.5",
-    "marked-man": "^0.7.0"
+    "slugify": "^1.6.5"
   }
 }
