@@ -1,6 +1,10 @@
 ---
 title: Cosma — Manuel d’utilisation
 date: Last Modified
+description: >-
+  Manuel permettant de comprendre toutes les fonctionnalités du
+  logiciel Cosma, pour ses interfaces graphique et en ligne de
+  commande.
 flag: fr
 layout: doc
 tags: user

@@ -1,6 +1,10 @@
 ---
 title: Cosma — User manual
 date: Last Modified
+description: >-
+  Manual allowing to understand all the functionalities of the Cosma software
+  Cosma software, for its graphic and command line interfaces.
+  interfaces.
 flag: en
 layout: doc
 tags: user

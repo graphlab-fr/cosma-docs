@@ -34,9 +34,13 @@ module.exports = function(e) {
         .use(markdown_it_container, 'note')
     );
 
-    e.addFilter("moment", function(value, flag) {
+    e.addFilter("fulldate", function(value, flag) {
         moment.locale(flag);
         return moment(value).format('LL');
+    });
+
+    e.addFilter("shortdate", function(value) {
+        return moment(value).format("YYYY-MM-DD");
     });
 
     return {

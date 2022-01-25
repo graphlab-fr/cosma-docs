@@ -1,6 +1,9 @@
 ---
 title: Cosma — Manuel de développement
 date: Last Modified
+description: >-
+  Manuel d'aide aux développeurs souhaitant contribuer ou réutiliser
+  le code source de Cosma pour créer leur propre outil.
 flag: fr
 layout: doc
 tags: dev

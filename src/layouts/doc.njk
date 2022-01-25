@@ -9,10 +9,10 @@ permalink: "/{{ title | slugify }}.html"
 
     <main>
         {% if flag === 'fr' %}
-        <p>Dernière mise à jour : {{ page.date | moment(flag) }}</p>
+        <p>Dernière mise à jour : {{ page.date | fulldate(flag) }}</p>
         {% endif %}
         {% if flag === 'en' %}
-        <p>Last update : {{ page.date | moment(flag) }}</p>
+        <p>Last update : {{ page.date | fulldate(flag) }}</p>
         {% endif %}
 
         {{ content | safe }}
