@@ -6,7 +6,7 @@
 
 	<meta name="description" content="">
 	<meta name="author" content=Arthur Perret,Guillaume Brioudes">
-	<meta name="last_edit" content="Fri, 21 Jan 2022 19:01:33 GMT">
+	<meta name="last_edit" content="Tue, 25 Jan 2022 18:05:57 GMT">
 
 	<style>
         :root {
@@ -287,7 +287,7 @@ footer {
     <main>
         
         
-        <p>Last update : January 21, 2022</p>
+        <p>Last update : January 25, 2022</p>
         
 
         <h2 id="about-cosma" tabindex="-1">About Cosma</h2>
@@ -730,13 +730,16 @@ cosma modelize --help
 </code></pre>
 <h4 id="generate-a-configuration-file" tabindex="-1">Generate a configuration file</h4>
 <pre><code>cosma config
+cosma c
 </code></pre>
 <h4 id="create-a-record-(form-mode)" tabindex="-1">Create a record (form mode)</h4>
 <pre><code>cosma record
+cosma r
 </code></pre>
 <p>This command prompts you for a title, a type and some keywords. Only the title is mandatory.</p>
 <h4 id="create-a-record-(one-liner-mode)" tabindex="-1">Create a record (one-liner mode)</h4>
 <pre><code>cosma autorecord &lt;titre&gt; &lt;type&gt; &lt;keywords&gt;
+cosma a &lt;titre&gt; &lt;type&gt; &lt;keywords&gt;
 </code></pre>
 <p>This command allows you to create a record in just one command.</p>
 <dl>
@@ -752,6 +755,7 @@ cosma modelize --help
 </dl>
 <h4 id="create-records-(batch-mode)" tabindex="-1">Create records (batch mode)</h4>
 <pre><code>cosma batch &lt;path&gt;
+cosma b &lt;path&gt;
 </code></pre>
 <p>This command allows you to create multiple records in one command.</p>
 <dl>
@@ -778,6 +782,10 @@ cosma modelize --help
 </div>
 <h4 id="create-a-cosmoscope-(cli)" tabindex="-1">Create a cosmoscope (CLI)</h4>
 <pre><code>cosma modelize
+cosma m
+</code></pre>
+<p>The following command allows you to generate a Cosmoscope without having entered a source directory. This is an example export containing explanations on how to use the software.</p>
+<pre><code>cosma modelize --sample
 </code></pre>
 <h3 id="options" tabindex="-1">Options</h3>
 <p>Various options can be added to the <code>modelize</code> command.</p>
@@ -785,11 +793,11 @@ cosma modelize --help
 <p>Options are also used to modify configuration values on the fly.</p>
 <h4 id="create-a-cosmoscope-with-citations-(cli)" tabindex="-1">Create a cosmoscope with citations (CLI)</h4>
 <pre><code>cosma modelize --citeproc
-cosma modelize -c
+cosma m -c
 </code></pre>
 <h4 id="include-a-custom-css-stylesheet" tabindex="-1">Include a custom CSS stylesheet</h4>
 <pre><code>cosma modelize --custom_css
-cosma modelize -css
+cosma m -css
 </code></pre>
 <p>This option applies the custom CSS stylesheet specified in the configuration.</p>
 <p>::: tip<br>

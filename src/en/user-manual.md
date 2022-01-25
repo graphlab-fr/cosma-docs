@@ -660,12 +660,14 @@ cosma modelize --help
 
 ```
 cosma config
+cosma c
 ```
 
 #### Create a record (form mode)
 
 ```
 cosma record
+cosma r
 ```
 
 This command prompts you for a title, a type and some keywords. Only the title is mandatory.
@@ -674,6 +676,7 @@ This command prompts you for a title, a type and some keywords. Only the title i
 
 ```
 cosma autorecord <titre> <type> <keywords>
+cosma a <titre> <type> <keywords>
 ```
 
 This command allows you to create a record in just one command.
@@ -694,6 +697,7 @@ This command allows you to create a record in just one command.
 
 ```
 cosma batch <path>
+cosma b <path>
 ```
 
 This command allows you to create multiple records in one command.
@@ -730,6 +734,13 @@ Because of this operation, it is possible to create up to 913,599 records per da
 
 ```
 cosma modelize
+cosma m
+```
+
+The following command allows you to generate a Cosmoscope without having entered a source directory. This is an example export containing explanations on how to use the software.
+
+```
+cosma modelize --sample
 ```
 
 ### Options
@@ -744,14 +755,14 @@ Options are also used to modify configuration values on the fly.
 
 ```
 cosma modelize --citeproc
-cosma modelize -c
+cosma m -c
 ```
 
 #### Include a custom CSS stylesheet
 
 ```
 cosma modelize --custom_css
-cosma modelize -css
+cosma m -css
 ```
 
 This option applies the custom CSS stylesheet specified in the configuration.

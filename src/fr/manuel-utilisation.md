@@ -50,7 +50,7 @@ La version actuelle de Cosma peut être citée dans une bibliographie de la mani
 
 Cosma est disponible en deux versions : une application à interface graphique (*graphical user interface*, GUI) et une application exécutable en ligne de commande (*command line interface*, CLI). Les informations concernant la version CLI sont détaillées [dans une section dédiée](#cosma-cli).
 
-La version GUI de Cosma est disponible pour macOS et Windows. [Visitez la page Releases pour obtenir la dernière version du logiciel.](https://github.com/graphlab-fr/cosma/releases/latest) L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.
+La version GUI de Cosma est disponible pour macOS et Windows. [Visitez la page Releases pour obtenir la dernière version du logiciel](https://github.com/graphlab-fr/cosma/releases/latest). L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.
 
 Sur macOS
 : Téléchargez puis décompressez le fichier `Cosma.app.zip` et placez le le fichier `Cosma.app` dans `~/Applications`. Au premier lancement, faites clic droit › Ouvrir sur l'application pour l'exécuter.
@@ -657,12 +657,14 @@ cosma modelize --help
 
 ```
 cosma config
+cosma c
 ```
 
 #### Créer une fiche (mode formulaire)
 
 ```
 cosma record
+cosma r
 ```
 
 Cette commande permet de créer une fiche en mode formulaire. Elle demande successivement un titre, un type et un ou plusieurs mots clés. Seul le titre est obligatoire.
@@ -671,6 +673,7 @@ Cette commande permet de créer une fiche en mode formulaire. Elle demande succe
 
 ```
 cosma autorecord <titre> <type> <mots-clés>
+cosma a <titre> <type> <mots-clés>
 ```
 
 Cette commande vous permet de créer une fiche en une seule commande.
@@ -693,6 +696,7 @@ Dans la commande ci-dessus :
 
 ```
 cosma batch <path>
+cosma b <path>
 ```
 
 Cette commande permet de créer plusieurs fiches d'un coup.
@@ -728,6 +732,13 @@ Du fait de ce fonctionnement, il est possible de créer par lot jusqu'à 913 59
 
 ```
 cosma modelize
+cosma m
+```
+
+La commande suivante vous permet de générer un Cosmoscope sans avoir entré de répertoire de fiches source. Il s'agit d'un export d'exemple contenant des explications sur l'utilisation du logiciel.
+
+```
+cosma modelize --sample
 ```
 
 ### Options
@@ -742,7 +753,7 @@ Les options servent également à réécrire à la volée les paramètres de la 
 
 ```
 cosma modelize --citeproc
-cosma modelize -c
+cosma m -c
 ```
 
 #### Inclure une feuille de style CSS personnalisée
@@ -757,7 +768,7 @@ Vous pouvez combiner les différentes options d'export comme suit :
 
 ```
 cosma modelize --citeproc --custom_css
-cosma modelize -c -css
+cosma m -c -css
 ```
 :::
 

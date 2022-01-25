@@ -6,7 +6,7 @@
 
 	<meta name="description" content="">
 	<meta name="author" content=Arthur Perret,Guillaume Brioudes">
-	<meta name="last_edit" content="Fri, 21 Jan 2022 19:03:35 GMT">
+	<meta name="last_edit" content="Tue, 25 Jan 2022 18:07:32 GMT">
 
 	<style>
         :root {
@@ -286,7 +286,7 @@ footer {
 
     <main>
         
-        <p>Dernière mise à jour : 21 janvier 2022</p>
+        <p>Dernière mise à jour : 25 janvier 2022</p>
         
         
 
@@ -314,7 +314,7 @@ footer {
 </blockquote>
 <h2 id="installation" tabindex="-1">Installation</h2>
 <p>Cosma est disponible en deux versions : une application à interface graphique (<em>graphical user interface</em>, GUI) et une application exécutable en ligne de commande (<em>command line interface</em>, CLI). Les informations concernant la version CLI sont détaillées <a href="#cosma-cli">dans une section dédiée</a>.</p>
-<p>La version GUI de Cosma est disponible pour macOS et Windows. <a href="https://github.com/graphlab-fr/cosma/releases/latest">Visitez la page Releases pour obtenir la dernière version du logiciel.</a> L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.</p>
+<p>La version GUI de Cosma est disponible pour macOS et Windows. <a href="https://github.com/graphlab-fr/cosma/releases/latest">Visitez la page Releases pour obtenir la dernière version du logiciel</a>. L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.</p>
 <dl>
 <dt>Sur macOS</dt>
 <dd>Téléchargez puis décompressez le fichier <code>Cosma.app.zip</code> et placez le le fichier <code>Cosma.app</code> dans <code>~/Applications</code>. Au premier lancement, faites clic droit › Ouvrir sur l'application pour l'exécuter.</dd>
@@ -727,13 +727,16 @@ cosma modelize --help
 </code></pre>
 <h4 id="generer-un-fichier-de-configuration" tabindex="-1">Générer un fichier de configuration</h4>
 <pre><code>cosma config
+cosma c
 </code></pre>
 <h4 id="creer-une-fiche-(mode-formulaire)" tabindex="-1">Créer une fiche (mode formulaire)</h4>
 <pre><code>cosma record
+cosma r
 </code></pre>
 <p>Cette commande permet de créer une fiche en mode formulaire. Elle demande successivement un titre, un type et un ou plusieurs mots clés. Seul le titre est obligatoire.</p>
 <h4 id="creer-une-fiche-(mode-one-liner)" tabindex="-1">Créer une fiche (mode <em>one-liner</em>)</h4>
 <pre><code>cosma autorecord &lt;titre&gt; &lt;type&gt; &lt;mots-clés&gt;
+cosma a &lt;titre&gt; &lt;type&gt; &lt;mots-clés&gt;
 </code></pre>
 <p>Cette commande vous permet de créer une fiche en une seule commande.</p>
 <p>Dans la commande ci-dessus :</p>
@@ -750,6 +753,7 @@ cosma modelize --help
 </dl>
 <h4 id="creer-un-lot-de-fiches" tabindex="-1">Créer un lot de fiches</h4>
 <pre><code>cosma batch &lt;path&gt;
+cosma b &lt;path&gt;
 </code></pre>
 <p>Cette commande permet de créer plusieurs fiches d'un coup.</p>
 <dl>
@@ -775,6 +779,10 @@ cosma modelize --help
 </div>
 <h4 id="creer-un-cosmoscope-(cli)" tabindex="-1">Créer un cosmoscope (CLI)</h4>
 <pre><code>cosma modelize
+cosma m
+</code></pre>
+<p>La commande suivante vous permet de générer un Cosmoscope sans avoir entré de répertoire de fiches source. Il s'agit d'un export d'exemple contenant des explications sur l'utilisation du logiciel.</p>
+<pre><code>cosma modelize --sample
 </code></pre>
 <h3 id="options" tabindex="-1">Options</h3>
 <p>Différentes options peuvent être ajoutées à la commande <code>modelize</code>.</p>
@@ -782,7 +790,7 @@ cosma modelize --help
 <p>Les options servent également à réécrire à la volée les paramètres de la configuration pour une commande précise.</p>
 <h4 id="creer-un-cosmoscope-avec-citations-(cli)" tabindex="-1">Créer un cosmoscope avec citations (CLI)</h4>
 <pre><code>cosma modelize --citeproc
-cosma modelize -c
+cosma m -c
 </code></pre>
 <h4 id="inclure-une-feuille-de-style-css-personnalisee" tabindex="-1">Inclure une feuille de style CSS personnalisée</h4>
 <pre><code>cosma modelize --custom_css
@@ -791,7 +799,7 @@ cosma m -css
 <div class="astuce">
 <p>Vous pouvez combiner les différentes options d'export comme suit :</p>
 <pre><code>cosma modelize --citeproc --custom_css
-cosma modelize -c -css
+cosma m -c -css
 </code></pre>
 </div>
 <h2 id="credits" tabindex="-1">Crédits</h2>
