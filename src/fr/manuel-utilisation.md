@@ -48,7 +48,7 @@ Néanmoins, des efforts importants ont été entrepris dès le prototype pour co
 
 La version actuelle de Cosma peut être citée dans une bibliographie de la manière suivante :
 
-> Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (1.0). Zenodo. <https://doi.org/10.5281/zenodo.5412315>
+> Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (1.0). Zenodo. <https://doi.org/10.5281/zenodo.5920616>
 
 ## Installation
 
