@@ -155,8 +155,8 @@ Un champ en YAML est composé d'un nom et d'une valeur séparés par un double-p
 `type`
 : Type de la fiche. Facultatif. Un seul type peut être assigné à une fiche. Si le champ `type` n'est pas spécifié ou bien que sa valeur ne correspond à l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
 
-`tags`
-: Mots-clés de la fiche. Facultatif. La valeur doit être une liste. Une fiche peut disposer d'autant de mot-clés que vous souhaitez.
+`tags` (ou `keywords`)
+: Mots-clés de la fiche. Facultatif. La valeur doit être une liste. Une fiche peut disposer d'autant de mot-clés que vous souhaitez. Vous pouvez utiliser `keywords` au lieu de `tags`, dans une logique de compatibilité avec Pandoc. Si une fiche comporte un champ `tags` et un champ `keywords`, seuls les mots-clés déclarés dans le champ `tags` sont interprétés par Cosma.
 
 Conformément à la spécification YAML, la liste des mots-clés peut être inscrite en mode *block* :
 

@@ -158,7 +158,7 @@ In YAML, a field consists of a name and a value separated by a colon. Cosma reco
 
 `tags`
 : Optional.
-: Keywords assigned to the record. The value must be a list. A record can have as many keywords as you wish.
+: Keywords assigned to the record. The value must be a list. A record can have as many keywords as you wish. You can use `keywords` instead of `tags`, for compatibility with Pandoc. If a record has a `tags` field and a `keywords` field, only the keywords declared in the `tags` field are interpreted by Cosma.
 
 In accordance with the YAML specification, the list of keywords can be written in *block* mode:
 
