@@ -48,7 +48,7 @@ Currently, there is no dedicated funding to this project. But Cosma is already i
 
 Cosma is archived on Zenodo and can be referenced in scientific literature:
 
-> Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (1.0). Zenodo. <https://doi.org/10.5281/zenodo.5920616>
+> Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (1.0). Zenodo. <https://doi.org/10.5281/zenodo.5920615>
 
 ## Installing
 
