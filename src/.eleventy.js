@@ -32,6 +32,7 @@ module.exports = function(e) {
         .use(markdown_it_container, 'important')
         .use(markdown_it_container, 'astuce')
         .use(markdown_it_container, 'note')
+        .use(markdown_it_container, 'tip')
     );
 
     e.addFilter("fulldate", function(value, flag) {
