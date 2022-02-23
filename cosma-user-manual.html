@@ -9,7 +9,7 @@
 	<meta name="description" content="Manual allowing to understand all the functionalities of the Cosma software Cosma software, for its graphic and command line interfaces. interfaces." />
 	<meta name="author" content="Arthur Perret,Guillaume Brioudes" />
 	<meta name="copyright" content="GPL-3.0-or-later"/>
-	<meta name="last_edit" content="2022-02-09" />
+	<meta name="last_edit" content="2022-02-23" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Cosma — User manual" />
@@ -24,7 +24,7 @@
 
 	<meta property="DC.title" content="Cosma — User manual" />
 	<meta property="DC.contributor" content="Arthur Perret,Guillaume Brioudes" />
-	<meta property="DC.date" content="2022-02-09" />
+	<meta property="DC.date" content="2022-02-23" />
 	<meta property="DC.language" content="en" />
 	<meta property="DC.description" lang="en" content="Manual allowing to understand all the functionalities of the Cosma software Cosma software, for its graphic and command line interfaces. interfaces." />
 	<meta property="DC.rights" content="GPL-3.0-or-later" />
@@ -315,7 +315,7 @@ footer {
     <main>
         
         
-        <p>Last update : February 9, 2022</p>
+        <p>Last update : February 23, 2022</p>
         
 
         <h2 id="about-cosma" tabindex="-1">About Cosma</h2>
@@ -442,7 +442,11 @@ tags:
 The <a href="https://commonmark.org/help/">CommonMark tutorial</a> teaches you the basics of Markdown in 10 minutes.</p>
 <p>If you want to learn how to use Markdown and Pandoc together, check out this online lesson: <a href="https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown">Sustainable Authorship in Plain Text using Pandoc and Markdown</a>.<br>
 :::</p>
-<p>Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code, as well as vector images in SVG.</p>
+<p>Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code, as well as vector images in SVG. Cosma also supports <a href="https://www.npmjs.com/package/markdown-it-attrs">adding attributes by brackets</a>, as shown below.</p>
+<pre><code class="language-markdown">&lt;div class=&quot;red&quot;&gt;This paragraph will be red&lt;/div&gt;
+
+This paragraph will be red{.red}
+</code></pre>
 <p>Bitmap images can also be rendered using the Markdown syntax. Example:</p>
 <pre><code class="language-markdown">![Alternative text](image.jpg)
 </code></pre>

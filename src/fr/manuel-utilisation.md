@@ -194,7 +194,13 @@ Le [tutoriel CommonMark traduit en français](https://www.arthurperret.fr/tutomd
 Si vous souhaitez découvrir l'utilisation conjointe de Markdown et Pandoc, vous pouvez consulter le cours en ligne [Markdown et vous](https://infolit.be/md/).
 :::
 
-Cosma génère un rendu des fichiers Markdown en HTML. Par conséquent, les fichiers Markdown peuvent également inclure du code HTML, ainsi que des images vectorielles en SVG.
+Cosma génère un rendu des fichiers Markdown en HTML. Par conséquent, les fichiers Markdown peuvent également inclure du code HTML, ainsi que des images vectorielles en SVG. Cosma supporte également l'[ajout d'attributs via des accolades](https://www.npmjs.com/package/markdown-it-attrs), comme présenté ci-dessous.
+
+```markdown
+<div class="red">Ce paragraphe sera en rouge</div>
+
+Ce paragraphe sera en rouge{.red}
+```
 
 Des images *bitmap* peuvent être incluses dans le rendu via la syntaxe Markdown. Exemple :
 

@@ -196,7 +196,13 @@ The [CommonMark tutorial](https://commonmark.org/help/) teaches you the basics o
 If you want to learn how to use Markdown and Pandoc together, check out this online lesson: [Sustainable Authorship in Plain Text using Pandoc and Markdown](https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown).
 :::
 
-Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code, as well as vector images in SVG.
+Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code, as well as vector images in SVG. Cosma also supports [adding attributes by brackets](https://www.npmjs.com/package/markdown-it-attrs), as shown below.
+
+```markdown
+<div class="red">This paragraph will be red</div>
+
+This paragraph will be red{.red}
+```
 
 Bitmap images can also be rendered using the Markdown syntax. Example:
 

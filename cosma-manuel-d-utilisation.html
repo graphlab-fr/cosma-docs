@@ -9,7 +9,7 @@
 	<meta name="description" content="Manuel permettant de comprendre toutes les fonctionnalités du logiciel Cosma, pour ses interfaces graphique et en ligne de commande." />
 	<meta name="author" content="Arthur Perret,Guillaume Brioudes" />
 	<meta name="copyright" content="GPL-3.0-or-later"/>
-	<meta name="last_edit" content="2022-02-09" />
+	<meta name="last_edit" content="2022-02-19" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Cosma — Manuel d’utilisation" />
@@ -24,7 +24,7 @@
 
 	<meta property="DC.title" content="Cosma — Manuel d’utilisation" />
 	<meta property="DC.contributor" content="Arthur Perret,Guillaume Brioudes" />
-	<meta property="DC.date" content="2022-02-09" />
+	<meta property="DC.date" content="2022-02-19" />
 	<meta property="DC.language" content="fr" />
 	<meta property="DC.description" lang="fr" content="Manuel permettant de comprendre toutes les fonctionnalités du logiciel Cosma, pour ses interfaces graphique et en ligne de commande." />
 	<meta property="DC.rights" content="GPL-3.0-or-later" />
@@ -304,9 +304,9 @@ footer {
 <nav class="nav-lang">
 	<ul>
 		
-		<li><a href="../cosma-manuel-d-utilisation.html">🇫🇷 FR</a></li>
-		
 		<li><a href="../cosma-user-manual.html">🇬🇧 EN</a></li>
+		
+		<li><a href="../cosma-manuel-d-utilisation.html">🇫🇷 FR</a></li>
 		
 		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
 	</ul>
@@ -314,7 +314,7 @@ footer {
 
     <main>
         
-        <p>Dernière mise à jour : 9 février 2022</p>
+        <p>Dernière mise à jour : 19 février 2022</p>
         
         
 
@@ -440,7 +440,11 @@ tags:
 <p>Le <a href="https://www.arthurperret.fr/tutomd/">tutoriel CommonMark traduit en français</a> permet d'apprendre les bases de Markdown en 10 minutes.</p>
 <p>Si vous souhaitez découvrir l'utilisation conjointe de Markdown et Pandoc, vous pouvez consulter le cours en ligne <a href="https://infolit.be/md/">Markdown et vous</a>.</p>
 </div>
-<p>Cosma génère un rendu des fichiers Markdown en HTML. Par conséquent, les fichiers Markdown peuvent également inclure du code HTML, ainsi que des images vectorielles en SVG.</p>
+<p>Cosma génère un rendu des fichiers Markdown en HTML. Par conséquent, les fichiers Markdown peuvent également inclure du code HTML, ainsi que des images vectorielles en SVG. Cosma supporte également l'<a href="https://www.npmjs.com/package/markdown-it-attrs">ajout d'attributs via des accolades</a>, comme présenté ci-dessous.</p>
+<pre><code class="language-markdown">&lt;div class=&quot;red&quot;&gt;Ce paragraphe sera en rouge&lt;/div&gt;
+
+Ce paragraphe sera en rouge{.red}
+</code></pre>
 <p>Des images <em>bitmap</em> peuvent être incluses dans le rendu via la syntaxe Markdown. Exemple :</p>
 <pre><code class="language-markdown">![Texte alternatif](image.jpg)
 </code></pre>
