@@ -846,7 +846,9 @@ Version initiale.
 
 Cette mise à jour ajoute quelques fonctionnalités de lecture et d'écriture des fiches :
 
-- Le répertoire de fiches est désormais lu de manière récursive. Ceci permet de prendre en compte toutes les fiches, quel que soit leur emplacement dans une éventuelle structure de sous-répertoires.
+- Nouvelle option de `modelize`, `--config`, dont la valeur doit être le chemin absolu d'un fichier de configuration. Ceci rend Cosma CLI capable de travailler avec plusieurs répertoires, sans que l'utilisateur doive échanger manuellement les fichiers de configuration au niveau du dossier support.
+- Si un fichier de configuration contient des erreurs de syntaxe YAML, une erreur est générée avec un message informatif.
+- Le répertoire de fiches sont désormais lus de manière récursive. Ceci permet de prendre en compte toutes les fiches, quel que soit leur emplacement dans une éventuelle structure de sous-répertoires.
 - Les éléments HTML insérés dans le corps des fiches sont désormais reconnus et interprétés.
 
 Des bugs ont également été résolus :
