@@ -771,7 +771,7 @@ cosma m -c
 #### Include a custom CSS stylesheet
 
 ```
-cosma modelize --custom_css
+cosma modelize --custom-css
 cosma m -css
 ```
 
@@ -781,7 +781,7 @@ This option applies the custom CSS stylesheet specified in the configuration.
 You can combine the different export options as follows:
 
 ```
-cosma modelize --citeproc --custom_css
+cosma modelize --citeproc --custom-css
 cosma m -c -css
 ```
 :::
@@ -808,3 +808,72 @@ To improve the maintainability and readability of the source code, the developme
 - [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.62 (CPAL and AGPL): Converting citation keys
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0): Search engine
 - [Moment](https://momentjs.com/) v2.29.1 (MIT License): Managing time and timestamps
+
+## Changelog
+
+### GUI
+
+#### GUI 1.2
+
+This update adds the following features:
+
+- The records directory is now read recursively. This means all records are now taken into account, whatever their location in a possible subdirectory structure.
+- HTML elements used in the text of records are now recognized and interpreted.
+
+Bugs have also been solved:
+
+- Context tooltips for typed links are no longer empty (issue #15).
+- Clicking on saved views displays them correctly (issue #16).
+- Vertical and horizontal attraction settings are no longer switched (issue #18).
+
+#### GUI 1.1
+
+This update introduces a full English translation of the application, as well as a few bug fixes and small interface improvements.
+
+- The application is translated into English, visit Preferences › General to switch languages.
+- Creating a record without first specifying a directory no longer causes an error but returns an informative message (issue #6).
+- Creating a record with a title already in use no longer silently overwrites the existing record but asks for confirmation (issue #5).
+- It is now possible to use `keywords` instead of `tags` in the records' YAML header (issue #3).
+- It is no longer necessary to declare a record type in the configuration before assigning it to a new record.
+- The Preferences window has been reorganised into sections.
+- The readability of error reports has been improved.
+- The `minify` option to reduce the size of exports, which was not functional in v1.0, has been removed.
+- The application is now distributed with its documentation, accessible via Help › Manual or by clicking on the Help button at the bottom left of the cosmoscope.
+- The source code has been reorganised to allow the simultaneous development of a command line version ([cosma-cli](https://github.com/graphlab-fr/cosma-cli)) from the same code base ([cosma-core](https://github.com/graphlab-fr/cosma-core)).
+- Upgrade from Electron v13 to v15.
+
+#### GUI 1.0
+
+Initial release of Cosma GUI (French only).
+
+### CLI
+
+#### CLI 1.1
+
+This update adds the following features:
+
+- New `modelize` option, `--config`, the value of which must be the absolute path of a config file. This makes Cosma CLI capable of working with multiple directories, without having to manually shuffle around config files in the support folder.
+- If a config file includes YAML syntax mistakes, an error is thrown with a helpful message.
+- Records directories are now read recursively. This means all records are now taken into account, whatever their location in a possible subdirectory structure.
+- HTML elements used in the text of records are now recognized and interpreted.
+
+Bugs have also been solved:
+
+- Context tooltips for typed links are no longer empty (issue #15).
+- Clicking on saved views displays them again (issue #16).
+- Vertical and horizontal attraction settings are no longer switched (issue #18).
+- The `--custom-css` (or `-css`) option works again (issue #19).
+
+#### CLI 1.0
+
+The following changes have been made since the alpha:
+
+- The source code has been reorganised to allow the simultaneous development of the GUI and CLI versions from the same code base ([cosma-core](https://github.com/graphlab-fr/cosma-core)).
+- The configuration file `config.yml` has been reorganised. The software is not backwards compatible: if you had a `config.yml` file from the alpha, it will be necessary to re-create a compliant `config.yml` file via the `cosma config` command and then modify it. The location of the file now depends on the Cosma CLI installation path. On Windows: `%USERPROFILE%\AppData\Roaming\npm\node_modules\@graphlab-en\cosma\config.yml`. On macOS and Linux: `/usr/local/lib/node_modules/@graphlab-fr/cosma/config.yml`.
+- A new `cosma batch` command allows you to create multiple records in one go. It is documented [here](https://cosma.graphlab.fr/docs/manuel-utilisation/#creer-un-lot-de-fiches).
+- The `minify` option to reduce the size of exports, which was not functional in v1.0, has been removed.
+
+
+#### CLI 1.0-alpha
+
+Alpha release of Cosma CLI (French only).

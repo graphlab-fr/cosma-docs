@@ -9,7 +9,7 @@
 	<meta name="description" content="Manual allowing to understand all the functionalities of the Cosma software Cosma software, for its graphic and command line interfaces. interfaces." />
 	<meta name="author" content="Arthur Perret,Guillaume Brioudes" />
 	<meta name="copyright" content="GPL-3.0-or-later"/>
-	<meta name="last_edit" content="2022-02-23" />
+	<meta name="last_edit" content="2022-03-10" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Cosma — User manual" />
@@ -24,7 +24,7 @@
 
 	<meta property="DC.title" content="Cosma — User manual" />
 	<meta property="DC.contributor" content="Arthur Perret,Guillaume Brioudes" />
-	<meta property="DC.date" content="2022-02-23" />
+	<meta property="DC.date" content="2022-03-10" />
 	<meta property="DC.language" content="en" />
 	<meta property="DC.description" lang="en" content="Manual allowing to understand all the functionalities of the Cosma software Cosma software, for its graphic and command line interfaces. interfaces." />
 	<meta property="DC.rights" content="GPL-3.0-or-later" />
@@ -315,7 +315,7 @@ footer {
     <main>
         
         
-        <p>Last update : February 23, 2022</p>
+        <p>Last update : March 10, 2022</p>
         
 
         <h2 id="about-cosma" tabindex="-1">About Cosma</h2>
@@ -828,13 +828,13 @@ cosma m
 cosma m -c
 </code></pre>
 <h4 id="include-a-custom-css-stylesheet" tabindex="-1">Include a custom CSS stylesheet</h4>
-<pre><code>cosma modelize --custom_css
+<pre><code>cosma modelize --custom-css
 cosma m -css
 </code></pre>
 <p>This option applies the custom CSS stylesheet specified in the configuration.</p>
 <div class="tip">
 <p>You can combine the different export options as follows:</p>
-<pre><code>cosma modelize --citeproc --custom_css
+<pre><code>cosma modelize --citeproc --custom-css
 cosma m -c -css
 </code></pre>
 </div>
@@ -859,12 +859,69 @@ cosma m -c -css
 <li><a href="https://fusejs.io/">Fuse.js</a> v6.4.6 (Apache License 2.0): Search engine</li>
 <li><a href="https://momentjs.com/">Moment</a> v2.29.1 (MIT License): Managing time and timestamps</li>
 </ul>
+<h2 id="changelog" tabindex="-1">Changelog</h2>
+<h3 id="gui" tabindex="-1">GUI</h3>
+<h4 id="gui-12" tabindex="-1">GUI 1.2</h4>
+<p>This update adds the following features:</p>
+<ul>
+<li>The records directory is now read recursively. This means all records are now taken into account, whatever their location in a possible subdirectory structure.</li>
+<li>HTML elements used in the text of records are now recognized and interpreted.</li>
+</ul>
+<p>Bugs have also been solved:</p>
+<ul>
+<li>Context tooltips for typed links are no longer empty (issue #15).</li>
+<li>Clicking on saved views displays them correctly (issue #16).</li>
+<li>Vertical and horizontal attraction settings are no longer switched (issue #18).</li>
+</ul>
+<h4 id="gui-11" tabindex="-1">GUI 1.1</h4>
+<p>This update introduces a full English translation of the application, as well as a few bug fixes and small interface improvements.</p>
+<ul>
+<li>The application is translated into English, visit Preferences › General to switch languages.</li>
+<li>Creating a record without first specifying a directory no longer causes an error but returns an informative message (issue #6).</li>
+<li>Creating a record with a title already in use no longer silently overwrites the existing record but asks for confirmation (issue #5).</li>
+<li>It is now possible to use <code>keywords</code> instead of <code>tags</code> in the records' YAML header (issue #3).</li>
+<li>It is no longer necessary to declare a record type in the configuration before assigning it to a new record.</li>
+<li>The Preferences window has been reorganised into sections.</li>
+<li>The readability of error reports has been improved.</li>
+<li>The <code>minify</code> option to reduce the size of exports, which was not functional in v1.0, has been removed.</li>
+<li>The application is now distributed with its documentation, accessible via Help › Manual or by clicking on the Help button at the bottom left of the cosmoscope.</li>
+<li>The source code has been reorganised to allow the simultaneous development of a command line version (<a href="https://github.com/graphlab-fr/cosma-cli">cosma-cli</a>) from the same code base (<a href="https://github.com/graphlab-fr/cosma-core">cosma-core</a>).</li>
+<li>Upgrade from Electron v13 to v15.</li>
+</ul>
+<h4 id="gui-10" tabindex="-1">GUI 1.0</h4>
+<p>Initial release of Cosma GUI (French only).</p>
+<h3 id="cli" tabindex="-1">CLI</h3>
+<h4 id="cli-11" tabindex="-1">CLI 1.1</h4>
+<p>This update adds the following features:</p>
+<ul>
+<li>New <code>modelize</code> option, <code>--config</code>, the value of which must be the absolute path of a config file. This makes Cosma CLI capable of working with multiple directories, without having to manually shuffle around config files in the support folder.</li>
+<li>If a config file includes YAML syntax mistakes, an error is thrown with a helpful message.</li>
+<li>Records directories are now read recursively. This means all records are now taken into account, whatever their location in a possible subdirectory structure.</li>
+<li>HTML elements used in the text of records are now recognized and interpreted.</li>
+</ul>
+<p>Bugs have also been solved:</p>
+<ul>
+<li>Context tooltips for typed links are no longer empty (issue #15).</li>
+<li>Clicking on saved views displays them again (issue #16).</li>
+<li>Vertical and horizontal attraction settings are no longer switched (issue #18).</li>
+<li>The <code>--custom-css</code> (or <code>-css</code>) option works again (issue #19).</li>
+</ul>
+<h4 id="cli-10" tabindex="-1">CLI 1.0</h4>
+<p>The following changes have been made since the alpha:</p>
+<ul>
+<li>The source code has been reorganised to allow the simultaneous development of the GUI and CLI versions from the same code base (<a href="https://github.com/graphlab-fr/cosma-core">cosma-core</a>).</li>
+<li>The configuration file <code>config.yml</code> has been reorganised. The software is not backwards compatible: if you had a <code>config.yml</code> file from the alpha, it will be necessary to re-create a compliant <code>config.yml</code> file via the <code>cosma config</code> command and then modify it. The location of the file now depends on the Cosma CLI installation path. On Windows: <code>%USERPROFILE%\AppData\Roaming\npm\node_modules\@graphlab-en\cosma\config.yml</code>. On macOS and Linux: <code>/usr/local/lib/node_modules/@graphlab-fr/cosma/config.yml</code>.</li>
+<li>A new <code>cosma batch</code> command allows you to create multiple records in one go. It is documented <a href="https://cosma.graphlab.fr/docs/manuel-utilisation/#creer-un-lot-de-fiches">here</a>.</li>
+<li>The <code>minify</code> option to reduce the size of exports, which was not functional in v1.0, has been removed.</li>
+</ul>
+<h4 id="cli-10-alpha" tabindex="-1">CLI 1.0-alpha</h4>
+<p>Alpha release of Cosma CLI (French only).</p>
 
     </main>
 
     <aside id="toc">
 	<nav class="toc" >
-        <ul><li><a href="#about-cosma">About Cosma</a><ul><li><a href="#a-unique-tool">A unique tool</a></li><li><a href="#a-high-degree-of-user-control">A high degree of user control</a></li><li><a href="#a-research-experiment">A research experiment</a></li></ul></li><li><a href="#installing">Installing</a></li><li><a href="#creating-content">Creating content</a><ul><li><a href="#creating-records">Creating records</a></li><li><a href="#data-format">Data format</a></li></ul></li><li><a href="#creating-a-cosmoscope">Creating a cosmoscope</a></li><li><a href="#citations-and-bibliographies">Citations and bibliographies</a><ul><li><a href="#required-files">Required files</a></li><li><a href="#citation-syntax">Citation syntax</a></li><li><a href="#creating-a-cosmoscope-with-citations">Creating a cosmoscope with citations</a></li></ul></li><li><a href="#history">History</a></li><li><a href="#using-the-cosmoscope">Using the cosmoscope</a><ul><li><a href="#layout">Layout</a></li><li><a href="#graph">Graph</a></li><li><a href="#records">Records</a></li><li><a href="#focus-mode">Focus mode</a></li><li><a href="#search-bar">Search bar</a></li><li><a href="#filtering-by-record-type">Filtering by record type</a></li><li><a href="#filtering-by-keywords">Filtering by keywords</a></li><li><a href="#index">Index</a></li><li><a href="#views">Views</a></li></ul></li><li><a href="#sharing-a-cosmoscope">Sharing a cosmoscope</a></li><li><a href="#configuration">Configuration</a><ul><li><a href="#general">General</a></li><li><a href="#record-types">Record types</a></li><li><a href="#link-types">Link types</a></li><li><a href="#graph-1">Graph</a></li><li><a href="#metadata-1">Metadata</a></li><li><a href="#bibliography">Bibliography</a></li><li><a href="#views-1">Views</a></li><li><a href="#advanced">Advanced</a></li></ul></li><li><a href="#cosma-cli">Cosma CLI</a><ul><li><a href="#installing-(cli)">Installing (CLI)</a></li><li><a href="#configuration-(cli)">Configuration (CLI)</a></li><li><a href="#commands">Commands</a></li><li><a href="#options">Options</a></li></ul></li><li><a href="#credits">Credits</a><ul><li><a href="#team">Team</a></li><li><a href="#dependencies">Dependencies</a></li></ul></li></ul>
+        <ul><li><a href="#about-cosma">About Cosma</a><ul><li><a href="#a-unique-tool">A unique tool</a></li><li><a href="#a-high-degree-of-user-control">A high degree of user control</a></li><li><a href="#a-research-experiment">A research experiment</a></li></ul></li><li><a href="#installing">Installing</a></li><li><a href="#creating-content">Creating content</a><ul><li><a href="#creating-records">Creating records</a></li><li><a href="#data-format">Data format</a></li></ul></li><li><a href="#creating-a-cosmoscope">Creating a cosmoscope</a></li><li><a href="#citations-and-bibliographies">Citations and bibliographies</a><ul><li><a href="#required-files">Required files</a></li><li><a href="#citation-syntax">Citation syntax</a></li><li><a href="#creating-a-cosmoscope-with-citations">Creating a cosmoscope with citations</a></li></ul></li><li><a href="#history">History</a></li><li><a href="#using-the-cosmoscope">Using the cosmoscope</a><ul><li><a href="#layout">Layout</a></li><li><a href="#graph">Graph</a></li><li><a href="#records">Records</a></li><li><a href="#focus-mode">Focus mode</a></li><li><a href="#search-bar">Search bar</a></li><li><a href="#filtering-by-record-type">Filtering by record type</a></li><li><a href="#filtering-by-keywords">Filtering by keywords</a></li><li><a href="#index">Index</a></li><li><a href="#views">Views</a></li></ul></li><li><a href="#sharing-a-cosmoscope">Sharing a cosmoscope</a></li><li><a href="#configuration">Configuration</a><ul><li><a href="#general">General</a></li><li><a href="#record-types">Record types</a></li><li><a href="#link-types">Link types</a></li><li><a href="#graph-1">Graph</a></li><li><a href="#metadata-1">Metadata</a></li><li><a href="#bibliography">Bibliography</a></li><li><a href="#views-1">Views</a></li><li><a href="#advanced">Advanced</a></li></ul></li><li><a href="#cosma-cli">Cosma CLI</a><ul><li><a href="#installing-(cli)">Installing (CLI)</a></li><li><a href="#configuration-(cli)">Configuration (CLI)</a></li><li><a href="#commands">Commands</a></li><li><a href="#options">Options</a></li></ul></li><li><a href="#credits">Credits</a><ul><li><a href="#team">Team</a></li><li><a href="#dependencies">Dependencies</a></li></ul></li><li><a href="#changelog">Changelog</a><ul><li><a href="#gui">GUI</a></li><li><a href="#cli">CLI</a></li></ul></li></ul>
       </nav>
 </aside>
 

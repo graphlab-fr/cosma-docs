@@ -769,7 +769,7 @@ cosma m -c
 #### Inclure une feuille de style CSS personnalisée
 
 ```
-cosma modelize --custom_css
+cosma modelize --custom-css
 cosma m -css
 ```
 
@@ -777,7 +777,7 @@ cosma m -css
 Vous pouvez combiner les différentes options d'export comme suit :
 
 ```
-cosma modelize --citeproc --custom_css
+cosma modelize --citeproc --custom-css
 cosma m -c -css
 ```
 :::
@@ -804,3 +804,67 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 - [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.62 (CPAL et AGPL) : Conversion des clés de citation
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0) : Moteur de recherche
 - [Moment](https://momentjs.com/) v2.29.1 (MIT License) : Gestion de l'horodatage
+
+## Versions
+
+### GUI
+
+#### GUI 1.2
+
+Cette mise à jour ajoute quelques fonctionnalités de lecture et d'écriture des fiches :
+
+- Le répertoire de fiches est désormais lu de manière récursive. Ceci permet de prendre en compte toutes les fiches, quel que soit leur emplacement dans une éventuelle structure de sous-répertoires.
+- Les éléments HTML insérés dans le corps des fiches sont désormais reconnus et interprétés.
+
+Des bugs ont également été résolus :
+
+- Les infobulles de contexte ne sont plus vides lorsque le lien est qualifié (ticket #15).
+- Le fonctionnement des vues enregistrées est rétabli (ticket #16).
+- Le réglage de l'attraction verticale et horizontale n'est plus inversé (ticket #18).
+
+#### GUI 1.1
+
+Cette mise à jour ajoute la possibilité de changer de langue (anglais ou français), résout des bugs et améliore l'interface, notamment au niveau de la configuration.
+
+- L'application est traduite en anglais, il est possible de changer de langue dans Préférences.
+- Créer une fiche sans spécifier de répertoire ne cause plus d'erreur mais renvoie un message informatif (ticket #6).
+- Créer une fiche avec un titre déjà utilisé n'écrase plus silencieusement la fiche existante mais demande une confirmation (ticket #5).
+- Il est possible d'utiliser `keywords` au lieu de `tags` dans l'en-tête YAML des fiches (ticket #3).
+- Il n'est plus nécessaire de déclarer un type de fiche dans la configuration avant de pouvoir l'assigner à une nouvelle fiche.
+- La fenêtre Préférences a été réorganisée en sections.
+- La lisibilité des rapports d'erreur a été améliorée.
+- L'option `minify` permettant de réduire la taille des exports, non fonctionnelle en v1.0, a été supprimée.
+- L'application est distribuée avec sa documentation, accessible via Aide › Manuel ou bien en cliquant sur le bouton Aide en bas à gauche dans le cosmoscope.
+- Le code source a été réorganisé pour permettre le développement simultané d'une version exécutable en ligne de commande ([cosma-cli](https://github.com/graphlab-fr/cosma-cli)) à partir de la même base de code ([cosma-core](https://github.com/graphlab-fr/cosma-core)).
+- Mise à jour de Electron v13 vers v15.
+
+#### GUI 1.0
+
+Version initiale.
+
+#### CLI 1.1
+
+Cette mise à jour ajoute quelques fonctionnalités de lecture et d'écriture des fiches :
+
+- Le répertoire de fiches est désormais lu de manière récursive. Ceci permet de prendre en compte toutes les fiches, quel que soit leur emplacement dans une éventuelle structure de sous-répertoires.
+- Les éléments HTML insérés dans le corps des fiches sont désormais reconnus et interprétés.
+
+Des bugs ont également été résolus :
+
+- Les infobulles de contexte ne sont plus vides lorsque le lien est qualifié (ticket #15).
+- Le fonctionnement des vues enregistrées est rétabli (ticket #16).
+- Le réglage de l'attraction verticale et horizontale n'est plus inversé (ticket #18).
+- L'option `--custom-css` (ou `-css`) est de nouveau reconnue (ticket #19).
+
+#### CLI 1.0
+
+Les modifications suivantes ont été faites depuis la version alpha :
+
+- Le code source a été réorganisé pour permettre le développement simultané des versions GUI et CLI à partir de la même base de code ([cosma-core](https://github.com/graphlab-fr/cosma-core)).
+- Le fichier de configuration `config.yml` a été réorganisé. Le logiciel n'est pas rétrocompatible : si vous aviez un fichier `config.yml` datant de l'alpha, il sera nécessaire de re-créer un fichier `config.yml` conforme via la commande `cosma config` puis le modifier. L'emplacement du fichier dépend désormais du chemin d'installation de Cosma CLI. Sur Windows : `%USERPROFILE%\AppData\Roaming\npm\node_modules\@graphlab-fr\cosma\config.yml`. Sur macOS et Linux : `/usr/local/lib/node_modules/@graphlab-fr/cosma/config.yml`.
+- Une nouvelle commande `cosma batch` permet de créer des fiches par lots. Elle est documentée [ici](https://cosma.graphlab.fr/docs/manuel-utilisation/#creer-un-lot-de-fiches).
+- L'option `minify` permettant de réduire la taille des exports, non fonctionnelle en v1.0, a été supprimée.
+
+#### CLI 1.0-alpha
+
+Prototype initial.
