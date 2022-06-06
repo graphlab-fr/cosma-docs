@@ -2,9 +2,8 @@
 title: Cosma — Manuel d’utilisation
 date: Last Modified
 description: >-
-  Manuel permettant de comprendre toutes les fonctionnalités du
-  logiciel Cosma, pour ses interfaces graphique et en ligne de
-  commande.
+  Manuel d’utilisation de Cosma. Explique comment installer
+  et utiliser les deux versions du logiciel (GUI, CLI).
 flag: fr
 layout: doc
 tags: user
@@ -50,11 +49,11 @@ Cosma peut être cité dans une bibliographie de la manière suivante :
 
 > Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma. Zenodo. <https://doi.org/10.5281/zenodo.5920615>
 
-## Installation
+## Installation et mise à jour
 
 Cosma est disponible en deux versions : une application à interface graphique (*graphical user interface*, GUI) et une application exécutable en ligne de commande (*command line interface*, CLI). Les informations concernant la version CLI sont détaillées [dans une section dédiée](#cosma-cli).
 
-La version GUI de Cosma est disponible pour macOS et Windows. [Visitez la page Releases pour obtenir la dernière version du logiciel](https://github.com/graphlab-fr/cosma/releases/latest). L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.
+La version GUI de Cosma est disponible pour macOS et Windows. La version CLI est disponible pour macOS, Windows et Linux. Visitez [la page Télécharger du site pour obtenir la dernière version du logiciel](https://cosma.graphlab.fr/telecharger/). L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.
 
 Sur macOS
 : Téléchargez puis décompressez le fichier `Cosma.app.zip` et placez le le fichier `Cosma.app` dans `~/Applications`. Au premier lancement, faites clic droit › Ouvrir sur l'application pour l'exécuter.
@@ -62,22 +61,28 @@ Sur macOS
 Sur Windows
 : Téléchargez puis décompressez le fichier `Cosma-win32-x64.zip`, renommez le dossier « Cosma » et placez-le dans `C:\Programmes` ou `C:\Programmes (86)`.
 
-<!-- 
-Fiches de démo :
+### Dossier support
 
-CLI :
+L’installation de Cosma crée automatiquement un dossier support à l’emplacement suivant (où `*` est à remplacer par le nom de l’utilisateur) :
 
-- windows : `%USERPROFILE%\AppData\Roaming\npm\node_modules\@graphlab-fr\cosma\core\sample`
-- macOS, linux : `/usr/local/lib/node_modules/@graphlab-fr/cosma/core/sample`
+Sur macOS
+: `/Users/*/Library/Application Support/cosma`
 
-GUI ?
+Sur Windows
+: `C:\Utilisateurs\*\AppData\Roaming\cosma`
 
-Ancienne version :
+C’est ici que se trouve, entre autres, le fichier `config.json` dans lequel sont inscrits automatiquement vos paramètres pour Cosma.
 
-::: astuce
-Depuis le dépôt Cosma-help, [téléchargez un répertoire de fiches d'exemple](https://github.com/graphlab-fr/cosma-help/archive/refs/heads/main.zip). Après avoir décompressé `cosma-help-main.zip` vous pouvez utiliser ces fiches pour tester Cosma et les lire pour apprendre à utiliser le logiciel. Indiquez le chemin du répertoire dans Préférences (`Ctrl + o` ou `Cmd + ,`) › Général › Répertoire des fiches.
+### Mises à jour
+
+Cosma n’est pas mis à jour automatiquement. Vous pouvez être averti d’une mise à jour en vous abonnant à l’une ou l’autre de ces sources :
+
+- [cosma-annonces](https://groupes.renater.fr/sympa/info/cosma-annonces) (liste de diffusion par email dédiée exclusivement aux annonces de mises à jour de Cosma) ;
+- [flux RSS du site de Cosma](https://cosma.graphlab.fr/feed.xml) (contient les notes de version publiées sur le site).
+
+::: important
+**Si Cosma ne fonctionne plus suite à une mise à jour :** la structure du [dossier support](#dossier-support) a probablement été modifiée et n’est plus compatible avec l’ancienne version. Supprimez le dossier support et relancez l’application. Le dossier support sera recréé automatiquement et fonctionnera de nouveau correctement. Faites éventuellement au préalable une copie du fichier `config.json` : cela vous permettra de les rétablir plus rapidement.
 :::
- -->
 
 ## Créer du contenu
 

@@ -2,9 +2,8 @@
 title: Cosma — User manual
 date: Last Modified
 description: >-
-  Manual allowing to understand all the functionalities of the Cosma software
-  Cosma software, for its graphic and command line interfaces.
-  interfaces.
+  User manual for Cosma, with instructions for installing,
+  using and updating both versions of the app (GUI, CLI).
 flag: en
 layout: doc
 tags: user
@@ -50,11 +49,11 @@ Cosma is archived on Zenodo and can be referenced in scientific literature:
 
 > Arthur Perret, Guillaume Brioudes, Clément Borel, & Olivier Le Deuff. (2021). Cosma (1.0). Zenodo. <https://doi.org/10.5281/zenodo.5920615>
 
-## Installing
+## Installing and updating
 
 Cosma is available in two versions: a graphical user interface (GUI) application and a command line interface (CLI) application. Information about the CLI version is detailed [in the dedicated section](#cosma-cli).
 
-The GUI version of Cosma is available for macOS and Windows. Visit the Releases page of the GitHub repository to get [the latest version](https://github.com/graphlab-fr/cosma/releases/latest). Please note that the application is not signed with a security certificate, so you must have administrator privileges on your session to run it.
+The GUI version of Cosma is available for macOS and Windows. The CLI version is available for macOS, Windows and Linux. Visit [the Download page on Cosma’s website to get the latest version of the application](https://cosma.graphlab.fr/telecharger/). Please note that the application is not signed with a security certificate, so you must have administrator privileges on your session to run it.
 
 On macOS
 : Download and unzip `Cosma.app.zip`, then place it in `~/Applications`. For the first launch, right click on the application then select Open to run it.
@@ -62,22 +61,29 @@ On macOS
 On Windows
 : Download and unzip `Cosma-win32-x64.zip`, then rename the folder `Cosma` and place it in `C:\Program Files` or `C:\Program Files (86)`.
 
-<!-- 
-Fiches de démo :
+### Support folder
 
-CLI :
+Installing Cosma automatically creates a support folder at this location (where `*` stands for the username):
 
-- windows : `%USERPROFILE%\AppData\Roaming\npm\node_modules\@graphlab-fr\cosma\core\sample`
-- macOS, linux : `/usr/local/lib/node_modules/@graphlab-fr/cosma/core/sample`
+On macOS
+: `/Users/*/Library/Application Support/cosma`
 
-GUI ?
+On Windows
+: `C:\Utilisateurs\*\AppData\Roaming\cosma`
 
-Ancienne version :
+Among other files needed to run the application, this is where you will find the `config.json` file in which Cosma automatically stores your configuration.
 
-::: astuce
-Depuis le dépôt Cosma-help, [téléchargez un répertoire de fiches d'exemple](https://github.com/graphlab-fr/cosma-help/archive/refs/heads/main.zip). Après avoir décompressé `cosma-help-main.zip` vous pouvez utiliser ces fiches pour tester Cosma et les lire pour apprendre à utiliser le logiciel. Indiquez le chemin du répertoire dans Préférences (`Ctrl + o` ou `Cmd + ,`) › Général › Répertoire des fiches.
+### Updating
+
+Cosma is not updated automatically. You can be notified of an update by subscribing to either of these sources:
+
+- [cosma-annonces](https://groupes.renater.fr/sympa/info/cosma-annonces) (email list dedicated exclusively to Cosma update announcements);
+- [RSS feed of Cosma’s website](https://cosma.graphlab.fr/feed.xml) (contains release notes published on the site).
+
+::: important
+**If Cosma does not work anymore after an update:** the structure of the [support folder](#support-folder) has probably been modified and is not compatible with the old version. Delete the user folder and restart the application. The support folder will be re-created and will work correctly. You may want to make a copy of the `config.json` file: this will allow you to restore it more quickly after the support folder is re-created.
 :::
- -->
+
 
 ## Creating content
 

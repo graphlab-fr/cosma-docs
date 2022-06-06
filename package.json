@@ -1,6 +1,6 @@
 {
   "name": "cosma-docs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "User and developer documentation for Cosma.",
   "homepage": "https://cosma.graphlab.fr/en/docs/",
   "repository": {
@@ -12,7 +12,8 @@
   },
   "main": "./src/.eleventy.js",
   "scripts": {
-    "start": "cd src && npx @11ty/eleventy --serve"
+    "start": "cd src && npx @11ty/eleventy --serve",
+    "build": "cd src && npx @11ty/eleventy --build"
   },
   "contributors": [
     "Arthur Perret",

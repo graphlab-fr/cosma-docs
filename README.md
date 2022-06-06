@@ -1,14 +1,22 @@
 # cosma-docs
 
-Shared manuals for [cosma](https://github.com/graphlab-fr/cosma) and [cosma-cli](https://github.com/graphlab-fr/cosma-cli). The manuals are translated (english, french) and written for users and developers.
+Documentation for [cosma](https://github.com/graphlab-fr/cosma) and [cosma-cli](https://github.com/graphlab-fr/cosma-cli). Currently available in French and English.
 
-You can open the documentation in each repository with the following command.
+Previewing and building the docs requires Eleventy.
+
+Live preview:
 
 ```
-npm run doc
+npm run start
 ```
 
-Updates to cosma-docs must me pulled manually in each repository by running one of these commands:
+Build:
+
+```
+npm run build
+```
+
+Updates to cosma-docs must me pulled manually in the cosma and cosma-cli repositories by running either of these commands over there:
 
 ```
 npm run modules
