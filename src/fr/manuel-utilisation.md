@@ -1,6 +1,6 @@
 ---
 title: Cosma — Manuel d’utilisation
-date: Last Modified
+date: git Last Modified
 description: >-
   Manuel d’utilisation de Cosma. Explique comment installer
   et utiliser les deux versions du logiciel (GUI, CLI).
@@ -138,7 +138,8 @@ Exemple :
 ---
 title: Titre du document
 id: 20201209111625
-type: undefined
+type:
+- undefined
 tags:
 - mot-clé 1
 - mot-clé 2
@@ -158,7 +159,7 @@ Un champ en YAML est composé d'un nom et d'une valeur séparés par un double-p
 : Identifiant unique de la fiche. Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) ou [Zettlr](https://www.zettlr.com).
 
 `type`
-: Type de la fiche. Facultatif. Un seul type peut être assigné à une fiche. Si le champ `type` n'est pas spécifié ou bien que sa valeur ne correspond à l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
+: Types de la fiche. Facultatif. Si le champ `type` n'est pas spécifié ou bien que ses valeurs ne correspondnt pas l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
 
 `tags` (ou `keywords`)
 : Mots-clés de la fiche. Facultatif. La valeur doit être une liste. Une fiche peut disposer d'autant de mot-clés que vous souhaitez. Vous pouvez utiliser `keywords` au lieu de `tags`, dans une logique de compatibilité avec Pandoc. Si une fiche comporte un champ `tags` et un champ `keywords`, seuls les mots-clés déclarés dans le champ `tags` sont interprétés par Cosma.
@@ -636,14 +637,22 @@ Les feuilles de style du cosmoscope utilisent notamment des variables CSS pour d
 
 ### Installation (CLI)
 
-La version CLI de Cosma est disponible sur macOS, Windows et Linux.
+La version CLI de Cosma est disponible pour macOS, Windows et Linux.
 
-L'installation de [NodeJS](https://nodejs.org/) version 15 minimum est requise.
+L'installation de [NodeJS](https://nodejs.org/) version 12 minimum est requise.
 
-Entrez la commande suivante dans votre terminal pour installer Cosma CLI :
+Entrez la commande suivante dans votre terminal pour installer Cosma CLI de manière globale. Vous pouvez alors utiliser les commandes du logiciel depuis tout emplacement avec le préfixe `cosma`.
 
 ```
 npm i @graphlab-fr/cosma -g
+cosma --help
+```
+
+Vous pouvez également l'installer comme dépendance d'un projet NodeJS avec la commande ci-dessous. Vous pouvez alors utiliser les commandes du logiciel depuis la racine du projet avec le préfixe `./node_modules/.bin/cosma`.
+
+```
+npm i @graphlab-fr/cosma
+./node_modules/.bin/cosma --help
 ```
 
 ### Configuration (CLI)
@@ -717,19 +726,40 @@ cosma b <path>
 Cette commande permet de créer plusieurs fiches d'un coup.
 
 `<path>`
-: Emplacement d'un fichier au format JSON décrivant les fiches à créer. Le fichier doit être structuré de la manière suivante :
+: Emplacement d'un fichier au format JSON ou CSV décrivant les fiches à créer. Le fichier doit être structuré de la manière suivante :
 
+<details>
+<summary>Exemple de fichier JSON</summary>
 ```json
 [
   {
-    "title": "Titre de la fiche",
-    "type": "type de fiche",
-    "tags": "mot-clé 1,mot-clé 2",
-    "content": "Texte de la fiche, [[20210704100343]] liens inclus."
+    "title": "Titre de la fiche"
   },
-  ...
+  {
+    "title": "Paul Otlet",
+    "type" : ["Personne", "Histoire"],
+    "metas": {
+        "prenom" : "Paul",
+        "nom" : "Otlet"
+    },
+    "tags" : ["documentation"],
+    "begin" : "1868",
+    "end" : "1944",
+    "content" : "Lorem...",
+    "thumbnail" : "image.jpg",
+    "references" : ["otlet1934"]
+  }
 ]
 ```
+</details>
+
+<details>
+<summary>Exemple de fichier CSV</summary>
+```csv
+title,content,type:nature,type:field,meta:prenom,meta:nom,tag:genre,time:begin,time:end,thumbnail,references
+Paul Otlet,Lorem...,Personne,Histoire,Paul,Otlet,homme,1868,1944,image.png,otlet1934
+```
+</details>
 
 Comme pour tous les autres modes de création de fiches, le titre (`title`) est obligatoire et les autres champs sont facultatifs.
 
@@ -764,7 +794,7 @@ Comme les commandes, les options existent en version longue et version courte, q
 
 Les options servent également à réécrire à la volée les paramètres de la configuration pour une commande précise.
 
-#### Créer un cosmoscope avec citations (CLI)
+#### Créer un cosmoscope avec citations
 
 ```
 cosma modelize --citeproc
@@ -786,6 +816,18 @@ cosma modelize --citeproc --custom-css
 cosma m -c -css
 ```
 :::
+
+#### Appliquer un autre fichier de configuration
+
+Les options de ce fichier de configuration écrasent les valeurs définies dans la configuration globale.
+
+```
+cosma modelize --config <path>
+```
+
+`<path>`
+: Obligatoire.
+: Chemin vers le fichier de configuration
 
 ## Crédits
 

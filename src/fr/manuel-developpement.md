@@ -1,6 +1,6 @@
 ---
 title: Cosma — Manuel de développement
-date: Last Modified
+date: git Last Modified
 description: >-
   Manuel d'aide aux développeurs souhaitant contribuer ou réutiliser
   le code source de Cosma pour créer leur propre outil.
@@ -9,7 +9,7 @@ layout: doc
 tags: dev
 ---
 
-Cette documentation est destinée aux développeurs souhaitant devenir contributeur ou *forker* le projet (code source) Cosma. Nous vous recommandons vivement de lire la [documentation des utilisateurs](manuel-d-utilisation.html) pour bien saisir l'ensemble des usages implémentés dans le code source présenté ci-dessous.
+Cette documentation est destinée aux développeurs souhaitant devenir contributeur ou *forker* du projet (code source) Cosma. Nous vous recommandons vivement de lire la [documentation des utilisateurs](manuel-d-utilisation.html) pour bien saisir l'ensemble des usages implémentés dans le code source présenté ci-dessous.
 
 Cosma repose sur l'environnement de développement NodeJS et les **technologies du Web** (HTML, CSS). Il est intégralement développé en JavaScript (ES2019). Une bonne connaissance de ces langages est requise pour modifier le cœur de Cosma ou son interface en ligne de commande Cosma-cli.
 Modifier l'interface graphique (Cosma-GUI) nécessite en plus de maîtriser le *framework* [ElectronJS](https://www.electronjs.org/).

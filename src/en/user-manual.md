@@ -1,6 +1,6 @@
 ---
 title: Cosma — User manual
-date: Last Modified
+date: git Last Modified
 description: >-
   User manual for Cosma, with instructions for installing,
   using and updating both versions of the app (GUI, CLI).
