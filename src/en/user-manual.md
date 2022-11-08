@@ -1,6 +1,6 @@
 ---
 title: Cosma — User manual
-date: git Last Modified
+date: Last Modified
 description: >-
   User manual for Cosma, with instructions for installing,
   using and updating both versions of the app (GUI, CLI).
@@ -250,7 +250,9 @@ To improve the readability of records in the cosmoscope, Cosma includes an optio
 
 To be correctly interpreted by Cosma, each record must have a unique identifier. This identifier serves as a target for links between records.
 
-By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
+The identifier must contain only numbers. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
+
+We plan to eventually allow the user to define an identifier pattern of their choice, like in Zettlr.
 
 ::: note
 Many interrelated note-taking applications use file names as targets for links between files. They maintain links automatically when file names are changed. By choosing to use unique identifiers instead, we have designed Cosma with a more traditional, stricter, WWW-like approach. We believe this is the easiest way to avoid [link rot](https://en.wikipedia.org/wiki/Link_rot) in a sustainable way. Avoiding the reliance on automatic link maintenance is especially important if you wish to make your data less dependent on specific applications.
