@@ -3,13 +3,14 @@
 <head>
 	<meta charset=utf-8 />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="generator" content="">
 
 	<title>Cosma — User manual</title>
 
 	<meta name="description" content="User manual for Cosma, with instructions for installing, using and updating both versions of the app (GUI, CLI)." />
 	<meta name="author" content="Arthur Perret,Guillaume Brioudes" />
 	<meta name="copyright" content="GPL-3.0-or-later"/>
-	<meta name="last_edit" content="2022-06-06" />
+	<meta name="last_edit" content="2022-11-08" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Cosma — User manual" />
@@ -24,7 +25,7 @@
 
 	<meta property="DC.title" content="Cosma — User manual" />
 	<meta property="DC.contributor" content="Arthur Perret,Guillaume Brioudes" />
-	<meta property="DC.date" content="2022-06-06" />
+	<meta property="DC.date" content="2022-11-08" />
 	<meta property="DC.language" content="en" />
 	<meta property="DC.description" lang="en" content="User manual for Cosma, with instructions for installing, using and updating both versions of the app (GUI, CLI)." />
 	<meta property="DC.rights" content="GPL-3.0-or-later" />
@@ -216,7 +217,6 @@ ol code,
 dl code,
 table code {
   background-color: var(--code-background-color);
-  border: 1px solid var(--code-border-color);
   border-radius: 4px;
   padding: 0 0.2em;
 }
@@ -304,9 +304,11 @@ footer {
 <nav class="nav-lang">
 	<ul>
 		
+		<li><a href="../cosma-user-manual.html">🇬🇧 EN</a></li>
+		
 		<li><a href="../cosma-manuel-d-utilisation.html">🇫🇷 FR</a></li>
 		
-		<li><a href="../cosma-user-manual.html">🇬🇧 EN</a></li>
+		<li><a href="../cosma-manuel-d-utilisation-cli.html">🇫🇷 FR</a></li>
 		
 		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
 	</ul>
@@ -315,7 +317,7 @@ footer {
     <main>
         
         
-        <p>Last update : June 6, 2022</p>
+        <p>Last update : November 8, 2022</p>
         
 
         <h2 id="about-cosma" tabindex="-1">About Cosma</h2>
@@ -471,7 +473,8 @@ Person D wrote against [[opponent:20201209111625]] person C.
 </div>
 <h4 id="unique-identifiers" tabindex="-1">Unique identifiers</h4>
 <p>To be correctly interpreted by Cosma, each record must have a unique identifier. This identifier serves as a target for links between records.</p>
-<p>By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as <a href="https://zettelkasten.de/the-archive/">The Archive</a> and <a href="https://www.zettlr.com">Zettlr</a>.</p>
+<p>The identifier must contain only numbers. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as <a href="https://zettelkasten.de/the-archive/">The Archive</a> and <a href="https://www.zettlr.com">Zettlr</a>.</p>
+<p>We plan to eventually allow the user to define an identifier pattern of their choice, like in Zettlr.</p>
 <div class="note">
 <p>Many interrelated note-taking applications use file names as targets for links between files. They maintain links automatically when file names are changed. By choosing to use unique identifiers instead, we have designed Cosma with a more traditional, stricter, WWW-like approach. We believe this is the easiest way to avoid <a href="https://en.wikipedia.org/wiki/Link_rot">link rot</a> in a sustainable way. Avoiding the reliance on automatic link maintenance is especially important if you wish to make your data less dependent on specific applications.</p>
 </div>

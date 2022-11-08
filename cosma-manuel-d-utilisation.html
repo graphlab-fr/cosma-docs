@@ -3,13 +3,14 @@
 <head>
 	<meta charset=utf-8 />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="generator" content="">
 
 	<title>Cosma — Manuel d’utilisation</title>
 
 	<meta name="description" content="Manuel d’utilisation de Cosma. Explique comment installer et utiliser les deux versions du logiciel (GUI, CLI)." />
 	<meta name="author" content="Arthur Perret,Guillaume Brioudes" />
 	<meta name="copyright" content="GPL-3.0-or-later"/>
-	<meta name="last_edit" content="2022-06-06" />
+	<meta name="last_edit" content="2022-11-08" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Cosma — Manuel d’utilisation" />
@@ -24,7 +25,7 @@
 
 	<meta property="DC.title" content="Cosma — Manuel d’utilisation" />
 	<meta property="DC.contributor" content="Arthur Perret,Guillaume Brioudes" />
-	<meta property="DC.date" content="2022-06-06" />
+	<meta property="DC.date" content="2022-11-08" />
 	<meta property="DC.language" content="fr" />
 	<meta property="DC.description" lang="fr" content="Manuel d’utilisation de Cosma. Explique comment installer et utiliser les deux versions du logiciel (GUI, CLI)." />
 	<meta property="DC.rights" content="GPL-3.0-or-later" />
@@ -216,7 +217,6 @@ ol code,
 dl code,
 table code {
   background-color: var(--code-background-color);
-  border: 1px solid var(--code-border-color);
   border-radius: 4px;
   padding: 0 0.2em;
 }
@@ -304,9 +304,11 @@ footer {
 <nav class="nav-lang">
 	<ul>
 		
+		<li><a href="../cosma-user-manual.html">🇬🇧 EN</a></li>
+		
 		<li><a href="../cosma-manuel-d-utilisation.html">🇫🇷 FR</a></li>
 		
-		<li><a href="../cosma-user-manual.html">🇬🇧 EN</a></li>
+		<li><a href="../cosma-manuel-d-utilisation-cli.html">🇫🇷 FR</a></li>
 		
 		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
 	</ul>
@@ -314,7 +316,7 @@ footer {
 
     <main>
         
-        <p>Dernière mise à jour : 6 juin 2022</p>
+        <p>Dernière mise à jour : 8 novembre 2022</p>
         
         
 
@@ -401,7 +403,8 @@ footer {
 <pre><code>---
 title: Titre du document
 id: 20201209111625
-type: undefined
+type:
+- undefined
 tags:
 - mot-clé 1
 - mot-clé 2
@@ -417,7 +420,7 @@ tags:
 <dd>Obligatoire.</dd>
 <dd>Identifiant unique de la fiche. Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme <a href="https://zettelkasten.de/the-archive/">The Archive</a> ou <a href="https://www.zettlr.com">Zettlr</a>.</dd>
 <dt><code>type</code></dt>
-<dd>Type de la fiche. Facultatif. Un seul type peut être assigné à une fiche. Si le champ <code>type</code> n'est pas spécifié ou bien que sa valeur ne correspond à l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (<code>undefined</code>).</dd>
+<dd>Types de la fiche. Facultatif. Si le champ <code>type</code> n'est pas spécifié ou bien que ses valeurs ne correspondnt pas l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (<code>undefined</code>).</dd>
 <dt><code>tags</code> (ou <code>keywords</code>)</dt>
 <dd>Mots-clés de la fiche. Facultatif. La valeur doit être une liste. Une fiche peut disposer d'autant de mot-clés que vous souhaitez. Vous pouvez utiliser <code>keywords</code> au lieu de <code>tags</code>, dans une logique de compatibilité avec Pandoc. Si une fiche comporte un champ <code>tags</code> et un champ <code>keywords</code>, seuls les mots-clés déclarés dans le champ <code>tags</code> sont interprétés par Cosma.</dd>
 </dl>
@@ -469,7 +472,8 @@ La personne D a écrit contre [[opposant:20201209111625]] la personne C.
 </div>
 <h4 id="identifiants-uniques" tabindex="-1">Identifiants uniques</h4>
 <p>Pour être correctement interprétée par Cosma, chaque fiche doit avoir un identifiant unique. Cet identifiant sert de cible aux liens internes.</p>
-<p>Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes). Nous nous inspirons ici du fonctionnement de logiciels de prise de notes type Zettelkasten comme <a href="https://zettelkasten.de/the-archive/">The Archive</a> et <a href="https://www.zettlr.com">Zettlr</a>.</p>
+<p>L'identifiant doit être une suite de chiffres. Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes). Nous nous inspirons ici du fonctionnement de logiciels de prise de notes type Zettelkasten comme <a href="https://zettelkasten.de/the-archive/">The Archive</a> et <a href="https://www.zettlr.com">Zettlr</a>.</p>
+<p>À terme, nous souhaitons permettre à l'utilisateur de définir un motif d'identifiant de son choix, à la manière de Zettlr.</p>
 <div class="note">
 <p>De nombreux logiciels de prise de notes interreliées proposent d'établir les liens entre fichiers via leurs noms, et de gérer automatiquement la maintenance des liens lorsque les noms de fichiers sont modifiés. En choisissant plutôt d'utiliser des identifiants uniques, nous avons donné à Cosma un fonctionnement plus classique, plus strict, proche de celui du Web. Nous pensons qu'il s'agit de la manière la plus simple d'éviter les <a href="https://fr.wikipedia.org/wiki/Lien_mort">liens morts</a> de façon pérenne. Le fait de ne pas recourir à une maintenance automatique des liens notamment rend les données moins dépendantes d'une solution logicielle en particulier.</p>
 </div>
@@ -739,10 +743,15 @@ GOODY, Jack, 1979. La Raison graphique : la domestication de la pensée sauvag
 </div>
 <h2 id="cosma-cli" tabindex="-1">Cosma CLI</h2>
 <h3 id="installation-(cli)" tabindex="-1">Installation (CLI)</h3>
-<p>La version CLI de Cosma est disponible sur macOS, Windows et Linux.</p>
-<p>L'installation de <a href="https://nodejs.org/">NodeJS</a> version 15 minimum est requise.</p>
-<p>Entrez la commande suivante dans votre terminal pour installer Cosma CLI :</p>
+<p>La version CLI de Cosma est disponible pour macOS, Windows et Linux.</p>
+<p>L'installation de <a href="https://nodejs.org/">NodeJS</a> version 12 minimum est requise.</p>
+<p>Entrez la commande suivante dans votre terminal pour installer Cosma CLI de manière globale. Vous pouvez alors utiliser les commandes du logiciel depuis tout emplacement avec le préfixe <code>cosma</code>.</p>
 <pre><code>npm i @graphlab-fr/cosma -g
+cosma --help
+</code></pre>
+<p>Vous pouvez également l'installer comme dépendance d'un projet NodeJS avec la commande ci-dessous. Vous pouvez alors utiliser les commandes du logiciel depuis la racine du projet avec le préfixe <code>./node_modules/.bin/cosma</code>.</p>
+<pre><code>npm i @graphlab-fr/cosma
+./node_modules/.bin/cosma --help
 </code></pre>
 <h3 id="configuration-(cli)" tabindex="-1">Configuration (CLI)</h3>
 <p>La configuration de la version CLI s'effectue dans un fichier YAML <code>config.yml</code>. Ce fichier est généré par l'application lors de la première exécution, à la racine du répertoire de l'application :</p>
@@ -792,18 +801,39 @@ cosma b &lt;path&gt;
 <p>Cette commande permet de créer plusieurs fiches d'un coup.</p>
 <dl>
 <dt><code>&lt;path&gt;</code></dt>
-<dd>Emplacement d'un fichier au format JSON décrivant les fiches à créer. Le fichier doit être structuré de la manière suivante :</dd>
+<dd>Emplacement d'un fichier au format JSON ou CSV décrivant les fiches à créer. Le fichier doit être structuré de la manière suivante :</dd>
 </dl>
-<pre><code class="language-json">[
+<details>
+<summary>Exemple de fichier JSON</summary>
+```json
+[
   {
-    &quot;title&quot;: &quot;Titre de la fiche&quot;,
-    &quot;type&quot;: &quot;type de fiche&quot;,
-    &quot;tags&quot;: &quot;mot-clé 1,mot-clé 2&quot;,
-    &quot;content&quot;: &quot;Texte de la fiche, [[20210704100343]] liens inclus.&quot;
+    "title": "Titre de la fiche"
   },
-  ...
+  {
+    "title": "Paul Otlet",
+    "type" : ["Personne", "Histoire"],
+    "metas": {
+        "prenom" : "Paul",
+        "nom" : "Otlet"
+    },
+    "tags" : ["documentation"],
+    "begin" : "1868",
+    "end" : "1944",
+    "content" : "Lorem...",
+    "thumbnail" : "image.jpg",
+    "references" : ["otlet1934"]
+  }
 ]
-</code></pre>
+```
+</details>
+<details>
+<summary>Exemple de fichier CSV</summary>
+```csv
+title,content,type:nature,type:field,meta:prenom,meta:nom,tag:genre,time:begin,time:end,thumbnail,references
+Paul Otlet,Lorem...,Personne,Histoire,Paul,Otlet,homme,1868,1944,image.png,otlet1934
+```
+</details>
 <p>Comme pour tous les autres modes de création de fiches, le titre (<code>title</code>) est obligatoire et les autres champs sont facultatifs.</p>
 <div class="note">
 <p><strong>Identifiants des fiches créées par lot</strong></p>
@@ -822,7 +852,7 @@ cosma m
 <p>Différentes options peuvent être ajoutées à la commande <code>modelize</code>.</p>
 <p>Comme les commandes, les options existent en version longue et version courte, qui sont fonctionnellement identiques, la version courte servant simplement à gagner du temps en raccourcissant la commande.</p>
 <p>Les options servent également à réécrire à la volée les paramètres de la configuration pour une commande précise.</p>
-<h4 id="creer-un-cosmoscope-avec-citations-(cli)" tabindex="-1">Créer un cosmoscope avec citations (CLI)</h4>
+<h4 id="creer-un-cosmoscope-avec-citations-1" tabindex="-1">Créer un cosmoscope avec citations</h4>
 <pre><code>cosma modelize --citeproc
 cosma m -c
 </code></pre>
@@ -836,6 +866,15 @@ cosma m -css
 cosma m -c -css
 </code></pre>
 </div>
+<h4 id="appliquer-un-autre-fichier-de-configuration" tabindex="-1">Appliquer un autre fichier de configuration</h4>
+<p>Les options de ce fichier de configuration écrasent les valeurs définies dans la configuration globale.</p>
+<pre><code>cosma modelize --config &lt;path&gt;
+</code></pre>
+<dl>
+<dt><code>&lt;path&gt;</code></dt>
+<dd>Obligatoire.</dd>
+<dd>Chemin vers le fichier de configuration</dd>
+</dl>
 <h2 id="credits" tabindex="-1">Crédits</h2>
 <h3 id="equipe" tabindex="-1">Équipe</h3>
 <ul>
