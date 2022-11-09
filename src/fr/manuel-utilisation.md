@@ -1,10 +1,10 @@
 ---
-title: Cosma — Manuel d’utilisation
+title: Manuel d’utilisation
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma. Explique comment installer
   et utiliser les deux versions du logiciel (GUI, CLI).
-flag: fr
+lang: fr
 layout: doc
 tags: user
 ---

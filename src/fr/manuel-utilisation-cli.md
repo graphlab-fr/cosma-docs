@@ -1,16 +1,13 @@
 ---
-title: Cosma — Manuel d’utilisation — CLI
+title: Manuel d’utilisation (CLI)
+version: CLI v.2.0.0-beta-1
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma CLI v2.
-flag: fr
+lang: fr
 layout: doc
 tags: user
 ---
-
-::: important
-Cette version du manuel correspond à la version 2.0.0-beta-1 de Cosma CLI uniquement.
-:::
 
 ## Installation et mise à jour
 
@@ -18,7 +15,7 @@ Cette version du manuel correspond à la version 2.0.0-beta-1 de Cosma CLI uniqu
 
 Cosma CLI est disponible pour macOS, Windows et Linux.
 
-L'installation de [NodeJS](https://nodejs.org/) version 16 minimum est requise.
+L'installation de [NodeJS](https://nodejs.org/) version 12 minimum est requise.
 
 Le gestionnaire de paquets NPM est installé automatiquement avec NodeJS. NPM peut être utilisé pour gérer l'installation de Cosma CLI. Entrez la commande ci-dessous dans votre terminal pour installer Cosma CLI de manière globale. Le logiciel s'exécute alors en écrivant `cosma`.
 
@@ -268,6 +265,48 @@ lang: en
 ```
 
 ## Créer du contenu : données tabulaires (CSV)
+
+Lorsque la source de données est de type `csv` ou `online` (données tabulaires situées dans un fichier local ou en ligne), les données doivent respecter les règles suivantes.
+
+### Fichiers de données : nœuds et liens
+
+Les données tabulaires destinées à Cosma doivent être contenues dans deux fichiers : un pour les nœuds et un autre pour les liens. Les noms de ces fichiers doivent être renseignés dans le fichier de configuration.
+
+type de source de données | paramètre à configurer
+---|---
+nœuds (fichier CSV local) | `nodes_origin`
+liens (fichier CSV local) | `links_origin`
+nœuds (fichier CSV en ligne) | `nodes_online`
+liens (fichier CSV en ligne) | `links_online`
+
+### Métadonnées (en-têtes de colonnes)
+
+Les fichiers de données doivent contenir des en-têtes de colonnes correspondant aux métadonnées utilisées par Cosma.
+
+#### Métadonnées pour les nœuds
+
+Pour les nœuds, seule la métadonnée `title` (titre) est requise.
+
+nom | description
+----|------------
+`title` | Titre de la fiche (requis)
+`id` | Identifiant unique
+`type:<nom>` | Typologie de fiches. Chaque typologie contient un ou plusieurs types. Ex : une colonne peut être appelée `type:primaire` et contenir des types comme `personne`, `œuvre`, `institution` ; une autre colonne peut être appelée `type:secondaire`, avec d'autres types.
+`tag:<nom>` | Liste de mots-clés
+`meta:<nom>` |
+`time:begin`, `time:end` | Métadonnées utilisées par le mode chronologique
+`content` | Contenu textuel de la fiche
+`thumbnail` | Nom de fichier d'une image à inclure sous forme de vignette dans la fiche. Formats pris en charge : JPG, PNG. L'emplacement des fichiers images doit être renseigné via le paramètre `images_origin` dans le fichier de configuration.
+`reference` | Liste de clés de citation à inclure en bibliographie dans la fiche.
+
+#### Métadonnées pour les liens
+
+nom | description
+----|------------
+`id` | Identifiant du lien (requis)
+`source` | Identifiant de la fiche d'où part le lien (requis)
+`target` | Identifiant de la fiche que cible le lien (requis)
+`label` | Description du lien (optionnelle). Cette description s'affiche dans les infobulles de contexte des liens/rétroliens.
 
 ## Créer du contenu : fichiers texte (Markdown)
 
@@ -800,5 +839,32 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 
 ## Changelog
 
+Liste des modifications effectuées par rapport à la version précédente.
 
+### Ajouts
+
+- Gérer plusieurs configurations (globales et locales)
+- Utiliser une syntaxe alternative pour les liens
+- Inclure des métadonnées supplémentaires lors de la création par lots (batch)
+- Afficher des métadonnées supplémentaires dans les fiches dans le cosmoscope
+- Exclure certaines fiches lors de la génération du cosmoscope, sur la base des types, mots-clés et métadonnées supplémentaires
+- Afficher les nœuds en mode chronologique
+- Embarquer des images dans le cosmoscope (en base64). Formats pris en charge : JPG, PNG
+- Associer une image à un type de fiche
+- Associer une image à une fiche (affichée sur le nœud et dans la fiche)
+- Définir une couleur de contour pour les types de nœuds
+- Choisir entre nœuds de taille fixe et de taille proportionnelle à leur degré
+
+### Améliorations
+
+- Les liens en bibliographie sont désormais cliquables
+- Les messages affichés à l'exécution des commandes sont plus informatifs
+- Le rapport d'erreurs et d'avertissements est plus informatif
+- Les mots-clés au sommet des fiches dans le cosmoscope ne débordent plus de la mise en page
+- Cosma lit désormais les répertoires de fiches de manière récursive (ticket [#4](https://github.com/graphlab-fr/cosma/issues/4))
+
+### Bugs résolus
+
+- Les infobulles de contexte des liens/rétroliens mettent correctement en évidence la fiche cible (ticket [#23](https://github.com/graphlab-fr/cosma/issues/23))
+- Les espaces dans les noms de fichiers générés par Cosma sont correctement remplacés par des tirets
 

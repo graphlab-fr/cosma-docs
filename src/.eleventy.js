@@ -35,8 +35,8 @@ module.exports = function(e) {
         .use(markdown_it_container, 'tip')
     );
 
-    e.addFilter("fulldate", function(value, flag) {
-        moment.locale(flag);
+    e.addFilter("fulldate", function(value, lang) {
+        moment.locale(lang);
         return moment(value).format('LL');
     });
 

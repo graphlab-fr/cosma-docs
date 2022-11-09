@@ -1,10 +1,10 @@
 ---
-title: Cosma — User manual
+title: User manual
 date: Last Modified
 description: >-
   User manual for Cosma, with instructions for installing,
   using and updating both versions of the app (GUI, CLI).
-flag: en
+lang: en
 layout: doc
 tags: user
 ---

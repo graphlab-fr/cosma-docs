@@ -1,10 +1,10 @@
-<html lang="{{ flag }}">
+<html lang="{{ lang }}">
 <head>
 	<meta charset=utf-8 />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="generator" content="{{ eleventy.generator }}">
 
-	<title>{{ title }}</title>
+	<title>{{ title }} | Cosma</title>
 
 	<meta name="description" content="{{ description }}" />
 	<meta name="author" content="{{ pck.contributors }}" />
@@ -25,8 +25,8 @@
 	<meta property="DC.title" content="{{ title }}" />
 	<meta property="DC.contributor" content="{{ pck.contributors }}" />
 	<meta property="DC.date" content="{{ page.date | shortdate }}" />
-	<meta property="DC.language" content="{{ flag }}" />
-	<meta property="DC.description" lang="{{ flag }}" content="{{ description }}" />
+	<meta property="DC.language" content="{{ lang }}" />
+	<meta property="DC.description" lang="{{ lang }}" content="{{ description }}" />
 	<meta property="DC.rights" content="{{ pck.license }}" />
 
 	<meta name="twitter:site" content="@arthurperret" />
@@ -37,6 +37,6 @@
 	<meta name="twitter:image" content="https://cosma.graphlab.fr/img/cosma-icone.png" />
 
 	<style>
-        {% include "styles.css" %}
-    </style>
+			{% include "styles.css" %}
+	</style>
 </head>

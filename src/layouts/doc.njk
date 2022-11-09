@@ -7,18 +7,19 @@ permalink: "/{{ title | slugify }}.html"
 <body>
     {% include "header-doc.njk" %}
 
+    {% include "aside.njk" %}
+
     <main>
-        {% if flag === 'fr' %}
-        <p>Dernière mise à jour : {{ page.date | fulldate(flag) }}</p>
+        {% if lang === 'fr' %}
+        {% if version %}<p><strong>Version :</strong> {{ version }}</p>{% endif %}
+        <p><strong>Dernière mise à jour :</strong> {{ page.date | fulldate(lang) }}</p>
         {% endif %}
-        {% if flag === 'en' %}
-        <p>Last update : {{ page.date | fulldate(flag) }}</p>
+        {% if lang === 'en' %}
+        <p>Last updated: {{ page.date | fulldate(lang) }}</p>
         {% endif %}
 
         {{ content | safe }}
     </main>
-
-    {% include "aside.njk" %}
 
     {% include "footer.njk" %}
 
