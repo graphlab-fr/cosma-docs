@@ -673,7 +673,15 @@ L'option `--config` applique les paramètres du projet `nom`.
 
 Il est possible d'exclure certaines fiches du cosmoscope sur la base du paramètre `record_filters`. Celui-ci prend pour valeur une liste dont les éléments peuvent être des types, des mots-clés ou des valeurs prises par les métadonnées déclarées dans `record_metas`. Les fiches dont l'en-tête contient au moins un élément de la liste sont exclues au moment de générer le cosmoscope.
 
-Voici un exemple d'en-tête d'une fiche :
+```
+record_filters:
+  - meta: <type/tag/nom de métadonnée>
+    value: <valeur du type/tag/de la métadonnée>
+```
+
+Pour chaque filtre, le paramètre `meta` prend pour valeur soit `type` (type de fiche), soit `tag` (mot-clé), soit le nom d'une métadonnée déclarée dans `record_metas`. Le paramètre `value` prend pour valeur le type, le mot-clé ou la valeur de métadonnée sur laquelle exclure les fiches.
+
+Voici un exemple. Considérez la fiche suivante :
 
 ```
 ---
@@ -688,16 +696,20 @@ et militant pacifiste belge considéré comme le
 fondateur de la documentation moderne…
 ```
 
-La métadonnée `groupe` peut être déclarée via `record_metas` :
+La métadonnée `groupe` peut être déclarée via `record_metas` dans le fichier de configuration :
 
 ```
 record_metas: [groupe]
 ```
 
-Ceci permet de l'utiliser pour exclure certaines fiches via `record_filters`. Ici, toutes les fiches contenant `groupe: auteurs` et/ou le mot-clé `pacifisme` seront exclues :
+Ceci permet d'utiliser la métadonnée `groupe` (en plus du titre et des mots-clés) comme critère pour exclure certaines fiches via `record_filters`. Dans l'exemple ci-dessous, toutes les fiches contenant `groupe: auteurs` et/ou le mot-clé `pacifisme` sont exclues :
 
 ```
-record_filters: [auteurs, pacifisme]
+record_filters:
+  - meta: groupe
+    value: auteurs
+  - meta: tag
+    value: pacifisme
 ```
 
 ### Historique
