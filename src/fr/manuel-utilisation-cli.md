@@ -53,7 +53,7 @@ Deux approches peuvent être adoptées en fonction des besoins :
 
 La première consiste à exécuter la commande `cosma` dans un répertoire où se trouve un fichier de configuration. On parle dans ce cas de fichier de configuration local. Les fichiers de configuration locaux doivent toujours être nommés `config.yml`.
 
-L'autre approche consiste à exécuter la commande `cosma` en ajoutant l'option `msng <nom>`, où `<nom>` correspond au nom d'un fichier de configuration présent dans un dossier spécial, le répertoire de données utilisateur. On parle dans ce cas de fichier de configuration global, ou **projet**. Celui-ci peut être nommé librement (ex : `toto.yml`). Cette seconde approche permet d'exécuter la commande `cosma` depuis n'importe quel emplacement.
+L'autre approche consiste à exécuter la commande `cosma` en ajoutant l'option `--project <nom>`, où `<nom>` correspond au nom d'un fichier de configuration présent dans un dossier spécial, le répertoire de données utilisateur. On parle dans ce cas de fichier de configuration global, ou **projet**. Celui-ci peut être nommé librement (ex : `toto.yml`). Cette seconde approche permet d'exécuter la commande `cosma` depuis n'importe quel emplacement.
 
 ::: astuce
 La méthode locale favorise l'automatisation et la reproductibilité dans un contexte de travail partagé ou distribué sur plusieurs machines. Elle permet en effet de transmettre simultanément données, configuration et instructions d'utilisation (commandes) sous une forme utilisable telle quelle, sans aucun paramétrage supplémentaire requis de la part du destinataire (humain ou machine).
