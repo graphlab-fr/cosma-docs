@@ -15,6 +15,7 @@ permalink: "/{{ title | slugify }}.html"
         <p><strong>Dernière mise à jour :</strong> {{ page.date | fulldate(lang) }}</p>
         {% endif %}
         {% if lang === 'en' %}
+        {% if version %}<p><strong>Version:</strong> {{ version }}</p>{% endif %}
         <p>Last updated: {{ page.date | fulldate(lang) }}</p>
         {% endif %}
 
