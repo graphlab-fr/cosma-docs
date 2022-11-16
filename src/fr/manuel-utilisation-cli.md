@@ -207,8 +207,6 @@ mot-clé | | chaîne de caractères |
 La couleur de fond du graphe et la couleur de surbrillance sont modifiables directement via le fichier de configuration mais toutes les couleurs de l'interface peuvent être modifiées en utilisant une feuille de style CSS personnalisée.
 
 Appliquer une force verticale/horizontale resserre le graphe et permet de ramener plus près du centre les nœuds isolés.
-
-
 :::
 
 ### Modèle de configuration
@@ -293,7 +291,7 @@ nom | description
 `id` | Identifiant unique
 `type:<nom>` | Typologie de fiches. Chaque typologie contient un ou plusieurs types. Ex : une colonne peut être appelée `type:primaire` et contenir des types comme `personne`, `œuvre`, `institution` ; une autre colonne peut être appelée `type:secondaire`, avec d'autres types.
 `tag:<nom>` | Liste de mots-clés
-`meta:<nom>` |
+`meta:<nom>` | Métadonnée définie par l'utilisateur
 `time:begin`, `time:end` | Métadonnées utilisées par le mode chronologique
 `content` | Contenu textuel de la fiche
 `thumbnail` | Nom de fichier d'une image à inclure sous forme de vignette dans la fiche. Formats pris en charge : JPG, PNG. L'emplacement des fichiers images doit être renseigné via le paramètre `images_origin` dans le fichier de configuration.
@@ -386,7 +384,17 @@ Cosma reconnaît et utilise les champs suivants :
 `tags` (ou `keywords`)
 : Mots-clés de la fiche. Facultatif. La valeur doit être une liste. Il est possible d'utiliser `keywords` au lieu de `tags`, dans une logique de compatibilité avec Pandoc. Si une fiche comporte un champ `tags` et un champ `keywords`, seuls les mots-clés déclarés dans le champ `tags` sont interprétés par Cosma.
 
-<!-- Compléter : thumbnail, begin, end… ? -->
+`thumbnail`
+: Facultatif.
+: Nom de fichier d'une image à utiliser comme vignette pour cette fiche dans le cosmoscope (à l'intérieur du nœud correspondant et en haut du panneau de droite lorsque la fiche est ouverte).
+
+`begin`
+: Facultatif.
+: Métadonnée temporelle utilisée pour le mode chronologique.
+
+`end`
+: Facultatif.
+: Métadonnée temporelle utilisée pour le mode chronologique.
 
 #### Ajouter d'autres métadonnées
 
@@ -440,6 +448,14 @@ Exemple :
 Un lien vers [[20201209111625]] une fiche.
 ```
 
+À partir de la v2, vous pouvez également inclure le texte du lien entre les crochets.
+
+Exemple :
+
+```
+Un lien vers [[20201209111625|une fiche]].
+```
+
 Cosma permet de définir des types de liens. Chaque type de lien est caractérisé par un nom, une couleur et un tracé. Pour qualifier un lien dans une fiche, préfixez l'identifiant par le nom d'un type de lien suivi d'un deux-points.
 
 Exemple :
@@ -451,7 +467,7 @@ La personne D a écrit contre [[opposant:20201209111625]] la personne C.
 ```
 
 ::: astuce
-Pour améliorer la lisibilité des fiches dans le cosmoscope, utilisez le paramètre `link_symbol`. Il accepte comme valeur une chaîne de caractères Unicode arbitraire, qui remplacera les identifiants entre les crochets dans le rendu HTML des fiches. Ceci permet d'alléger visuellement le texte des fiches en remplaçant les longs identifiants numériques par une convention personnelle. Cela peut être par exemple un symbole comme une manicule ☞, une flèche →, une étoile ⟡, etc.
+Si vous n'utilisez pas la syntaxe alternative, vous pouvez tout de même améliorer la lisibilité des fiches dans le cosmoscope en utilisant le paramètre `link_symbol`. Celui-ci accepte comme valeur une chaîne de caractères Unicode arbitraire, qui remplacera les identifiants entre les crochets dans le rendu HTML des fiches. Ceci permet d'alléger visuellement le texte des fiches en remplaçant les longs identifiants numériques par une convention personnelle. Cela peut être par exemple un symbole comme une manicule ☞, une flèche →, une étoile ⟡, etc.
 :::
 
 ### Identifiants uniques
@@ -548,6 +564,7 @@ Du fait de ce fonctionnement, il est possible de créer par lot jusqu'à 913 59
 ```
 cosma modelize
 cosma m
+cosma modelize --citeproc --custom-css
 ```
 
 ### Générer un cosmoscope d'exemple
@@ -652,14 +669,6 @@ Les feuilles de style du cosmoscope utilisent des variables CSS pour définir le
   --condensed: 'Avenir Next Condensed', sans-serif;
 }
 ```
-
-::: astuce
-Les options peuvent être utilisées simultanément :
-
-```
-cosma modelize --citeproc --custom-css
-```
-:::
 
 ### Utiliser un fichier de configuration global
 
@@ -848,7 +857,6 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 - [Markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) v4.0.0  (MIT License) : Traitement des hyperliens Markdown au sein des fiches
 - [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.62 (CPAL et AGPL) : Conversion des clés de citation
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0) : Moteur de recherche
-- [Moment](https://momentjs.com/) v2.29.1 (MIT License) : Gestion de l'horodatage
 
 ## Changelog
 
@@ -881,3 +889,6 @@ Liste des modifications effectuées par rapport à la version précédente.
 - Les infobulles de contexte des liens/rétroliens mettent correctement en évidence la fiche cible (ticket [#23](https://github.com/graphlab-fr/cosma/issues/23))
 - Les espaces dans les noms de fichiers générés par Cosma sont correctement remplacés par des tirets
 
+### Bugs connus
+
+- Le traitement des citations échoue parfois dans les infobulles de contexte des rétroliens
