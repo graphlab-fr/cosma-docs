@@ -156,7 +156,7 @@ In YAML, a field consists of a name and a value separated by a colon. Cosma reco
 
 `id`
 : Mandatory.
-: Unique identifier of the record. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
+: Unique identifier of the record. Must be a unique number. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
 `type`
 : Optional.
@@ -189,7 +189,7 @@ Some applications opt to recognize file metadata heuristically. For example, if 
 
 This method is not interoperable: each program has its own conventions, which limits the user's ability to change tools.
 
-Using a YAML header allows writers to declare different metadata explicitly and separately. This has the advantage of making the detection and manipulation of this metadata trivial, both by machines and humans. The use of a common format (such as YAML) increases the number of tools that can be used seamlessly with the same set of files. And widely used computer tools such as regular expressions and *shell* scripts allow people to convert their data themselves in a relatively simple way if needed.
+Using a YAML header allows writers to declare different metadata explicitly and separately. This has the advantage of making the detection and manipulation of this metadata trivial, both by machines and humans. The use of a common format (such as YAML) increases the number of tools that can be used seamlessly with the same set of files. And widely used computer tools such as regular expressions and shell scripts allow people to convert their data themselves in a relatively simple way if needed.
 :::
 
 #### Content
@@ -202,7 +202,7 @@ The [CommonMark tutorial](https://commonmark.org/help/) teaches you the basics o
 If you want to learn how to use Markdown and Pandoc together, check out this online lesson: [Sustainable Authorship in Plain Text using Pandoc and Markdown](https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown).
 :::
 
-Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code, as well as vector images in SVG. Cosma also supports [adding attributes by brackets](https://www.npmjs.com/package/markdown-it-attrs), as shown below.
+Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code. Cosma also supports [adding attributes by brackets](https://www.npmjs.com/package/markdown-it-attrs), as shown below.
 
 ```markdown
 <div class="red">This paragraph will be red</div>
@@ -327,7 +327,7 @@ Click on File › New cosmoscope with citations (`Cmd/Ctrl + Shift + R`) to gene
 Example:
 
 ```
-On writing as a technology of the intellect [@goody1977, 46-52]...
+On writing as a technology of the intellect (Goody 1977, 46-52)…
 
 Bibliography
 ------------
@@ -815,7 +815,6 @@ To improve the maintainability and readability of the source code, the developme
 - [Markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) v4.0.0 (MIT License): Handling Markdown hyperlinks within records
 - [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.62 (CPAL and AGPL): Converting citation keys
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0): Search engine
-- [Moment](https://momentjs.com/) v2.29.1 (MIT License): Managing time and timestamps
 
 ## Changelog
 
