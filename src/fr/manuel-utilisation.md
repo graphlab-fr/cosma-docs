@@ -1,10 +1,10 @@
 ---
-title: Cosma — Manuel d’utilisation
+title: Manuel d’utilisation
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma. Explique comment installer
   et utiliser les deux versions du logiciel (GUI, CLI).
-flag: fr
+lang: fr
 layout: doc
 tags: user
 ---
@@ -159,7 +159,7 @@ Un champ en YAML est composé d'un nom et d'une valeur séparés par un double-p
 : Identifiant unique de la fiche. Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) ou [Zettlr](https://www.zettlr.com).
 
 `type`
-: Types de la fiche. Facultatif. Si le champ `type` n'est pas spécifié ou bien que ses valeurs ne correspondnt pas l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
+: Types de la fiche. Facultatif. Si le champ `type` n'est pas spécifié ou bien que ses valeurs ne correspondent pas à l'un des types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
 
 `tags` (ou `keywords`)
 : Mots-clés de la fiche. Facultatif. La valeur doit être une liste. Une fiche peut disposer d'autant de mot-clés que vous souhaitez. Vous pouvez utiliser `keywords` au lieu de `tags`, dans une logique de compatibilité avec Pandoc. Si une fiche comporte un champ `tags` et un champ `keywords`, seuls les mots-clés déclarés dans le champ `tags` sont interprétés par Cosma.
@@ -183,7 +183,7 @@ Vous pouvez ajouter des champs supplémentaires de manière arbitraire, par exem
 ::: note
 **Pourquoi un en-tête en YAML ?**
 
-Certains logiciels identifier les métadonnées d'un fichier de manière heuristique. Par exemple, si la première ligne du fichier est un titre de niveau 1, alors il sera interprété comme le titre du fichier ; si la seconde ligne contient des mots préfixés par un croisillon `#`, alors ils seront interprétés comme des mots-clés.
+Certains logiciels identifient les métadonnées d'un fichier de manière heuristique. Par exemple, si la première ligne du fichier est un titre de niveau 1, alors il sera interprété comme le titre du fichier ; si la seconde ligne contient des mots préfixés par un croisillon `#`, alors ils seront interprétés comme des mots-clés.
 
 L'inconvénient de ce fonctionnement est qu'il n'est pas interopérable : chaque logiciel a ses propres conventions, ce qui limite la capacité de l'utilisateur à changer d'outil.
 
@@ -200,7 +200,7 @@ Le [tutoriel CommonMark traduit en français](https://www.arthurperret.fr/tutomd
 Si vous souhaitez découvrir l'utilisation conjointe de Markdown et Pandoc, vous pouvez consulter le cours en ligne [Markdown et vous](https://infolit.be/md/).
 :::
 
-Cosma génère un rendu des fichiers Markdown en HTML. Par conséquent, les fichiers Markdown peuvent également inclure du code HTML, ainsi que des images vectorielles en SVG. Cosma supporte également l'[ajout d'attributs via des accolades](https://www.npmjs.com/package/markdown-it-attrs), comme présenté ci-dessous.
+Cosma génère un rendu des fichiers Markdown en HTML. Par conséquent, les fichiers Markdown peuvent également inclure du code HTML. Cosma supporte également l'[ajout d'attributs via des accolades](https://www.npmjs.com/package/markdown-it-attrs), comme présenté ci-dessous.
 
 ```markdown
 <div class="red">Ce paragraphe sera en rouge</div>

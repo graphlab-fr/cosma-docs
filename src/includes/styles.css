@@ -21,7 +21,7 @@ body {
   display: grid;
   grid-template-columns: 70% 30%;
   grid-gap: 0 1%;
-  grid-template-areas: "header headernav"
+  grid-template-areas: "header header"
                        "main   aside"
                        "footer footer";
 }
@@ -177,7 +177,6 @@ ol code,
 dl code,
 table code {
   background-color: var(--code-background-color);
-  border: 1px solid var(--code-border-color);
   border-radius: 4px;
   padding: 0 0.2em;
 }
@@ -250,4 +249,36 @@ footer {
   .important {
   	background: #67f3f4;
   }
+}
+
+@media screen and (max-width: 1000px) {
+	body {
+		display: block;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+	header > *,
+	main {
+		margin-right: auto;
+		margin-left: auto;
+		width: 100%;
+	}
+	main {
+		padding-bottom: 3vh;
+	}
+	aside {
+		position: relative;
+		height: auto;
+		padding-left: 5vw;
+		top: 0;
+	}
+	aside h1 {
+		display: block
+	}
+	.nav-lang ul {
+		justify-content: flex-end;
+	}
+	.nav-lang ul li {
+		padding-left: 1em;
+	}
 }

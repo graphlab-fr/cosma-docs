@@ -3,16 +3,17 @@
 <head>
 	<meta charset=utf-8 />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="generator" content="">
 
-	<title>Cosma — Manuel de développement</title>
+	<title>Manuel de développement | Cosma</title>
 
 	<meta name="description" content="Manuel d&#39;aide aux développeurs souhaitant contribuer ou réutiliser le code source de Cosma pour créer leur propre outil." />
 	<meta name="author" content="Arthur Perret,Guillaume Brioudes" />
 	<meta name="copyright" content="GPL-3.0-or-later"/>
-	<meta name="last_edit" content="2022-02-09" />
+	<meta name="last_edit" content="2022-11-09" />
 
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Cosma — Manuel de développement" />
+	<meta property="og:title" content="Manuel de développement" />
 	<meta property="og:description" content="Manuel d&#39;aide aux développeurs souhaitant contribuer ou réutiliser le code source de Cosma pour créer leur propre outil." />
 	<meta property="og:site_name" content="cosma-docs" />
 
@@ -22,22 +23,22 @@
 	<link rel="schema.DC" href="https://purl.org/dc/elements/1.1/" />
 	<link rel="schema.DCTERMS" href="https://purl.org/dc/terms/" />  
 
-	<meta property="DC.title" content="Cosma — Manuel de développement" />
+	<meta property="DC.title" content="Manuel de développement" />
 	<meta property="DC.contributor" content="Arthur Perret,Guillaume Brioudes" />
-	<meta property="DC.date" content="2022-02-09" />
+	<meta property="DC.date" content="2022-11-09" />
 	<meta property="DC.language" content="fr" />
 	<meta property="DC.description" lang="fr" content="Manuel d&#39;aide aux développeurs souhaitant contribuer ou réutiliser le code source de Cosma pour créer leur propre outil." />
 	<meta property="DC.rights" content="GPL-3.0-or-later" />
 
 	<meta name="twitter:site" content="@arthurperret" />
 	<meta name="twitter:creator" content="@arthurperret" />
-	<meta name="twitter:title" content="Cosma — Manuel de développement" />
+	<meta name="twitter:title" content="Manuel de développement" />
 	<meta name="twitter:description" content="Manuel d&#39;aide aux développeurs souhaitant contribuer ou réutiliser le code source de Cosma pour créer leur propre outil." />
 	<meta name="twitter:card"  content="summary" />
 	<meta name="twitter:image" content="https://cosma.graphlab.fr/img/cosma-icone.png" />
 
 	<style>
-        :root {
+			:root {
 	--sans: "Helvetica Neue", Helvetica, sans-serif;
 	--serif: "Georgia", 'Garamond', 'Time New Roman', 'Times', serif;
 	--mono: Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -60,7 +61,7 @@ body {
   display: grid;
   grid-template-columns: 70% 30%;
   grid-gap: 0 1%;
-  grid-template-areas: "header headernav"
+  grid-template-areas: "header header"
                        "main   aside"
                        "footer footer";
 }
@@ -216,7 +217,6 @@ ol code,
 dl code,
 table code {
   background-color: var(--code-background-color);
-  border: 1px solid var(--code-border-color);
   border-radius: 4px;
   padding: 0 0.2em;
 }
@@ -290,7 +290,39 @@ footer {
   	background: #67f3f4;
   }
 }
-    </style>
+
+@media screen and (max-width: 1000px) {
+	body {
+		display: block;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+	header > *,
+	main {
+		margin-right: auto;
+		margin-left: auto;
+		width: 100%;
+	}
+	main {
+		padding-bottom: 3vh;
+	}
+	aside {
+		position: relative;
+		height: auto;
+		padding-left: 5vw;
+		top: 0;
+	}
+	aside h1 {
+		display: block
+	}
+	.nav-lang ul {
+		justify-content: flex-end;
+	}
+	.nav-lang ul li {
+		padding-left: 1em;
+	}
+}
+	</style>
 </head>
 
 <body>
@@ -298,27 +330,23 @@ footer {
 	<article>
 		<h1 class="title-site">Cosma — Manuel de développement</h1>
 	</article>
-
 </header>
 
-<nav class="nav-lang">
-	<ul>
-		
-		<li><a href="../cosma-developer-manual.html">🇬🇧 EN</a></li>
-		
-		<li><a href="../cosma-manuel-de-developpement.html">🇫🇷 FR</a></li>
-		
-		<li><a href="https://cosma.graphlab.fr">cosma.graphlab.fr ↦</a></li>
-	</ul>
-</nav>
+
+    <aside id="toc">
+	<nav class="toc" >
+        <ul><li><a href="#code-source">Code source</a></li><li><a href="#architecture-du-logiciel">Architecture du logiciel</a><ul><li><a href="#vue-generale">Vue générale</a></li><li><a href="#interfaces-des-classes">Interfaces des classes</a></li><li><a href="#application-electron">Application Electron</a></li></ul></li><li><a href="#terminologie">Terminologie</a></li><li><a href="#traduction">Traduction</a></li><li><a href="#mise-a-jour-des-modules">Mise à jour des modules</a></li></ul>
+      </nav>
+</aside>
 
     <main>
         
-        <p>Dernière mise à jour : 9 février 2022</p>
+        
+        <p><strong>Dernière mise à jour :</strong> 9 novembre 2022</p>
         
         
 
-        <p>Cette documentation est destinée aux développeurs souhaitant devenir contributeur ou <em>forker</em> le projet (code source) Cosma. Nous vous recommandons vivement de lire la <a href="manuel-d-utilisation.html">documentation des utilisateurs</a> pour bien saisir l'ensemble des usages implémentés dans le code source présenté ci-dessous.</p>
+        <p>Cette documentation est destinée aux développeurs souhaitant devenir contributeur ou <em>forker</em> du projet (code source) Cosma. Nous vous recommandons vivement de lire la <a href="manuel-d-utilisation.html">documentation des utilisateurs</a> pour bien saisir l'ensemble des usages implémentés dans le code source présenté ci-dessous.</p>
 <p>Cosma repose sur l'environnement de développement NodeJS et les <strong>technologies du Web</strong> (HTML, CSS). Il est intégralement développé en JavaScript (ES2019). Une bonne connaissance de ces langages est requise pour modifier le cœur de Cosma ou son interface en ligne de commande Cosma-cli.<br>
 Modifier l'interface graphique (Cosma-GUI) nécessite en plus de maîtriser le <em>framework</em> <a href="https://www.electronjs.org/">ElectronJS</a>.</p>
 <h2 id="code-source" tabindex="-1">Code source</h2>
@@ -441,12 +469,6 @@ lang.getWith(
 </code></pre>
 
     </main>
-
-    <aside id="toc">
-	<nav class="toc" >
-        <ul><li><a href="#code-source">Code source</a></li><li><a href="#architecture-du-logiciel">Architecture du logiciel</a><ul><li><a href="#vue-generale">Vue générale</a></li><li><a href="#interfaces-des-classes">Interfaces des classes</a></li><li><a href="#application-electron">Application Electron</a></li></ul></li><li><a href="#terminologie">Terminologie</a></li><li><a href="#traduction">Traduction</a></li><li><a href="#mise-a-jour-des-modules">Mise à jour des modules</a></li></ul>
-      </nav>
-</aside>
 
     <footer>
     
