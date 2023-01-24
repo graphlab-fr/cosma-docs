@@ -1,6 +1,6 @@
 ---
 title: Manuel d’utilisation (CLI)
-version: CLI v.2.0.0-beta-1
+version: CLI v.2.0.0-beta-2
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma CLI v2.
@@ -730,7 +730,7 @@ Par défaut, Cosma exporte automatiquement une copie de chaque cosmoscope dans u
 
 ### Rapport d'erreurs
 
-Si Cosma rencontre des problèmes durant la génération d'un cosmoscope, il crée un rapport d'erreurs dans un sous-répertoire `reports` du répertoire de données utilisateur. Si ce dernier n'existe pas, `reports` est placé dans le répertoire d'installation de Cosma.
+Si Cosma rencontre des problèmes durant la génération d'un cosmoscope, il crée un rapport d'erreurs dans un sous-répertoire `logs` du répertoire de données utilisateur. Si ce dernier n'existe pas, `logs` est placé dans le répertoire d'installation de Cosma.
 
 
 ## Utilisation du cosmoscope
@@ -860,9 +860,22 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 
 ## Changelog
 
-Liste des modifications effectuées par rapport à la version précédente.
+### v2-beta-2
 
-### Ajouts
+#### Améliorations
+
+- L'enregistrement automatique des cosmoscopes se fait dans un sous-répertoire `history`, soit dans le répertoire de données utilisateur pour les configurations globales, soit dans le même répertoire que la configuration locale pour cette dernière.
+
+#### Bugs résolus
+
+- Le chemin d'exécution sur Windows est correctement trouvé, ce qui permet la bonne exécution de l'application.
+- Le répertoire de données utilisateur se crée correctement sur Windows.
+- Le dossier `logs` contenant les rapports d'erreurs se crée correctement.
+- Les titres de fiches contenant seulement une date au format YYYY-MM-DD sont interprétés correctement.
+
+### v2-beta-1
+
+#### Ajouts
 
 - Gérer plusieurs configurations (globales et locales)
 - Utiliser une syntaxe alternative pour les liens
@@ -876,7 +889,7 @@ Liste des modifications effectuées par rapport à la version précédente.
 - Définir une couleur de contour pour les types de nœuds
 - Choisir entre nœuds de taille fixe et de taille proportionnelle à leur degré
 
-### Améliorations
+#### Améliorations
 
 - Les liens en bibliographie sont désormais cliquables
 - Les messages affichés à l'exécution des commandes sont plus informatifs
@@ -884,11 +897,11 @@ Liste des modifications effectuées par rapport à la version précédente.
 - Les mots-clés au sommet des fiches dans le cosmoscope ne débordent plus de la mise en page
 - Cosma lit désormais les répertoires de fiches de manière récursive (ticket [#4](https://github.com/graphlab-fr/cosma/issues/4))
 
-### Bugs résolus
+#### Bugs résolus
 
 - Les infobulles de contexte des liens/rétroliens mettent correctement en évidence la fiche cible (ticket [#23](https://github.com/graphlab-fr/cosma/issues/23))
 - Les espaces dans les noms de fichiers générés par Cosma sont correctement remplacés par des tirets
 
-### Bugs connus
+#### Bugs connus
 
 - Le traitement des citations échoue parfois dans les infobulles de contexte des rétroliens
