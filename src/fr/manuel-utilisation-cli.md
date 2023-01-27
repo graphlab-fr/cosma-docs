@@ -1,6 +1,6 @@
 ---
 title: Manuel d’utilisation (CLI)
-version: CLI v.2.0.0-beta-2
+version: CLI v.2.0.0-beta-3
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma CLI v2.
@@ -859,6 +859,12 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0) : Moteur de recherche
 
 ## Changelog
+
+### v2-beta-3
+
+#### Bugs résolus
+
+- La syntaxe alternative pour les liens fonctionne correctement quels que soient les caractères utilisés pour le texte (ticket #34).
 
 ### v2-beta-2
 
