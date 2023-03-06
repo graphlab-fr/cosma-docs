@@ -1,34 +1,36 @@
 ---
-title: Manuel d’utilisation
+title: Manuel d’utilisation (GUI)
+version: GUI v2.0.0-beta-1
 date: Last Modified
 description: >-
-  Manuel d’utilisation de Cosma. Explique comment installer
-  et utiliser la version à interface graphique (GUI).
+  Manuel d’utilisation de Cosma GUI v2.
 lang: fr
 layout: doc
 tags: user
 ---
 
+<!-- MISE À JOUR EN COURS -->
+
 ## Installation et mise à jour
 
 ### Installation
 
-Cosma est disponible en deux versions : une application à interface graphique (*graphical user interface*, GUI) et une application exécutable en ligne de commande (*command line interface*, CLI). Les informations concernant la version CLI sont détaillées [sur une page dédiée](https://cosma.graphlab.fr/docs/cli/manuel-utilisation/).
+Cosma est disponible en deux versions : une application à interface graphique (*graphical user interface*, GUI) et une application exécutable en ligne de commande (*command line interface*, CLI). Ce manuel concerne la version GUI. Les informations concernant la version CLI sont détaillées [sur une page dédiée](https://cosma.graphlab.fr/docs/cli/manuel-utilisation/).
 
-La version GUI de Cosma est disponible pour macOS, Windows et Linux. Visitez [la page Télécharger du site pour obtenir la dernière version du logiciel](https://cosma.graphlab.fr/telecharger/).
+La bêta de la v2 de Cosma GUI est disponible pour macOS, Windows et Linux. Visitez [la page Télécharger du site pour obtenir la dernière version du logiciel](https://cosma.graphlab.fr/telecharger/).
 
 ::: important
 L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.
 :::
 
 Sur macOS
-: Téléchargez puis décompressez le fichier `Cosma.app.zip` et placez le le fichier `Cosma.app` dans `~/Applications`. Au premier lancement, faites clic droit › Ouvrir sur l'application pour l'exécuter.
+: <!-- À MODIFIER --> Téléchargez puis décompressez le fichier `Cosma.app.zip` et placez le le fichier `Cosma.app` dans `~/Applications`. Au premier lancement, faites clic droit › Ouvrir sur l'application pour l'exécuter.
 
 Sur Windows
 : Téléchargez puis décompressez le fichier `Cosma-win32-x64.zip`, renommez le dossier « Cosma » et placez-le dans `C:\Programmes` ou `C:\Programmes (86)`.
 
 Sur Linux
-: <!-- À COMPLÉTER -->
+: …<!-- À COMPLÉTER -->
 
 L’installation de Cosma crée automatiquement un dossier support à l’emplacement suivant (où `*` est à remplacer par le nom de l’utilisateur) :
 
@@ -39,13 +41,11 @@ Sur Windows
 : `C:\Utilisateurs\*\AppData\Roaming\cosma`
 
 Sur Linux
-: <!-- À COMPLÉTER -->
+: …<!-- À COMPLÉTER -->
 
 ### Mise à jour
 
-<!-- À COMPLÉTER -->
-
-Vous pouvez également être averti d’une mise à jour en vous abonnant à l’une ou l’autre de ces sources :
+Cosma n'est pas mis à jour automatiquement. Vous pouvez être averti d’une mise à jour en vous abonnant à l’une ou l’autre de ces sources :
 
 - [cosma-annonces](https://groupes.renater.fr/sympa/info/cosma-annonces) (liste de diffusion par email dédiée exclusivement aux annonces de mises à jour de Cosma) ;
 - [flux RSS du site de Cosma](https://cosma.graphlab.fr/feed.xml) (contient les notes de version publiées sur le site).
@@ -716,7 +716,7 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 
 ## Changelog
 
-### v2.0
+### v2-beta-1
 
 <!-- À COMPLÉTER -->
 

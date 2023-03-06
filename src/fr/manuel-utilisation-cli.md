@@ -1,6 +1,6 @@
 ---
 title: Manuel d’utilisation (CLI)
-version: CLI v.2.0.0-beta-3
+version: CLI v2.0.0-beta-4
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma CLI v2.
@@ -13,7 +13,9 @@ tags: user
 
 ### Installation
 
-Cosma CLI est disponible pour macOS, Windows et Linux.
+Cosma est disponible en deux versions : une application à interface graphique (*graphical user interface*, GUI) et une application exécutable en ligne de commande (*command line interface*, CLI). Les informations concernant la version GUI sont détaillées [sur une page dédiée](https://cosma.graphlab.fr/docs/manuel-utilisation/).
+
+La version CLI de Cosma est disponible pour macOS, Windows et Linux.
 
 L'installation de [NodeJS](https://nodejs.org/) version 12 minimum est requise.
 
@@ -859,6 +861,16 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0) : Moteur de recherche
 
 ## Changelog
+
+### v2-beta-4
+
+#### Bugs résolus
+
+- La syntaxe alternative pour les liens fonctionne vraiment correctement quels que soient les caractères utilisés pour le texte (correction de la v2-beta-3, qui ne réglait pas complètement le problème).
+
+#### Améliorations
+
+- En cas de problème avec la lecture de données au format CSV, le rapport d'erreur inclut un message informatif.
 
 ### v2-beta-3
 

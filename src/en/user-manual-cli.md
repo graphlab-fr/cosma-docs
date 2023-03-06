@@ -1,6 +1,6 @@
 ---
 title: User Manual (CLI)
-version: CLI v.2.0.0-beta-3
+version: CLI v2.0.0-beta-4
 date: Last Modified
 description: >-
   User manual for Cosma CLI v2 beta.
@@ -862,6 +862,16 @@ To improve the maintainability and readability of the source code, the developme
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0): Search engine
 
 ## Changelog
+
+### v2-beta-4
+
+#### Bugs solved
+
+- Alternative syntax for links should now truly work with all characters (v2-beta-3 did not fix this completely).
+
+#### Improvements
+
+- Issues with parsing CSV data are logged in an informative way.
 
 ### v2-beta-3
 
