@@ -51,33 +51,44 @@ Cosma n'est pas mis à jour automatiquement. Vous pouvez être averti d’une mi
 - [flux RSS du site de Cosma](https://cosma.graphlab.fr/feed.xml) (contient les notes de version publiées sur le site).
 
 ::: important
-**Si Cosma ne fonctionne plus suite à une mise à jour :** la structure du [dossier support](#dossier-support) a probablement été modifiée et n’est plus compatible avec l’ancienne version. Supprimez le dossier support et relancez l’application. Le dossier support sera recréé automatiquement et fonctionnera de nouveau correctement. Faites éventuellement au préalable une copie du fichier `config.json` : cela vous permettra de les rétablir plus rapidement.
+**Si Cosma ne fonctionne plus suite à une mise à jour :** la structure du [dossier support](#dossier-support) a probablement été modifiée et n’est plus compatible avec l’ancienne version. Supprimez le dossier support et relancez l’application. Le dossier support sera recréé automatiquement et fonctionnera de nouveau correctement.
 :::
 
 ## Paramétrer le logiciel
 
-<!-- À COMPLÉTER
+Les paramètres de Cosma peuvent être modifiés via les Préférences.
 
-### Langue
+### Langue de l'application
 
-La langue est appliquée à l'interface de l'application ainsi qu'aux cosmoscopes générés et exportés.
+Vous pouvez choisir entre Français et Anglais comme langue pour l'interface de Cosma.
 
-Un redémarrage de l'application est nécessaire pour que le changement de langue prenne effet dans l'interface. De plus, Cosma ne re-génère pas automatiquement un cosmoscope suite au changement de langue : il faut donc re-générer manuellement un cosmoscope pour voir le changement prendre effet.
+Un redémarrage de l'application est nécessaire pour que le changement de langue prenne effet.
 
--->
+La langue peut également être réglée individuellement pour chaque projet via sa Configuration.
+
+### Outils de développement
+
+Cochez cette case pour accéder aux outils de développement via le menu Affichage. Ceci permet notamment d'inspecter le code du logiciel en direct.
 
 ## Créer un projet
 
-<!-- À COMPLÉTER -->
+Pour commencer à utiliser Cosma, créez un projet :
+
+- cliquez sur le menu Projets puis sur Ajouter un projet ;
+- indiquez le type de données via le menu déroulant : répertoire local de fichiers Markdown, fichiers CSV locaux ou fichiers CSV distants ;
+- indiquez l'emplacement des données via le sélecteur de fichiers ;
+- cliquez sur OK.
+
+Pour modifier les paramètres d'un projet, cliquez sur [Configuration](#configuration).
 
 ## Créer du contenu : fichiers texte (Markdown)
 
-Vous pouvez créer du contenu pour Cosma de deux façons : sous forme de fichiers texte rédigés en Markdown, ou bien sous formes de données tabulaires (par exemple via Google Sheets). Cette section porte sur la première méthode.
+Vous pouvez créer du contenu pour Cosma de deux façons : sous forme de fichiers texte rédigés en Markdown, ou bien sous formes de données tabulaires contenues dans des fichiers CSV. Cette section porte sur la première méthode.
 
 ::: important
 Quelle que soit la méthode choisie, Cosma a besoin de connaître l'emplacement des données. Cette information doit être renseignée dans la configuration du projet.
 
-Pour des fichiers texte rédigés en Markdown, sélectionnez le type de source « Répertoire », puis indiquez l'emplacement du répertoire en question. Cosma interprètera les fichiers contenus dans ce répertoire ainsi que dans les sous-répertoires éventuellement présents.
+Pour des fichiers texte rédigés en Markdown, sélectionnez le type de source « Fichiers Markdown », puis indiquez l'emplacement du répertoire en question. Cosma interprètera les fichiers contenus dans ce répertoire ainsi que dans les sous-répertoires éventuellement présents.
 :::
 
 Cosma ne prescrit pas l'utilisation d'un logiciel d'écriture particulier. En revanche, il interprète uniquement les fichiers texte respectant les quelques règles suivantes :
@@ -242,7 +253,7 @@ Un lien vers [[20201209111625|une fiche]].
 Un lien vers <a href="#20201209111625">→</a> une fiche.
 ```
 
-Enfin, Cosma permet de définir des [types de liens](#types-de-liens). Chaque type de lien est caractérisé par un nom, une couleur et un tracé. Pour qualifier un lien dans une fiche, préfixez l'identifiant par le nom d'un type de lien suivi d'un deux-points. Ceci fonctionne également si vous définissez manuellement le texte cliquable du lien.
+Enfin, Cosma permet de définir des [types de liens](#types-de-liens) via la configuration du projet. Chaque type de lien est caractérisé par un nom, une couleur et un tracé. Une fois ces types créés, pour qualifier un lien dans une fiche, préfixez l'identifiant par le nom d'un type de lien suivi d'un deux-points. Ceci fonctionne également si vous définissez manuellement le texte cliquable du lien.
 
 Exemple :
 
@@ -286,7 +297,44 @@ Exemple : une fiche intitulée « Métadonnées web sémantique » sera enreg
 
 ## Créer du contenu : données tabulaires (CSV)
 
-<!-- À COMPLÉTER -->
+Cosma peut interpréter des données tabulaires contenues dans des fichiers CSV locaux ou en ligne. Ces données doivent respecter les règles suivantes.
+
+### Fichiers de données : nœuds et liens
+
+Les données tabulaires destinées à Cosma doivent être contenues dans deux fichiers : un pour les nœuds et un autre pour les liens. Les emplacements de ces fichiers doivent être renseignés dans la configuration.
+
+::: note
+Ce fonctionnement est similaire à celui de Gephi : les nœuds sont listés dans une table et les liens dans une autre table.
+:::
+
+### Métadonnées (en-têtes de colonnes)
+
+Les fichiers de données doivent contenir des en-têtes de colonnes correspondant aux métadonnées utilisées par Cosma.
+
+#### Métadonnées pour les nœuds
+
+Pour les nœuds, seule la métadonnée `title` (titre) est requise.
+
+nom | description
+----|------------
+`title` | Titre de la fiche (requis)
+`id` | Identifiant unique
+`type:<nom>` | Typologie de fiches. Chaque typologie contient un ou plusieurs types. Ex : une colonne peut être appelée `type:primaire` et contenir des types comme `personne`, `œuvre`, `institution` ; une autre colonne peut être appelée `type:secondaire`, avec d'autres types. Le `<nom>` peut être choisi librement.
+`tag:<nom>` | Liste de mots-clés
+`meta:<nom>` | Métadonnée définie par l'utilisateur
+`time:begin`, `time:end` | Métadonnées utilisées par le mode chronologique
+`content` | Contenu textuel de la fiche
+`thumbnail` | Nom de fichier d'une image à inclure sous forme de vignette dans la fiche. Formats pris en charge : JPG, PNG. L'emplacement des fichiers images doit être renseigné via le paramètre `images_origin` dans le fichier de configuration.
+`reference` | Liste de clés de citation à inclure en bibliographie dans la fiche.
+
+#### Métadonnées pour les liens
+
+nom | description
+----|------------
+`id` | Identifiant du lien (requis)
+`source` | Identifiant de la fiche d'où part le lien (requis)
+`target` | Identifiant de la fiche que cible le lien (requis)
+`label` | Description du lien (optionnelle). Cette description s'affiche dans les infobulles de contexte des liens/rétroliens.
 
 ## Créer un cosmoscope
 
@@ -397,7 +445,7 @@ Si Cosma rencontre des problèmes durant la génération d'un cosmoscope, il cr�
 
 Par défaut, Cosma exporte automatiquement chaque cosmoscope dans un répertoire `cosma-history` situé dans les répertoires temporaires du système d'exploitation.
 
-Vous pouvez activer ou désactiver l'enregistrement automatique dans la configuration du projet. <!-- PRÉCISER -->
+Vous pouvez activer ou désactiver l'enregistrement automatique dans Configuration › Général.
 
 Le cosmocope actif est toujours enregistré dans l'historique comme dernière entrée. C'est cette dernière entrée qui est affichée lors de l'ouverture du projet. Si l'enregistrement automatique des cosmoscopes est désactivé, cette dernière entrée sera simplement écrasée à chaque nouvelle génération de cosmoscope.
 
@@ -463,6 +511,8 @@ Modifiez la force et la distance maximale entre les nœuds pour adapter l'affich
 :::
 
 L'affichage est possible sur tous types d'écrans mais n'est pas optimisé pour les terminaux mobiles : le tactile ne donne pas accès à certaines interactions comme le survol, et les petits écrans restreignent l'utilité du graphe.
+
+<!-- AJOUTER MODE CHRONOLOGIQUE -->
 
 ### Fiches
 
@@ -560,8 +610,17 @@ La majorité des options de configuration ne fonctionnent que si une source de d
 
 ### Général
 
+Langue
+: Vous pouvez régler ici la langue du cosmoscope indépendamment de la langue de l'application.
+
 Source des données
-: <!-- METTRE À JOUR --> Chemin du répertoire contenant les fichiers Markdown. Les nouvelles fiches créées via Cosma sont ajoutées dans ce répertoire.
+: Emplacement de la source des données (fichiers Markdown ou fichiers CSV). Dans le cas es nouvelles fiches créées via Cosma sont ajoutées dans ce répertoire.
+
+Répertoire des images
+: Emplacement des images utilisées dans le cosmoscope. Renseigner ce paramètre permet d'utiliser des images stockées à cet emplacement en indiquant uniquement leur chemin relatif (ex : `image.jpg`).
+
+Métadonnées supplémentaires
+: Champs YAML autres que ceux prédéfinis (titre, type, mots-clés) et à inclure dans le cosmoscope.
 
 Enregistrer automatiquement les cosmoscopes dans l’historique
 : Par défaut, Cosma exporte automatiquement chaque cosmoscope dans un répertoire `cosma-history` situé dans les répertoires temporaires du système d'exploitation. Décochez cette option pour désactiver cet export automatique.
@@ -572,9 +631,9 @@ Symbole de lien
 
 ### Types de fiches
 
-Cette section permet de définir différents types de fiches. Pour chaque type de fiche, renseignez un nom et une couleur.
+Cette section permet de définir différents types de fiches. Pour chaque type de fiche, renseignez un nom, une couleur de fond et une couleur de bordure. Cette dernière du contour du type de nœud (utilisée lorsque le nœud est rempli par une image.
 
-Une fiche peut avoir un ou plusieurs types. Si le champ `type` n'est pas spécifié, ou bien que sa valeur ne correspond aux types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
+Une fiche peut avoir un ou plusieurs types. Si le champ `type` n'est pas spécifié, ou bien que sa valeur ne correspond aux types enregistrés dans la configuration, Cosma interprètera le type de la fiche comme non défini (« undefined »).
 
 ::: important
 Le type « undefined » peut être modifié (par exemple pour en changer la couleur) mais il ne peut pas être supprimé.
@@ -635,7 +694,7 @@ Attraction verticale/horizontale
 
 ### Métadonnées
 
-Vous pouvez définir des métadonnées globales pour le cosmoscope :
+Vous pouvez définir des métadonnées globales pour le projet :
 
 - titre
 - auteur
@@ -661,10 +720,32 @@ Localisation bibliographique
 
 Gérez ici les [vues](#vues) enregistrées dans le cosmoscope.
 
-### Avancé
+### Filtrage des fiches
 
-Afficher les outils de développement
-: Cette option permet d'afficher les outils de développement du logiciel depuis Affichage › Outils de développement. Cliquez sur Afficher l'inspecteur web pour inspecter le code de l'interface de Cosma.
+Cette section permet de créer des filtres pour exclure des fiches lors de la création d'un cosmoscope. Pour chaque filtre, indiquez la nature du critère d'exclusion (type, mot-clé, ou métadonnée supplémentaire) et la valeur à filtrer.
+
+Voici un exemple. Considérez la fiche suivante :
+
+```
+---
+title: Paul Otlet
+type: personne
+groupe: auteurs
+tags: [documentation, pacifisme]
+---
+
+Paul Otlet (1868-1944) est un avocat, bibliographe
+et militant pacifiste belge considéré comme le
+fondateur de la documentation moderne…
+```
+
+Cette fiche pourrait être exclue lors de la génération du cosmoscope via différents filtres :
+
+- un filtrage par type sur la valeur « personne » ;
+- un filtrage par mot-clé sur les valeurs « documentation » ou « pacifisme » ;
+- un filtrage par la métadonnée « groupe » (si vous l'avez déclarée dans Configuration › Général › Métadonnées supplémentaires) sur la valeur « auteurs ».
+
+### Avancé
 
 CSS personnalisée
 : Indiquez ici le chemin d'un fichier CSS pour personnaliser l'interface du cosmocope. Il est nécessaire de re-générer un cosmoscope pour que la CSS personnalisée soit prise en compte.
@@ -687,6 +768,9 @@ Les feuilles de style du cosmoscope utilisent notamment des variables CSS pour d
 }
 ```
 :::
+
+Afficher les outils de développement
+: Cette option permet d'afficher les outils de développement du logiciel depuis Affichage › Outils de développement. Cliquez sur Afficher l'inspecteur web pour inspecter le code de l'interface de Cosma.
 
 ## Crédits
 
