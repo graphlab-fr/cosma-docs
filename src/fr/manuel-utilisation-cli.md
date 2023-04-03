@@ -1,6 +1,6 @@
 ---
 title: Manuel d’utilisation (CLI)
-version: CLI v.2.0.0-beta-3
+version: CLI v2.0.0-beta-4
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma CLI v2.
@@ -13,7 +13,9 @@ tags: user
 
 ### Installation
 
-Cosma CLI est disponible pour macOS, Windows et Linux.
+Cosma est disponible en deux versions : une application à interface graphique (*graphical user interface*, GUI) et une application exécutable en ligne de commande (*command line interface*, CLI). Les informations concernant la version GUI sont détaillées [sur une page dédiée](https://cosma.graphlab.fr/docs/manuel-utilisation/).
+
+La version CLI de Cosma est disponible pour macOS, Windows et Linux.
 
 L'installation de [NodeJS](https://nodejs.org/) version 12 minimum est requise.
 
@@ -177,7 +179,7 @@ métadonnée filtre | Les fiches incluant cette métadonnée seront exclues lors
 `graph_background_color` | Couleur de fond du graphe | couleur HTML | 
 `graph_highlight_color` | Couleur de surbrillance | couleur HTML | 
 `graph_highlight_on_hover` | Application de la surbrillance au survol et à la sélection des nœuds | `true` ou `false` | `true`
-`graph_text_size` | Taille des étiquettes des nœuds | nombre entier compris entre 5 et 15 | 10
+`graph_text_size` | Taille des étiquettes des nœuds | nombre entier compris entre 2 et 15 | 10
 `graph_arrows` | Ajout de flèches directionnelles aux extrémités des liens | `true` ou `false` | `true`
 `node_size_method` | Méthode de dimensionnement des nœuds | `degree` (taille proportionnelle au degré) ou `unique` (taille fixe) | `degree`
 `node_size` | Taille des nœuds (taille fixe) | nombre entier compris entre 2 et 20 | 10
@@ -188,7 +190,7 @@ métadonnée filtre | Les fiches incluant cette métadonnée seront exclues lors
 `attraction_vertical` | Force d'attraction vers l'axe vertical | nombre compris entre 0 (désactivé) et 1 | 0
 `attraction_horizontal` | Force d'attraction vers l'axe horizontal | nombre compris entre 0 (désactivé) et 1 | 0
 `views` | Liste des vues enregistrées (GUI) | liste | 
-`chronological_record_meta` | Métadonnée utilisée pour le mode chronologique | métadonnée déclarée dans `record_metas` | `last_edit`
+`chronological_record_meta` | Métadonnée utilisée pour le mode chronologique | `created`, `last_edit`, `last_open`, `timestamp`, métadonnée déclarée dans `record_metas` | `created`
 `record_metas` | Liste de métadonnées (présentes dans la source de données) à inclure dans le cosmoscope | liste |
 `title` | Titre du cosmoscope | chaîne de caractères | 
 `author` | Auteur du cosmoscope | chaîne de caractères | 
@@ -317,7 +319,7 @@ Lorsque la source de données est de type `directory` (répertoire de fichiers M
 Les sous-sections qui suivent expliquent ces règles en détail.
 
 ::: note
-Cette combinaison de normes d'écriture correspond au croisement de plusieurs cultures textuelles : la documentation (enrichir et indexer le contenu avec des métadonnées) ; les wikis (interrelier des connaissances) ; la méthode Zettelkasten (organiser ses notes) ; l'écriture académique avec Pandoc (utiliser le format texte comme source pour plusieurs autres formats).
+Cette combinaison de normes d'écriture correspond au croisement de plusieurs cultures textuelles : la documentation (enrichir et indexer le contenu avec des métadonnées) ; les wikis (interrelier des connaissances) ; la méthode Zettelkasten (organiser ses notes) ; l'écriture scientifique avec Pandoc (utiliser le format texte comme source pour plusieurs autres formats).
 
 Cosma fonctionne donc particulièrement bien lorsqu'il est utilisé en tandem avec des environnements d'écriture qui adoptent également cette approche, comme [Zettlr](https://zettlr.com) ou l'extension [Foam](https://foambubble.github.io/foam/) pour Visual Studio Code et VSCodium.
 :::
@@ -359,7 +361,7 @@ tags: [mot-clé 1, mot-clé 2]
 ::: note
 **Pourquoi un en-tête en YAML ?**
 
-Certains logiciels identifier les métadonnées d'un fichier de manière heuristique. Par exemple, si la première ligne du fichier est un titre de niveau 1, alors il sera interprété comme le titre du fichier ; si la seconde ligne contient des mots préfixés par un croisillon `#`, alors ils seront interprétés comme des mots-clés.
+Certains logiciels identifient les métadonnées d'un fichier de manière heuristique. Par exemple, si la première ligne du fichier est un titre de niveau 1, alors celui-ci sera interprété comme le titre du fichier ; si la seconde ligne contient des mots préfixés par un croisillon `#`, alors ils seront interprétés comme des mots-clés.
 
 L'inconvénient de ce fonctionnement est qu'il n'est pas interopérable : chaque logiciel a ses propres conventions, ce qui limite la capacité de l'utilisateur à changer d'outil.
 
@@ -732,7 +734,6 @@ Par défaut, Cosma exporte automatiquement une copie de chaque cosmoscope dans u
 
 Si Cosma rencontre des problèmes durant la génération d'un cosmoscope, il crée un rapport d'erreurs dans un sous-répertoire `logs` du répertoire de données utilisateur. Si ce dernier n'existe pas, `logs` est placé dans le répertoire d'installation de Cosma.
 
-
 ## Utilisation du cosmoscope
 
 Le cosmoscope est un fichier HTML. Pour l'utiliser, ouvrez-le dans un navigateur web.
@@ -798,6 +799,16 @@ Le curseur qui apparaît sous le bouton Activer le focus permet de faire varier 
 Le curseur du niveau de focus est contrôlable via les flèches du clavier. Vous pouvez enchaîner les raccourcis : `F` pour activer le focus, puis les flèches pour augmenter le niveau de focus.
 :::
 
+### Mode chronologique
+
+Le bouton Mode chronologique en bas à gauche du graphe permet d'afficher une frise interactive avec laquelle il est possible de modifier l'affichage des nœuds en fonction d'une métadonnée temporelle :
+
+- date de création (par défaut) : `created` ;
+- date de dernière modification : `last_edit` ;
+- date de dernière ouverture : `last_open` ;
+- identifiant si celui-ci correspond à un horodatage (ce qui est le cas des identifiants générés par Cosma) : `timestamp` ;
+- métadonnée déclarée dans `record_metas` si celle-ci correspond à une date au format YYYY-MM-DD.
+
 ### Moteur de recherche
 
 Le champ de texte situé en haut du panneau latéral gauche est un moteur de recherche qui fonctionne sur les titres de fiches. Il suggère une liste de fiches dont le titre est le plus proche de ce que vous saisissez dans la barre de recherche (*fuzzy search*). Cliquer sur une suggestion sélectionne le nœud correspondant dans le graphe et ouvre la fiche correspondante dans le panneau latéral de droite.
@@ -859,6 +870,16 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 - [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0) : Moteur de recherche
 
 ## Changelog
+
+### v2-beta-4
+
+#### Bugs résolus
+
+- La syntaxe alternative pour les liens fonctionne vraiment correctement quels que soient les caractères utilisés pour le texte (correction de la v2-beta-3, qui ne réglait pas complètement le problème).
+
+#### Améliorations
+
+- En cas de problème avec la lecture de données au format CSV, le rapport d'erreur inclut un message informatif.
 
 ### v2-beta-3
 
