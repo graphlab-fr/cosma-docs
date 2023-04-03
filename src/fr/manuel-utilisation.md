@@ -1,6 +1,6 @@
 ---
 title: Manuel d’utilisation (GUI)
-version: GUI v2.0.0-beta-1
+version: GUI v2.0-beta-1
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma GUI v2.
@@ -9,39 +9,43 @@ layout: doc
 tags: user
 ---
 
-<!-- MISE À JOUR EN COURS -->
-
 ## Installation et mise à jour
 
 ### Installation
 
 Cosma est disponible en deux versions : une application à interface graphique (*graphical user interface*, GUI) et une application exécutable en ligne de commande (*command line interface*, CLI). Ce manuel concerne la version GUI. Les informations concernant la version CLI sont détaillées [sur une page dédiée](https://cosma.graphlab.fr/docs/cli/manuel-utilisation/).
 
-La bêta de la v2 de Cosma GUI est disponible pour macOS, Windows et Linux. Visitez [la page Télécharger du site pour obtenir la dernière version du logiciel](https://cosma.graphlab.fr/telecharger/).
+La bêta de la v2 de Cosma GUI est disponible pour macOS, Windows et Linux (Debian). Visitez [la page Télécharger du site pour obtenir la dernière version du logiciel](https://cosma.graphlab.fr/telecharger/).
 
 ::: important
 L'application n'est pas signée avec un certificat de sécurité, vous devez disposer des privilèges administrateurs sur votre session pour pouvoir l'exécuter.
 :::
 
+::: note
+Les instructions ci-dessous mentionnent des variables d'environnement (`$HOME`, `%APPDATA%`) dont la valeur dépend du système d'exploitation. Par exemple sur macOS, `$HOME` correspond à `/Users/USERNAME`, où `USERNAME` est votre nom d'utilisateur. Sur Windows, `%APPDATA%` correspond à `C:\Users\USERNAME\AppData\Roaming`.
+
+Pour connaître la valeur que prend une variable sur votre ordinateur, utilisez la commande `echo` suivie du nom de la variable.
+:::
+
 Sur macOS
-: <!-- À MODIFIER --> Téléchargez puis décompressez le fichier `Cosma.app.zip` et placez le le fichier `Cosma.app` dans `~/Applications`. Au premier lancement, faites clic droit › Ouvrir sur l'application pour l'exécuter.
+: Téléchargez puis ouvrez le fichier dmg et copiez le fichier `Cosma.app` dans `$HOME/Applications`. Au premier lancement, faites clic droit › Ouvrir sur l'application pour l'exécuter.
 
 Sur Windows
 : Téléchargez puis décompressez le fichier `Cosma-win32-x64.zip`, renommez le dossier « Cosma » et placez-le dans `C:\Programmes` ou `C:\Programmes (86)`.
 
 Sur Linux
-: …<!-- À COMPLÉTER -->
+: Téléchargez puis ouvrez le fichier `Cosma_amd64.deb` avec votre gestionnaire de paquets pour installer Cosma.
 
-L’installation de Cosma crée automatiquement un dossier support à l’emplacement suivant (où `*` est à remplacer par le nom de l’utilisateur) :
+L’installation de Cosma crée automatiquement un dossier support à l’emplacement suivant :
 
 Sur macOS
-: `/Users/*/Library/Application Support/cosma`
+: `$HOME/Library/Application Support/cosma`
 
 Sur Windows
-: `C:\Utilisateurs\*\AppData\Roaming\cosma`
+: `%APPDATA%\Cosma`
 
 Sur Linux
-: …<!-- À COMPLÉTER -->
+: `$HOME/.config/Cosma`
 
 ### Mise à jour
 
@@ -88,7 +92,7 @@ Vous pouvez créer du contenu pour Cosma de deux façons : sous forme de fichier
 ::: important
 Quelle que soit la méthode choisie, Cosma a besoin de connaître l'emplacement des données. Cette information doit être renseignée dans la configuration du projet.
 
-Pour des fichiers texte rédigés en Markdown, sélectionnez le type de source « Fichiers Markdown », puis indiquez l'emplacement du répertoire en question. Cosma interprètera les fichiers contenus dans ce répertoire ainsi que dans les sous-répertoires éventuellement présents.
+Pour des fichiers texte rédigés en Markdown, sélectionnez « Fichiers Markdown », puis indiquez l'emplacement du répertoire en question. Cosma interprètera les fichiers contenus dans ce répertoire ainsi que dans les sous-répertoires éventuellement présents.
 :::
 
 Cosma ne prescrit pas l'utilisation d'un logiciel d'écriture particulier. En revanche, il interprète uniquement les fichiers texte respectant les quelques règles suivantes :
@@ -183,7 +187,7 @@ Cosma reconnaît et utilise les champs suivants :
 
 #### Ajouter d'autres métadonnées
 
-Il est possible d'ajouter librement d'autres métadonnées dans l'en-tête YAML. Par défaut, Cosma ignore ces métadonnées au moment de créer un cosmoscope : elles ne sont pas incluses dans le rendu HTML des fiches. Pour que ces métadonnées soient prises en compte, renseignez-les dans la configuration du projet. <!-- PRÉCISER -->
+Il est possible d'ajouter librement d'autres métadonnées dans l'en-tête YAML. Par défaut, Cosma ignore ces métadonnées au moment de créer un cosmoscope : elles ne sont pas incluses dans le rendu HTML des fiches. Pour que ces métadonnées soient prises en compte, renseignez-les dans la configuration du projet.
 
 ### Contenu
 
@@ -250,7 +254,7 @@ Un lien vers [[20201209111625|une fiche]].
 ```
 
 ```html
-Un lien vers <a href="#20201209111625">→</a> une fiche.
+Un lien vers <a href="#20201209111625">une fiche</a>.
 ```
 
 Enfin, Cosma permet de définir des [types de liens](#types-de-liens) via la configuration du projet. Chaque type de lien est caractérisé par un nom, une couleur et un tracé. Une fois ces types créés, pour qualifier un lien dans une fiche, préfixez l'identifiant par le nom d'un type de lien suivi d'un deux-points. Ceci fonctionne également si vous définissez manuellement le texte cliquable du lien.
@@ -283,7 +287,7 @@ Cliquez sur Fichier › Nouvelle fiche (`Ctrl/Cmd + N`) pour ouvrir le formulair
 
 Le titre est obligatoire. Les autres champs sont facultatifs.
 
-Vous pouvez assigner un ou plusieurs types à la fiche. Ils doivent être définis préalablement dans la configuration du projet. <!-- PRÉCISER -->
+Vous pouvez assigner un ou plusieurs types à la fiche. Ils doivent être définis préalablement dans la configuration du projet.
 
 Vous pouvez également ajouter des mots-clés à la fiche. Les mots-clés doivent être séparés par des virgules. Exemple : `mots-clé 1, mot-clé 2`. Une aide visuelle est présente dans ce champ pour confirmer que les mots-clés sont bien saisis (surlignement des mots-clés).
 
@@ -512,8 +516,6 @@ Modifiez la force et la distance maximale entre les nœuds pour adapter l'affich
 
 L'affichage est possible sur tous types d'écrans mais n'est pas optimisé pour les terminaux mobiles : le tactile ne donne pas accès à certaines interactions comme le survol, et les petits écrans restreignent l'utilité du graphe.
 
-<!-- AJOUTER MODE CHRONOLOGIQUE -->
-
 ### Fiches
 
 Les fiches peuvent êtres ouvertes en cliquant sur un nœud, une entrée de l'index, une suggestion du moteur de recherche, ou un lien dans le corps ou le pied d'une fiche. Ouvrir une fiche affiche son contenu dans le panneau latéral droit.
@@ -542,6 +544,16 @@ Le curseur qui apparaît sous le bouton Activer le focus permet de faire varier 
 Le curseur du niveau de focus est contrôlable via les flèches du clavier. Vous pouvez enchaîner les raccourcis : `F` pour activer le focus, puis les flèches pour augmenter le niveau de focus.
 :::
 
+### Mode chronologique
+
+Le bouton Mode chronologique en bas à gauche du graphe permet d'afficher une frise interactive avec laquelle il est possible de modifier l'affichage des nœuds en fonction d'une métadonnée temporelle :
+
+- date de création (par défaut) ;
+- date de dernière modification ;
+- date de dernière ouverture ;
+- identifiant, si celui-ci correspond à un horodatage (ce qui est le cas des identifiants générés par Cosma) ;
+- métadonnée supplémentaire ajoutée dans la configuration, si celle-ci correspond à une date au format YYYY-MM-DD.
+
 ### Moteur de recherche
 
 Le champ de texte situé en haut du panneau latéral gauche est un moteur de recherche qui fonctionne sur les titres de fiches. Il suggère une liste de fiches dont le titre est le plus proche de ce que vous saisissez dans la barre de recherche (*fuzzy search*). Cliquer sur une suggestion sélectionne le nœud correspondant dans le graphe et ouvre la fiche correspondante dans le panneau latéral de droite.
@@ -558,7 +570,7 @@ Pour qu'un type apparaisse, il doit être déclaré dans Préférences › Types
 
 ### Mots-clés
 
-La liste des mots-clés située dans le panneau latéral gauche permet de mettre en évidence les fiches qui utilisent chaque mot-clé sélectionné. Sélectionner un mot-clé met en surbrillance l'étiquette des nœuds correspondants dans le graphe et restreint l'index aux fiches correspondantes. Vous pouvez activer simultanément plusieurs mots-clés. Pour désactiver un mot-clé, cliquez à nouveau sur le bouton correspondant.
+La liste des mots-clés située dans le panneau latéral gauche permet de filtrer le graphe. Sélectionner un mot-clé affiche les fiches qui contiennent ce mot-clé, dans le graphe et dans l'index. Vous pouvez activer simultanément plusieurs mots-clés. Pour désactiver un mot-clé, cliquez à nouveau sur le bouton correspondant.
 
 Pour qu'un mot-clé apparaisse, il suffit qu'il ait été déclaré dans l'en-tête YAML d'au moins une fiche avec le champ `tags` .
 
@@ -673,7 +685,7 @@ Les deux paramètres de couleur ci-dessus sont accessibles via l'interface car i
 :::
 
 Taille du texte des étiquettes
-: Définit la taille du texte des étiquettes des nœuds du graphe, c'est-à-dire la place que prend le titre de chaque fiche sous le nœud correspondant. L'unité implicite est le pixel. Les valeurs possibles sont comprises entre 5 et 15.
+: Définit la taille du texte des étiquettes des nœuds du graphe, c'est-à-dire la place que prend le titre de chaque fiche sous le nœud correspondant. L'unité implicite est le pixel. Les valeurs possibles sont comprises entre 2 et 15.
 
 Niveau maximum de focus
 : Le mode focus restreint l'affichage au nœud sélectionné et à ses connexions directes (1 nœud de distance). Il est possible de faire varier la distance d'affichage du mode focus : passer à 2 affiche les connexions jusqu'à 2 nœuds de distance ; passer à 3 étend l'affichage à 3 nœuds de distance ; etc. La valeur indiquée dans Niveau maximum de focus définit le seuil maximum pour cette fonctionnalité. Une valeur élevée consomme plus de ressources à l'affichage.
@@ -802,7 +814,40 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 
 ### v2-beta-1
 
-<!-- À COMPLÉTER -->
+Ceci est la première bêta de Cosma GUI v2. Elle comprend trois changements majeurs :
+
+1. Cosma s'imprègne de l'esprit de l'[Otletosphere](https://hyperotlet.huma-num.fr/otletosphere/) : en plus de fichiers Markdown, les cosmoscopes peuvent désormais être créés à partir de données tabulaires, et nous avons ajouté de nouvelles options graphiques telles que régler les nœuds sur une taille fixe, et utiliser des images comme vignettes/portraits sur les nœuds et dans les fiches.
+2. Les projets ! Cosma est maintenant capable de gérer plusieurs projets, chacun correspondant à une source de données.
+3. Le mode chronologique est un nouveau filtre d'affichage basé sur des métadonnées temporelles. C'est un curseur qui permet de faire apparaître et disparaître les nœuds en fonction des métadonnées `begin` et `end`. *Work-in-progress*.
+
+#### Ajouts
+
+- Gérer plusieurs projets
+- Utiliser une syntaxe alternative pour les liens
+- Afficher des métadonnées supplémentaires dans les fiches dans le cosmoscope
+- Exclure certaines fiches lors de la génération du cosmoscope, sur la base des types, mots-clés et métadonnées supplémentaires
+- Afficher les nœuds en mode chronologique
+- Embarquer des images dans le cosmoscope (en base64). Formats pris en charge : JPG, PNG
+- Associer une image à un type de fiche
+- Associer une image à une fiche (affichée sur le nœud et dans la fiche)
+- Définir une couleur de contour pour les types de nœuds
+- Choisir entre nœuds de taille fixe et de taille proportionnelle à leur degré
+
+#### Améliorations
+
+- Les liens en bibliographie sont désormais cliquables
+- Le rapport d'erreurs et d'avertissements est plus informatif
+- Les mots-clés au sommet des fiches dans le cosmoscope ne débordent plus de la mise en page
+- Cosma lit désormais les répertoires de fiches de manière récursive (ticket [#4](https://github.com/graphlab-fr/cosma/issues/4))
+
+#### Bugs résolus
+
+- Les infobulles de contexte des liens/rétroliens mettent correctement en évidence la fiche cible (ticket [#23](https://github.com/graphlab-fr/cosma/issues/23))
+- Les espaces dans les noms de fichiers générés par Cosma sont correctement remplacés par des tirets
+
+#### Bugs connus
+
+- Le traitement des citations échoue parfois dans les infobulles de contexte des rétroliens
 
 ### v1.2
 

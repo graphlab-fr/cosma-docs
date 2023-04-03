@@ -1,6 +1,6 @@
 ---
 title: User manual (GUI)
-version: GUI v2.0.0-beta-1
+version: GUI v2.0-beta-1
 date: Last Modified
 description: >-
   User manual for Cosma GUI v2 beta.
@@ -9,13 +9,11 @@ layout: doc
 tags: user
 ---
 
-<!-- MISE À JOUR EN COURS -->
-
 ## Installing and updating
 
-Cosma is available in two versions: a graphical user interface (GUI) application and a command line interface (CLI) application. Information about the CLI version is detailed [in the dedicated section](#cosma-cli).
+Cosma is available in two versions: a graphical user interface (GUI) application and a command line interface (CLI) application. Information about the CLI version is detailed [on a dedicated page](https://cosma.graphlab.fr/en/docs/cli/user-manual/).
 
-The GUI version of Cosma is available for macOS and Windows. The CLI version is available for macOS, Windows and Linux. Visit [the Download page on Cosma’s website to get the latest version of the application](https://cosma.graphlab.fr/telecharger/). Please note that the application is not signed with a security certificate, so you must have administrator privileges on your session to run it.
+From v2 onwards, both versions of Cosma are available for macOS, Windows and Linux (Debian). Visit [the Download page on Cosma’s website](https://cosma.graphlab.fr/en/download/) to get the latest version of the application. Please note that the application is not signed with a security certificate, so you must have administrator privileges on your session to run it.
 
 On macOS
 : Download and unzip `Cosma.app.zip`, then place it in `~/Applications`. For the first launch, right click on the application then select Open to run it.
@@ -23,7 +21,8 @@ On macOS
 On Windows
 : Download and unzip `Cosma-win32-x64.zip`, then rename the folder `Cosma` and place it in `C:\Program Files` or `C:\Program Files (86)`.
 
-### Support folder
+On Linux
+: Download `Cosma_amd64.deb`, then open it with your package manager to install Cosma.
 
 Installing Cosma automatically creates a support folder at this location (where `*` stands for the username):
 
@@ -33,7 +32,8 @@ On macOS
 On Windows
 : `C:\Utilisateurs\*\AppData\Roaming\cosma`
 
-Among other files needed to run the application, this is where you will find the `config.json` file in which Cosma automatically stores your configuration.
+On Linux
+: … <!-- À COMPLÉTER -->
 
 ### Updating
 
@@ -43,35 +43,45 @@ Cosma is not updated automatically. You can be notified of an update by subscrib
 - [RSS feed of Cosma’s website](https://cosma.graphlab.fr/feed.xml) (contains release notes published on the site).
 
 ::: important
-**If Cosma does not work anymore after an update:** the structure of the [support folder](#support-folder) has probably been modified and is not compatible with the old version. Delete the user folder and restart the application. The support folder will be re-created and will work correctly. You may want to make a copy of the `config.json` file: this will allow you to restore it more quickly after the support folder is re-created.
+**If Cosma does not work anymore after an update:** the structure of the [support folder](#support-folder) has probably been modified and is not compatible with the old version. Delete the user folder and restart the application. The support folder will be re-created and will work correctly.
 :::
 
+## Preferences (application settings)
+
+Cosma's settings can be modified via the Preferences.
+
+### Application language
+
+You can choose between English and French as the language for Cosma's interface.
+
+A restart of the application is required for the language change to take effect.
+
+The language can also be set individually for each project via its Configuration.
+
+### Development Tools
+
+Check this box to access the development tools via the View menu. This allows you to inspect the application's code.
+
+## Create a project
+
+To start using Cosma, create a project:
+
+- click on the Projects menu and then on Add a project ;
+- use the drop-down menu to indicate the nature of your data: Markdown files, local CSV files or online CSV files;
+- select the location of your data via the file selector;
+- click OK.
+
+To change a project's settings, open it and click on the [Configuration](#configuration) menu.
 
 ## Creating content
 
+You can create content for Cosma in two ways: as text files written in Markdown, or as tabular data contained in CSV files. This section focuses on the first method.
+
 ::: important
-To create content in Cosma, you must first specify a directory in Preferences › General › Records directory. The directory can be empty or contain records. Cosma ignores subdirectories: only the records immediately present at the root of directory are taken into account.
+Regardless of the method you choose for a given project, Cosma needs to know the location of the data. This information must be entered in the project configuration.
+
+For text files written in Markdown, select "Markdown files" and then select the relevant directory. Cosma will interpret all Markdown files contained in this directory as well as in any subdirectories that may be present.
 :::
-
-### Creating records
-
-Click on File › New record (`Ctrl/Cmd + N`) to open the record creation form.
-
-Only the title is mandatory. Other fields are optional.
-
-You can assign a type to the new record. This type must be defined beforehand in Preferences › Record types.
-
-You can also add keywords to the record. Keywords must be separated by commas. For example: `keyword 1, keyword 2`.
-
-Click OK to create the record.
-
-::: note
-The filename will be generated from the title. For better interoperability between different operating systems, the filename contains only unaccented alphanumeric characters and dashes.
-
-Example: a record entitled “Déjà vu” will be saved as `deja-vu.md`.
-:::
-
-### Data format
 
 Cosma does not require that you use any particular writing software. However, it only correctly interprets files that comply with the following rules:
 
@@ -89,7 +99,7 @@ Therefore, Cosma works particularly well when used in tandem with writing enviro
 
 You can create a Cosma-compliant file via the application's record creation form (click File › New record, or type `Ctrl + N`) or manually with the text editor of your choice. Some text editors can save you time with document templates, which you can use to quickly create records for Cosma.
 
-#### Metadata
+### Metadata
 
 In order to be correctly interpreted by Cosma, Markdown files (`.md`) must include a [YAML](http://yaml.org) header at the beginning of the file.
 
@@ -101,7 +111,8 @@ Example:
 ---
 title: Title of the record
 id: 20201209111625
-type: undefined
+type:
+- undefined
 tags:
 - keyword 1
 - keyword 2
@@ -110,25 +121,7 @@ tags:
 
 The YAML header is delimited by two sets of three single dashes on a line (`---`).
 
-In YAML, a field consists of a name and a value separated by a colon. Cosma recognises and uses the following four fields:
-
-`title`
-: Mandatory.
-: Title of the record.
-
-`id`
-: Mandatory.
-: Unique identifier of the record. Must be a unique number. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
-
-`type`
-: Optional.
-: Record type. Only one type can be assigned to a record. If the `type` field is not specified or its value does not match one of the types declared in the configuration, Cosma will interpret the type of the record as `undefined`.
-
-`tags`
-: Optional.
-: Keywords assigned to the record. The value must be a list. A record can have as many keywords as you wish. You can use `keywords` instead of `tags`, for compatibility with Pandoc. If a record has a `tags` field and a `keywords` field, only the keywords declared in the `tags` field are interpreted by Cosma.
-
-In accordance with the YAML specification, the list of keywords can be written in *block* mode:
+In accordance with the YAML specification, lists can be written in *block* mode:
 
 ```yaml
 tags:
@@ -142,8 +135,6 @@ Or in *flow* mode:
 tags: [keyword 1, keyword 2]
 ```
 
-You can add additional YAML fields arbitrarily. You may for example include fields recognized by Pandoc.
-
 ::: note
 **Why a YAML header?**
 
@@ -154,7 +145,41 @@ This method is not interoperable: each program has its own conventions, which li
 Using a YAML header allows writers to declare different metadata explicitly and separately. This has the advantage of making the detection and manipulation of this metadata trivial, both by machines and humans. The use of a common format (such as YAML) increases the number of tools that can be used seamlessly with the same set of files. And widely used computer tools such as regular expressions and shell scripts allow people to convert their data themselves in a relatively simple way if needed.
 :::
 
-#### Content
+#### Known metadata
+
+Cosma recognises and uses the following four fields:
+
+`title`
+: Mandatory.
+: Title of the record.
+
+`id`
+: Mandatory.
+: Unique identifier of the record. Must be a unique number. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
+
+`type`
+: Optional.
+: Record type. A record can have one or more types. If the `type` field is not specified or its value does not match one of the types declared in the configuration, Cosma will interpret the type of the record as `undefined`.
+
+`tags`
+: Optional.
+: Keywords assigned to the record. The value must be a list. A record can have as many keywords as you wish. You can use `keywords` instead of `tags`, for compatibility with Pandoc. If a record has a `tags` field and a `keywords` field, only the keywords declared in the `tags` field are interpreted by Cosma.
+
+`thumbnail`
+: Optional.
+: File name of an image to be used as a thumbnail for this form in the cosmoscope (inside the corresponding node and at the top of the right panel when the form is open).
+
+`begin`
+: Optional.
+: Time metadata used by the chronological mode.
+
+`end`
+: Optional.
+: Time metadata used by the chronological mode.
+
+<!-- REPRENDRE ICI -->
+
+### Content
 
 Cosma interprets files as being written in [CommonMark](https://spec.commonmark.org/0.30/), a strictly defined version of Markdown, a popular lightweight markup language.
 
@@ -164,7 +189,7 @@ The [CommonMark tutorial](https://commonmark.org/help/) teaches you the basics o
 If you want to learn how to use Markdown and Pandoc together, check out this online lesson: [Sustainable Authorship in Plain Text using Pandoc and Markdown](https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown).
 :::
 
-Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code. Cosma also supports [adding attributes by brackets](https://www.npmjs.com/package/markdown-it-attrs), as shown below.
+Cosma renders Markdown files into HTML. Therefore, Markdown files can also include HTML code, as well as SVG code. Cosma also supports [adding attributes by brackets](https://www.npmjs.com/package/markdown-it-attrs), as shown below.
 
 ```markdown
 <div class="red">This paragraph will be red</div>
@@ -172,13 +197,13 @@ Cosma renders Markdown files into HTML. Therefore, Markdown files can also inclu
 This paragraph will be red{.red}
 ```
 
-Bitmap images can also be rendered using the Markdown syntax. Example:
+JPG and PNG images can be included using the Markdown syntax. Example:
 
 ```markdown
 ![Alternative text](image.jpg)
 ```
 
-However, the actual image files are not included when exporting a cosmoscope. To ensure that images are displayed in the export, you should use images hosted on the web, including them via their URL. Example:
+Embedded images can significantly increase the weight of a cosmoscope. You may want to use images hosted on the web. Example:
 
 ```markdown
 ![Alternative text](http://domain.com/image.jpg)
@@ -194,25 +219,49 @@ Example:
 A link to [[20201209111625]] record B.
 ```
 
-Cosma allows you to define [link types](#link-types). Each link type is defined by a name, a colour and a stroke pattern. To apply a type to a link, add the name of the type followed by a colon before the identifier.
+These links are rendered in HTML format with the id as clickable text:
+
+```html
+A link to <a href="#20201209111625">20201209111625</a> record B.
+```
+
+You can use the Link symbol option, located in the project configuration, to define a clickable text that applies to all these internal links. It can be a single Unicode character, such as → or ☞.
+
+```
+A link to [[20201209111625]] record B.
+```
+
+```html
+A link to <a href="#20201209111625">→</a> record B.
+```
+
+You can also manually set the clickable text for each link.
+
+```
+A link to [[20201209111625|record B]].
+```
+
+```html
+A link to <a href="#20201209111625">record B</a>.
+```
+
+Finally, Cosma allows you to define [link types](#link-types). Each link type is defined by a name, a colour and a stroke pattern. To apply a type to a link, add the name of the type followed by a colon before the identifier. This also works if you manually set the clickable link text.
 
 Example:
 
 ```
 Concept B is derived from [[generic:20201209111625]] concept A.
 
-Person D wrote against [[opponent:20201209111625]] person C.
+Person D wrote against [[opponent:20201209111625|person C]].
 ```
-
-::: tip
-To improve the readability of records in the cosmoscope, Cosma includes an option to customise the text of the links. Under Preferences › Link symbol, enter one or more Unicode characters (letters, numbers, symbols…). Example: ☞. This string replaces the identifier and square brackets in the HTML rendering of the records.
-:::
 
 #### Unique identifiers
 
 To be correctly interpreted by Cosma, each record must have a unique identifier. This identifier serves as a target for links between records.
 
-The identifier must contain only numbers. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
+**The identifier must contain only numbers.**
+
+By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
 We plan to eventually allow the user to define an identifier pattern of their choice, like in Zettlr.
 
@@ -220,9 +269,64 @@ We plan to eventually allow the user to define an identifier pattern of their ch
 Many interrelated note-taking applications use file names as targets for links between files. They maintain links automatically when file names are changed. By choosing to use unique identifiers instead, we have designed Cosma with a more traditional, stricter, WWW-like approach. We believe this is the easiest way to avoid [link rot](https://en.wikipedia.org/wiki/Link_rot) in a sustainable way. Avoiding the reliance on automatic link maintenance is especially important if you wish to make your data less dependent on specific applications.
 :::
 
-::: tip
-Links based on unique identifiers have disadvantages, mainly in terms of user experience: they are cumbersome to write and to read, especially when the identifier is a long series of numbers. In Preferences › Link symbol, you can define a string of characters (as small and visually distinct as the manicle ☞), which Cosma will display instead of the identifiers as the text of links in the cosmoscope.
+### Creating records with Cosma
+
+Click on File › New record (`Ctrl/Cmd + N`) to open the record creation form.
+
+Only the title is mandatory. Other fields are optional.
+
+You can assign one or more types to the new record. These types must be defined beforehand in Configuration › Record types.
+
+You can also add keywords to the record. Keywords must be separated by commas. For example: `keyword 1, keyword 2`. A visual aid shows when the keywords are correctly entered (they become highlighted).
+
+Click OK to create the record.
+
+::: note
+The filename will be generated from the title. For better interoperability between different operating systems, the filename contains only unaccented alphanumeric characters and dashes.
+
+Example: a record entitled “Déjà vu” will be saved as `deja-vu.md`.
 :::
+
+## Creating content from tabular data (CSV)
+
+Cosma can interpret tabular data contained in local or online CSV files. This data must comply with the following rules.
+
+### Data files: nodes and links
+
+Tabular data for Cosma must be contained in two files: one for nodes and one for links. The locations of these files must be specified in the configuration.
+
+::: note
+This is similar to the way Gephi works: nodes are listed in one table and links in another table.
+:::
+
+### Metadata (column headers)
+
+Data files must contain column headers corresponding to the metadata used by Cosma.
+
+#### Metadata for nodes
+
+For nodes, only the `title` metadata is required.
+
+name | description
+----|------------
+`title` | Record title (required)
+`id` | Unique identifier
+`type:<nom>` | Record typology. Each typology contains one or more types. Ex: one column may be called `type:primary` and contain types like `person`, `work`, `institution`; another column may be called `type:secondary`, with other types. The `<name>` is used only internally by Cosma. It can be chosen freely: columns could be titled `type:foo` and `type:bar` or whatever you prefer; it does not appear in the cosmoscope.
+`tag:<nom>` | List of keywords
+`meta:<nom>` | User defined metadata
+`time:begin`, `time:end` | Metadata used by chronological mode
+`content` | Content to be displayed in the record pane in the cosmoscope
+`thumbnail` | File name of an image to be included as a thumbnail in the record. Supported formats: JPG, PNG. The location of the image files must be set in the configuration.
+`reference` | List of citation keys to include in the record's bibliography.
+
+#### Metadata for links
+
+name | description
+----|------------
+`id` | Link identifier (required)
+`source` | Identifier of the record from which the link originates (required)
+`target` | Identifier of the record targeted by the link (required)
+`label` | Link description (optional). This description is displayed in link context tooltips.
 
 ## Creating a cosmoscope
 
@@ -284,7 +388,7 @@ On writing as a technology of the intellect [@goody1977, 46-52]...
 
 ### Creating a cosmoscope with citations
 
-Click on File › New cosmoscope with citations (`Cmd/Ctrl + Shift + R`) to generate a cosmoscope with citation processing enabled. Citation processing is also available when [exporting](#sharing). Each citation key is then replaced with formatted text, and a bibliography is generated below the body of each record containing references.
+Click on File › New cosmoscope with citations (`Cmd/Ctrl + Shift + R`) to generate a cosmoscope with citation processing enabled. Citation processing is also available when [exporting](#sharing-a-cosmoscope). Each citation key is then replaced with formatted text, and a bibliography is generated below the body of each record containing references.
 
 Example:
 
@@ -304,7 +408,7 @@ The CSL JSON data matching the cited references is embedded in the cosmoscope. Y
 
 By default, Cosma automatically exports each cosmoscope to a `cosma-history` directory located in the operating system's temporary directories.
 
-To enable or disable this, click Preferences › Automatically save cosmoscopes to history.
+To enable or disable this, click Configuration › Automatically save cosmoscopes to history.
 
 The active cosmoscope is always recorded in the history as the last entry. This last entry is opened when the application is launched. If the automatic recording of cosmoscopes is deactivated, this last entry will simply be overwritten with each new cosmoscope generated.
 
@@ -361,7 +465,7 @@ If you have a particularly tangled graph, pressing `Space` a few times will prog
 
 The graph is not fixed: nodes can be moved by click and drag. However, the nodes and links remain permanently subject to the simulation, so it is not possible to arrange them manually. Modifying the records may change the arrangement of the nodes in space.
 
-The way the graph is displayed can be changed temporarily via the controls under Graph settings in the Menu. To change the display permanently, change the default values of the corresponding settings in Preferences › Graph.
+The way the graph is displayed can be changed temporarily via the controls under Graph settings in the Menu. To change the display permanently, change the default values of the corresponding settings in Configuration › Graph.
 
 ::: tip
 Change the strength and maximum distance between nodes to adapt the display to your screen resolution and size. Add vertical/horizontal attraction to tighten the graph and bring isolated nodes closer to the center.
@@ -380,7 +484,7 @@ Clicking on the “Close” button closes the right side panel and deselects the
 The links in the records are clickable. In a browser, you can open these links in a new tab via a right click. The title of the link (displayed in a tooltip after 1-2 seconds of hovering) is the title of the corresponding card.
 
 ::: tip
-To improve the readability of the records in the cosmoscope, Cosma includes an option to customise the text of the links. In Preferences › Link symbol, enter one or more Unicode characters (letters, numbers, symbols...). Example: ☞. This string replaces the identifier in square brackets in the HTML rendering of the records.
+To improve the readability of the records in the cosmoscope, Cosma includes an option to customise the text of the links. In Configuration › Link symbol, enter one or more Unicode characters (letters, numbers, symbols...). Example: ☞. This string replaces the identifier in square brackets in the HTML rendering of the records.
 :::
 
 At the bottom of each record is a list of outgoing and incoming links (or backlinks). The links and backlinks are contextualised: when hovering over them, a tooltip is displayed, showing the paragraph that surrounds this link in the corresponding record.
@@ -393,11 +497,21 @@ This is one the most useful features in hypertext systems. It is famously absent
 
 Activate Focus mode (shortcut: `F`) by ticking the “Focus” box at the bottom left of the graph. In Focus mode, only direct connections to the selected node are displayed in the interface. Focus mode only works if you have selected a record.
 
-You can increase the maximum distance displayed in Focus mode with the slider located beneath the Focus button. The slider's maximum value can be set in Preferences › Maximum focus level. A value of 1 means only the immediate connections will be displayed when in Focus mode. A value of 2 means you can extend the focus two connections of connections, and so on.
+You can increase the maximum distance displayed in Focus mode with the slider located beneath the Focus button. The slider's maximum value can be set in Configuration › Maximum focus level. A value of 1 means only the immediate connections will be displayed when in Focus mode. A value of 2 means you can extend the focus two connections of connections, and so on.
 
 ::: tip
 The focus level slider can be controlled with the arrow keys. You can combine shortcuts: `F` to activate Focus mode, then arrow keys to increase and decrease the focus level.
 :::
+
+### Chronological mode
+
+The Chronological mode button at the bottom left of the graph displays an interactive timeline you can use to modify the display of nodes according to a specific time metadata:
+
+- creation date (default) ;
+- date of last modification ;
+- date of last opening ;
+- identifier, if it corresponds to a timestamp (which is the case for identifiers generated by Cosma);
+- any user-defined metadata from the configuration, if it corresponds to a date in YYYY-MM-DD format.
 
 ### Search bar
 
@@ -411,11 +525,11 @@ The available suggestions are constrained by the [filters](#filter-display-by-ty
 
 The list of record types in the Menu allows you to filter the display. Deselecting a type hides the corresponding records in the graph, index and search engine suggestions. Deselecting a type while holding down the `Alt` key hides the records of all the other types.
 
-For a type to appear in this list, it must be declared in Preferences › Record types and be assigned to at least one record.
+For a type to appear in this list, it must be declared in Configuration › Record types and be assigned to at least one record.
 
 ### Filtering by keywords
 
-The list of keywords in Menu allows you to highlight records that use the selected keywords. Selecting a keyword highlights the label of the corresponding nodes in the graph and restricts the index to the corresponding records. You can activate several keywords simultaneously. To deactivate a keyword, click the corresponding button again.
+The list of keywords in Menu allows you to filter the graph. Selecting a keyword displays the corresponding nodes in the graph and restricts the index to the corresponding records. You can activate several keywords simultaneously. To deactivate a keyword, click the corresponding button again.
 
 For a keyword to appear, it must have been declared in the `tags` field of the YAML header of at least one record.
 
@@ -431,7 +545,9 @@ Record type filters, keywords and Focus mode all modify the display of the index
 
 At any time, the state of the graph (selected record, active filters, focus mode) can be saved for quick access. This works like a bookmark. Click the Save view button under Views in the Menu and enter a name. This adds an eponymous button to the Views section. Clicking this button applies all settings that were active at the time the view was saved. Clicking the button again restores the normal view.
 
-Views are preserved when exported. However, it is not possible to create a new view from an export. This is only possible from within Cosma.
+::: important
+Views currently don't work as well as we'd like, so we're working on improving the functionality.
+:::
 
 ## Sharing a cosmoscope
 
@@ -449,9 +565,9 @@ Custom CSS
 If the options are greyed out, it means that the corresponding settings in Preferences are not filled in.
 :::
 
-Cosmoscopes exported via the Share menu include metadata (title, author, description, keywords) if they are set in Preferences › Metadata. These are displayed in the “About” panel. They are also included in the cosmoscope source code in the form of `meta` tags.
+Cosmoscopes exported via the Share menu include metadata (title, author, description, keywords) if they are set in Configuration › Metadata. These are displayed in the “About” panel. They are also included in the cosmoscope source code in the form of `meta` tags.
 
-The toolbar at the top of the Menu only works in Cosma. It is therefore hidden in cosmoscopes exported via the Share menu. If a title has been set in Preferences › Metadata, it will be displayed instead.
+The toolbar at the top of the Menu only works in Cosma. It is therefore hidden in cosmoscopes exported via the Share menu. If a title has been set in Configuration › Metadata, it will be displayed instead.
 
 The exported `cosmoscope.html` file can be shared like any other computer file: email, file transfer, messaging, uploading to a server…
 
@@ -461,10 +577,10 @@ In the case of a cosmoscope published on the Web, it is possible to link directl
 
 ## Configuration
 
-Click Preferences (`Ctrl + o` or `Cmd + ,`) to configure Cosma.
+Click Preferences (`Ctrl + o` or `Cmd + ,`) to configure the currently opened project.
 
 ::: important
-Most of the configuration options will only work if a directory is set in Preferences › General › Records directory.
+Most of the configuration options will only work if a directory is set in Configuration › General › Records directory.
 :::
 
 ### General
@@ -476,6 +592,12 @@ Select a display language
 Records directory
 : Path to the directory containing the Markdown files. New records created with Cosma are added to this directory.
 
+Images directory
+: Location of the images used in the cosmoscope. This allows you to use images stored in this location by indicating only their relative path (e.g. `image.jpg`).
+
+Additional metadata
+: YAML fields other than the predefined ones (title, type, keywords) to be included in the cosmoscope.
+
 Automatically save cosmoscopes in the history
 : By default, Cosma automatically exports each cosmoscope to a `cosma-history` directory located in the operating system's temporary directories. Uncheck this option to disable this automatic export. The active cosmoscope is always recorded in the history as the last entry. This last entry is opened when the application is launched. If the automatic recording of cosmoscopes is deactivated, this last entry will simply be overwritten with each new cosmoscope generated..
 
@@ -486,7 +608,7 @@ Link symbol
 
 This section allows you to define different types of records. For each type, enter a name and a colour.
 
-To assign a type to a record, add `type: name` to its YAML header. Only one type can be assigned to a record. If the `type` field is not specified or its value does not match one of the types stored in the configuration, Cosma will interpret the type of the record as `undefined`.
+To assign a type to a record, add `type: name` to its YAML header. A record can have one or more types. If the `type` field is not specified or its value does not match one of the types stored in the configuration, Cosma will interpret the type of the record as `undefined`.
 
 ::: note
 The colour of the `undefined` type can be changed, but the type cannot be removed.
@@ -526,7 +648,7 @@ We made these two colour settings accessible via the interface as they are likel
 :::
 
 Label text size
-: Defines the size of the text of the labels of the nodes of the graph. The size is in pixels. The value must be between 5 and 15.
+: Defines the size of the text of the labels of the nodes of the graph. The size is in pixels. The value must be between 2 and 15.
 
 Maximum focus level
 : Defines the maximum distance between the selected nodes and the connections showed when in Focus mode. A value of 1 means only the immediate connections will be displayed when in Focus mode. A value of 2 means you can extend the focus two connections of connections, and so on.
@@ -547,7 +669,7 @@ Vertical/horizontal attraction
 
 ### Metadata
 
-You can define global metadata for the cosmoscope:
+You can define global metadata for the project:
 
 - title
 - author
@@ -572,6 +694,31 @@ Bibliographic localization
 ### Views
 
 This section allows you to manage the [views](#views) saved in the cosmoscope.
+
+### Filtering records
+
+This section allows you to create filters to exclude records when creating a cosmoscope. For each filter, specify the nature of the filter (type, keyword, or additional metadata) and the value to be filtered.
+
+Here is an example. Consider the following record:
+
+```
+---
+title: Paul Otlet
+type: person
+group: authors
+tags: [documentation, pacifism]
+---
+
+Paul Otlet (1868-1944) was a Belgian lawyer, bibliographer
+and pacifist activist who is considered the
+the founder of modern documentation...
+```
+
+This record could be excluded during the generation of the cosmoscope via different filters:
+
+- filtering by type on the value "person" ;
+- filtering by keyword on the values "documentation" or "pacifism";
+- filtering by the "authors" value of metadata "group" (if you have added "group" in the configuration).
 
 ### Advanced
 
@@ -609,6 +756,10 @@ The cosmoscope stylesheets use CSS variables to define the colours and fonts use
 - [Clément Borel](https://mica.u-bordeaux-montaigne.fr/borel-clement/) (researcher)
 - [Olivier Le Deuff](http://www.guidedesegares.info/) (researcher)
 
+Also contributed to the development of Cosma:
+
+- [David Pucheu](https://mica.u-bordeaux-montaigne.fr/pucheu-david/) (researcher)
+
 ### Dependencies
 
 To improve the maintainability and readability of the source code, the development team resorted to the following libraries:
@@ -624,13 +775,44 @@ To improve the maintainability and readability of the source code, the developme
 
 ## Changelog
 
-### GUI
+### v2-beta-1
 
-#### v2-beta-1
+This is the first beta for Cosma GUI v2. It includes three major changes:
 
-<!-- À COMPLÉTER -->
+1. Cosma has been imbued with the spirit of another of our projects, the [Otletosphere](https://hyperotlet.huma-num.fr/otletosphere/): in addition to Markdown text files, cosmoscopes can now be created from tabular data, and we've added new graphical options such as having fixed-size nodes, and using images as thumbnails/portraits on nodes and records.
+2. Projects! Cosma is now able to deal with multiple data sources.
+3. Chronological mode is a new time-based display filter. Use the slider to make nodes appear and disappear depending on their `begin` and `end` metadata. This is a work-in-progress.
 
-#### v1.2
+#### Additions
+
+- Manage multiple projects
+- Use alternative syntax for links
+- Display user-defined metadata in records in the cosmoscope
+- Exclude certain records when generating the cosmoscope, based on types, keywords and user-defined metadata
+- Display nodes in chronological mode
+- Embed images in the cosmoscope (in base64). Supported formats: JPG, PNG
+- Use an image as default thumbnail for a record type
+- Use an image as thumbnail for a record
+- Define an outline color for node types
+- Choose between fixed size nodes and nodes proportional to their degree
+
+#### Improvements
+
+- Links in bibliography are now clickable
+- The error and warning report is more informative
+- Keywords at the top of cards in the cosmoscope no longer overflow the layout
+- Cosma now reads directories recursively (issue [#4](https://github.com/graphlab-fr/cosma/issues/4))
+
+#### Fixed bugs
+
+- Link/backlink context tooltips now correctly highlight the target record (issue [#23](https://github.com/graphlab-fr/cosma/issues/23))
+- Spaces in file names generated by Cosma are correctly replaced by dashes
+
+#### Known bugs
+
+- Backlink context tooltips may fail to render citations properly
+
+### v1.2
 
 This update adds the following features:
 
@@ -643,11 +825,11 @@ Bugs have also been solved:
 - Clicking on saved views displays them correctly (issue #16).
 - Vertical and horizontal attraction settings are no longer switched (issue #18).
 
-#### v1.1
+### v1.1
 
 This update introduces a full English translation of the application, as well as a few bug fixes and small interface improvements.
 
-- The application is translated into English, visit Preferences › General to switch languages.
+- The application is translated into English, visit Configuration › General to switch languages.
 - Creating a record without first specifying a directory no longer causes an error but returns an informative message (issue #6).
 - Creating a record with a title already in use no longer silently overwrites the existing record but asks for confirmation (issue #5).
 - It is now possible to use `keywords` instead of `tags` in the records' YAML header (issue #3).
@@ -658,8 +840,4 @@ This update introduces a full English translation of the application, as well as
 - The application is now distributed with its documentation, accessible via Help › Manual or by clicking on the Help button at the bottom left of the cosmoscope.
 - The source code has been reorganised to allow the simultaneous development of a command line version ([cosma-cli](https://github.com/graphlab-fr/cosma-cli)) from the same code base ([cosma-core](https://github.com/graphlab-fr/cosma-core)).
 - Upgrade from Electron v13 to v15.
-
-#### v1.0
-
-Initial release of Cosma GUI (French only).
 

@@ -179,7 +179,7 @@ métadonnée filtre | Les fiches incluant cette métadonnée seront exclues lors
 `graph_background_color` | Couleur de fond du graphe | couleur HTML | 
 `graph_highlight_color` | Couleur de surbrillance | couleur HTML | 
 `graph_highlight_on_hover` | Application de la surbrillance au survol et à la sélection des nœuds | `true` ou `false` | `true`
-`graph_text_size` | Taille des étiquettes des nœuds | nombre entier compris entre 5 et 15 | 10
+`graph_text_size` | Taille des étiquettes des nœuds | nombre entier compris entre 2 et 15 | 10
 `graph_arrows` | Ajout de flèches directionnelles aux extrémités des liens | `true` ou `false` | `true`
 `node_size_method` | Méthode de dimensionnement des nœuds | `degree` (taille proportionnelle au degré) ou `unique` (taille fixe) | `degree`
 `node_size` | Taille des nœuds (taille fixe) | nombre entier compris entre 2 et 20 | 10
@@ -190,7 +190,7 @@ métadonnée filtre | Les fiches incluant cette métadonnée seront exclues lors
 `attraction_vertical` | Force d'attraction vers l'axe vertical | nombre compris entre 0 (désactivé) et 1 | 0
 `attraction_horizontal` | Force d'attraction vers l'axe horizontal | nombre compris entre 0 (désactivé) et 1 | 0
 `views` | Liste des vues enregistrées (GUI) | liste | 
-`chronological_record_meta` | Métadonnée utilisée pour le mode chronologique | métadonnée déclarée dans `record_metas` | `last_edit`
+`chronological_record_meta` | Métadonnée utilisée pour le mode chronologique | `created`, `last_edit`, `last_open`, `timestamp`, métadonnée déclarée dans `record_metas` | `created`
 `record_metas` | Liste de métadonnées (présentes dans la source de données) à inclure dans le cosmoscope | liste |
 `title` | Titre du cosmoscope | chaîne de caractères | 
 `author` | Auteur du cosmoscope | chaîne de caractères | 
@@ -734,7 +734,6 @@ Par défaut, Cosma exporte automatiquement une copie de chaque cosmoscope dans u
 
 Si Cosma rencontre des problèmes durant la génération d'un cosmoscope, il crée un rapport d'erreurs dans un sous-répertoire `logs` du répertoire de données utilisateur. Si ce dernier n'existe pas, `logs` est placé dans le répertoire d'installation de Cosma.
 
-
 ## Utilisation du cosmoscope
 
 Le cosmoscope est un fichier HTML. Pour l'utiliser, ouvrez-le dans un navigateur web.
@@ -799,6 +798,16 @@ Le curseur qui apparaît sous le bouton Activer le focus permet de faire varier 
 ::: astuce
 Le curseur du niveau de focus est contrôlable via les flèches du clavier. Vous pouvez enchaîner les raccourcis : `F` pour activer le focus, puis les flèches pour augmenter le niveau de focus.
 :::
+
+### Mode chronologique
+
+Le bouton Mode chronologique en bas à gauche du graphe permet d'afficher une frise interactive avec laquelle il est possible de modifier l'affichage des nœuds en fonction d'une métadonnée temporelle :
+
+- date de création (par défaut) : `created` ;
+- date de dernière modification : `last_edit` ;
+- date de dernière ouverture : `last_open` ;
+- identifiant si celui-ci correspond à un horodatage (ce qui est le cas des identifiants générés par Cosma) : `timestamp` ;
+- métadonnée déclarée dans `record_metas` si celle-ci correspond à une date au format YYYY-MM-DD.
 
 ### Moteur de recherche
 

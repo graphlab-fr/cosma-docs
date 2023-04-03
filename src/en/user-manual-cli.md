@@ -13,9 +13,11 @@ tags: user
 
 ### Installing
 
-The CLI version of Cosma is available on macOS, Windows and Linux.
+Cosma is available in two versions: a graphical user interface (GUI) application and a command line interface (CLI) application. Information about the CLI version is detailed [on a dedicated page](https://cosma.graphlab.fr/en/docs/cli/user-manual/).
 
-The installation of [NodeJS](https://nodejs.org/) version 12 or higher is required.
+From v2 onwards, both versions of Cosma are available for macOS, Windows and Linux.
+
+For Cosma CLI, the installation of [NodeJS](https://nodejs.org/) version 12 or higher is required.
 
 NPM (the NodeJS package manager) is installed automatically with NodeJS. NPM can be used to manage the installation of Cosma CLI. Enter the command below in your terminal to install Cosma CLI globally. The software can then be used by running `cosma`.
 
@@ -179,7 +181,7 @@ metadata filter | Entities for which this metadata is present will be excluded w
 `graph_background_color` | Color used in the background of the graph | HTML color |
 `graph_highlight_color` | Color used when hovering and selecting nodes | HTML color |
 `graph_highlight_on_hover` | Apply highlighting when hovering and selecting nodes | `true` or `false` | `true`
-`graph_text_size` | Node label size | Integer betwen 5-15 | 10
+`graph_text_size` | Node label size | Integer betwen 2-15 | 10
 `graph_arrows` | Show directional arrows on links | `true` or `false` | `true`
 `node_size_method` | Node sizing method | `degree` (size proportional to degree) or `unique` (fixed size) | `degree`
 `node_size` | Node size (when using fixed size) | Integer between 2 and 20 | 10
@@ -190,7 +192,7 @@ metadata filter | Entities for which this metadata is present will be excluded w
 `attraction_vertical` | Additional attraction towards the vertical axis | Number between 0 (disabled) and 1 | 0
 `attraction_horizontal` | Additional attraction towards the horizontal axis | Number between 0 (disabled) and 1 | 0
 `views` | List of registered views (which can only be created with the GUI version) | list 
-`chronological_record_meta` | Metadata to be used for chronological mode | metadata declared in `record_metas` | `last_edit`
+`chronological_record_meta` | Metadata to be used for chronological mode | `created`, `last_edit`, `last_open`, `timestamp`, metadata declared in `record_metas` | `created`
 `record_metas` | List of metadata (present in the data source) to be included in the cosmoscope | list
 `title` | Cosmoscope title | string |
 `author` | Cosmoscope author | string | 

@@ -10,7 +10,7 @@
 	<meta name="description" content="User manual for Cosma CLI v2 beta." />
 	<meta name="author" content="Arthur Perret,Guillaume Brioudes" />
 	<meta name="copyright" content="GPL-3.0-or-later"/>
-	<meta name="last_edit" content="2023-03-06" />
+	<meta name="last_edit" content="2023-04-03" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="User Manual (CLI)" />
@@ -25,7 +25,7 @@
 
 	<meta property="DC.title" content="User Manual (CLI)" />
 	<meta property="DC.contributor" content="Arthur Perret,Guillaume Brioudes" />
-	<meta property="DC.date" content="2023-03-06" />
+	<meta property="DC.date" content="2023-04-03" />
 	<meta property="DC.language" content="en" />
 	<meta property="DC.description" lang="en" content="User manual for Cosma CLI v2 beta." />
 	<meta property="DC.rights" content="GPL-3.0-or-later" />
@@ -343,13 +343,14 @@ footer {
         
         
         <p><strong>Version:</strong> CLI v2.0.0-beta-4</p>
-        <p>Last updated: March 6, 2023</p>
+        <p>Last updated: April 3, 2023</p>
         
 
         <h2 id="installing-and-updating" tabindex="-1">Installing and updating</h2>
 <h3 id="installing" tabindex="-1">Installing</h3>
-<p>The CLI version of Cosma is available on macOS, Windows and Linux.</p>
-<p>The installation of <a href="https://nodejs.org/">NodeJS</a> version 12 or higher is required.</p>
+<p>Cosma is available in two versions: a graphical user interface (GUI) application and a command line interface (CLI) application. Information about the CLI version is detailed <a href="https://cosma.graphlab.fr/en/docs/cli/user-manual/">on a dedicated page</a>.</p>
+<p>From v2 onwards, both versions of Cosma are available for macOS, Windows and Linux.</p>
+<p>For Cosma CLI, the installation of <a href="https://nodejs.org/">NodeJS</a> version 12 or higher is required.</p>
 <p>NPM (the NodeJS package manager) is installed automatically with NodeJS. NPM can be used to manage the installation of Cosma CLI. Enter the command below in your terminal to install Cosma CLI globally. The software can then be used by running <code>cosma</code>.</p>
 <pre><code>npm install @graphlab-fr/cosma -g
 </code></pre>
@@ -577,7 +578,7 @@ cosma c -g
 <tr>
 <td><code>graph_text_size</code></td>
 <td>Node label size</td>
-<td>Integer betwen 5-15</td>
+<td>Integer betwen 2-15</td>
 <td>10</td>
 </tr>
 <tr>
@@ -643,8 +644,8 @@ cosma c -g
 <tr>
 <td><code>chronological_record_meta</code></td>
 <td>Metadata to be used for chronological mode</td>
-<td>metadata declared in <code>record_metas</code></td>
-<td><code>last_edit</code></td>
+<td><code>created</code>, <code>last_edit</code>, <code>last_open</code>, <code>timestamp</code>, metadata declared in <code>record_metas</code></td>
+<td><code>created</code></td>
 </tr>
 <tr>
 <td><code>record_metas</code></td>
