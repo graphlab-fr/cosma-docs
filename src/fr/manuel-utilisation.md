@@ -812,6 +812,13 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 
 ## Changelog
 
+### v2-beta-2
+
+Ce patch corrige les problèmes suivants avec le mode Chronologique dans la v2.0-beta-1 :
+
+- Interagir avec la frise chronologique n'avait aucun effet. Elle fonctionne maintenant comme attendu.
+- Les métadonnées `begin` et `end` des fiches étaient ignorées. Elles fonctionnent maintenant comme attendu aussi.
+
 ### v2-beta-1
 
 Ceci est la première bêta de Cosma GUI v2. Elle comprend trois changements majeurs :
