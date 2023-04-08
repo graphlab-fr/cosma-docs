@@ -1,6 +1,6 @@
 ---
 title: Manuel d’utilisation (GUI)
-version: GUI v2.0-beta-1
+version: GUI v2.0-beta-2
 date: Last Modified
 description: >-
   Manuel d’utilisation de Cosma GUI v2.
