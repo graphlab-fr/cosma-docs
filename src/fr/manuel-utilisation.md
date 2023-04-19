@@ -121,7 +121,7 @@ Exemple :
 ---
 title: Titre du document
 id: 20201209111625
-type:
+types:
 - undefined
 tags:
 - mot-clé 1
@@ -165,9 +165,9 @@ Cosma reconnaît et utilise les champs suivants :
 
 `id`
 : Obligatoire.
-: Identifiant unique de la fiche (série unique de chiffres). Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) ou [Zettlr](https://www.zettlr.com).
+: Identifiant unique de la fiche. Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) ou [Zettlr](https://www.zettlr.com).
 
-`type`
+`type` ou `types`
 : Types de la fiche. Facultatif. Une fiche peut avoir un ou plusieurs types. Si le champ n'est pas renseigné ou bien que ses valeurs ne correspondent pas à l'un des types renseignés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
 
 `tags` (ou `keywords`)
@@ -271,7 +271,7 @@ Dupont a été critiqué par [[opposant:20201209111625|Smith]].
 
 Pour être correctement interprétée par Cosma, chaque fiche doit avoir un identifiant unique. Cet identifiant sert de cible aux liens internes.
 
-**L'identifiant doit être une suite de chiffres.**
+**L'identifiant doit être une suite unique de caractères.**
 
 Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes). Nous nous inspirons ici du fonctionnement de logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) et [Zettlr](https://www.zettlr.com).
 
@@ -301,14 +301,14 @@ Exemple : une fiche intitulée « Métadonnées web sémantique » sera enreg
 
 ## Créer du contenu : données tabulaires (CSV)
 
-Cosma peut interpréter des données tabulaires contenues dans des fichiers CSV locaux ou en ligne. Ces données doivent respecter les règles suivantes.
+Cosma peut interpréter des données tabulaires contenues dans des fichiers CSV locaux ou en ligne. Les données tabulaires destinées à Cosma doivent être contenues dans deux fichiers : un pour les nœuds et un autre pour les liens. Les emplacements de ces fichiers doivent être renseignés dans la configuration.
 
-### Fichiers de données : nœuds et liens
+Pour créer un projet à partir de fichiers CSV locaux, sélectionnez le type de données « Fichiers CSV (locaux) » et indiquez l'emplacement de fichiers CSV sur votre machine.
 
-Les données tabulaires destinées à Cosma doivent être contenues dans deux fichiers : un pour les nœuds et un autre pour les liens. Les emplacements de ces fichiers doivent être renseignés dans la configuration.
+Pour créer un projet à partir de fichiers CSV en ligne, sélectionnez le type de données « Fichiers CSV (en ligne) » et indiquez les URL des fichiers CSV.
 
 ::: note
-Ce fonctionnement est similaire à celui de Gephi : les nœuds sont listés dans une table et les liens dans une autre table.
+Vous pouvez générer les fichiers CSV depuis Google Sheets. Vous pouvez consulter notre tableur modèle pour vous en inspirer. Une feuille doit être consacrée aux nœuds et une autre aux liens. Cliquez sur Fichier › Partager › Publier sur le Web. Sélectionnez la feuille contenant les nœuds, puis changez le format « Page Web » en « Valeurs séparées par des virgules (.csv) ». Cliquez sur « Publier » puis copiez le lien de partage. Répétez l'opération pour la feuille contenant les liens. Collez chaque lien dans le champ correspondant au moment de créer le projet ou de le configurer.
 :::
 
 ### Métadonnées (en-têtes de colonnes)

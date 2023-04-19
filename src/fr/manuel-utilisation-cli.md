@@ -1,9 +1,9 @@
 ---
 title: Manuel d’utilisation (CLI)
-version: CLI v2.0.0-beta-4
+version: CLI v2.0.0
 date: Last Modified
 description: >-
-  Manuel d’utilisation de Cosma CLI v2.
+  Manuel d’utilisation de Cosma CLI.
 lang: fr
 layout: doc
 tags: user
@@ -156,12 +156,12 @@ Les types de fiches et de liens « undefined » sont requis pour le fonctionne
 
 nom | description | valeurs possibles | valeur par défaut
 ---|---|---|---
-`select_origin` | Type de la source de données | `directory` (répertoire de fiches), `csv` (fichier de données tabulaires local) ou `online` (fichier de données tabulaires en ligne) | `directory`
+`select_origin` | Type de la source de données | `directory` (répertoire de fiches), `csv` (fichiers CSV locaux) ou `online` (fichiers CSV en ligne) | `directory`
 `files_origin` | Emplacement des fiches pour `directory` | chemin (répertoire) | 
 `nodes_origin` | Emplacement des nœuds pour `csv` | chemin (fichier CSV) | 
 `links_origin` | Emplacement des liens pour `csv` | chemin (fichier CSV) | 
-`nodes_online` | Emplacement des nœuds pour `online` | URL (fichier CSV) | 
-`links_online` | Emplacement des liens pour `online` | URL (fichier CSV) | 
+`nodes_online` | Emplacement des nœuds pour `online` | URL | 
+`links_online` | Emplacement des liens pour `online` | URL | 
 `images_origin` | Emplacement des images utilisées dans le cosmoscope | chemin (répertoire) | 
 `export_target` | Emplacement des exports | chemin (répertoire) | 
 `history` | Copie de chaque cosmoscope généré via Cosma dans le répertoire `history` | `true` ou `false` | `true`
@@ -264,62 +264,18 @@ devtools: false
 lang: en
 ```
 
-## Créer du contenu : données tabulaires (CSV)
-
-Lorsque la source de données est de type `csv` ou `online` (données tabulaires situées dans un fichier local ou en ligne), les données doivent respecter les règles suivantes.
-
-### Fichiers de données : nœuds et liens
-
-Les données tabulaires destinées à Cosma doivent être contenues dans deux fichiers : un pour les nœuds et un autre pour les liens. Les noms de ces fichiers doivent être renseignés dans le fichier de configuration.
-
-type de source de données | paramètre à configurer
----|---
-nœuds (fichier CSV local) | `nodes_origin`
-liens (fichier CSV local) | `links_origin`
-nœuds (fichier CSV en ligne) | `nodes_online`
-liens (fichier CSV en ligne) | `links_online`
-
-### Métadonnées (en-têtes de colonnes)
-
-Les fichiers de données doivent contenir des en-têtes de colonnes correspondant aux métadonnées utilisées par Cosma.
-
-#### Métadonnées pour les nœuds
-
-Pour les nœuds, seule la métadonnée `title` (titre) est requise.
-
-nom | description
-----|------------
-`title` | Titre de la fiche (requis)
-`id` | Identifiant unique
-`type:<nom>` | Typologie de fiches. Chaque typologie contient un ou plusieurs types. Ex : une colonne peut être appelée `type:primaire` et contenir des types comme `personne`, `œuvre`, `institution` ; une autre colonne peut être appelée `type:secondaire`, avec d'autres types.
-`tag:<nom>` | Liste de mots-clés
-`meta:<nom>` | Métadonnée définie par l'utilisateur
-`time:begin`, `time:end` | Métadonnées utilisées par le mode chronologique
-`content` | Contenu textuel de la fiche
-`thumbnail` | Nom de fichier d'une image à inclure sous forme de vignette dans la fiche. Formats pris en charge : JPG, PNG. L'emplacement des fichiers images doit être renseigné via le paramètre `images_origin` dans le fichier de configuration.
-`reference` | Liste de clés de citation à inclure en bibliographie dans la fiche.
-
-#### Métadonnées pour les liens
-
-nom | description
-----|------------
-`id` | Identifiant du lien (requis)
-`source` | Identifiant de la fiche d'où part le lien (requis)
-`target` | Identifiant de la fiche que cible le lien (requis)
-`label` | Description du lien (optionnelle). Cette description s'affiche dans les infobulles de contexte des liens/rétroliens.
-
 ## Créer du contenu : fichiers texte (Markdown)
 
 Lorsque la source de données est de type `directory` (répertoire de fichiers Markdown), les données doivent respecter les règles suivantes :
 
 - contenu rédigé en Markdown, extension de fichier `.md` ;
 - métadonnées exprimées en YAML, dans un en-tête présent en début de fichier ;
-- liens internes exprimés avec une syntaxe de type wiki (doubles crochets `[[ ]]`) et basés sur des identifiants uniques numériques (suite unique de chiffres).
+- liens internes exprimés avec une syntaxe de type wiki (doubles crochets `[[ ]]`) et basés sur des identifiants uniques.
 
 Les sous-sections qui suivent expliquent ces règles en détail.
 
 ::: note
-Cette combinaison de normes d'écriture correspond au croisement de plusieurs cultures textuelles : la documentation (enrichir et indexer le contenu avec des métadonnées) ; les wikis (interrelier des connaissances) ; la méthode Zettelkasten (organiser ses notes) ; l'écriture scientifique avec Pandoc (utiliser le format texte comme source pour plusieurs autres formats).
+Cette combinaison de normes d'écriture correspond au croisement de plusieurs cultures textuelles : la documentation (enrichir et indexer le contenu avec des métadonnées) ; les wikis (interrelier des connaissances) ; les pratiques de type Zettelkasten (tradition des fiches érudites) ; l'écriture scientifique avec Pandoc (utiliser le format texte comme source pour plusieurs autres formats).
 
 Cosma fonctionne donc particulièrement bien lorsqu'il est utilisé en tandem avec des environnements d'écriture qui adoptent également cette approche, comme [Zettlr](https://zettlr.com) ou l'extension [Foam](https://foambubble.github.io/foam/) pour Visual Studio Code et VSCodium.
 :::
@@ -334,7 +290,7 @@ Exemple :
 ---
 title: Titre du document
 id: 20201209111625
-type:
+types:
 - undefined
 tags:
 - mot-clé 1
@@ -378,9 +334,9 @@ Cosma reconnaît et utilise les champs suivants :
 
 `id`
 : Obligatoire.
-: Identifiant unique de la fiche (série unique de chiffres). Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) ou [Zettlr](https://www.zettlr.com).
+: Identifiant unique de la fiche. Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes) sur le modèle de certains logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) ou [Zettlr](https://www.zettlr.com).
 
-`type`
+`type` ou `types`
 : Types de la fiche. Facultatif. Une fiche peut avoir un ou plusieurs types. Si le champ n'est pas renseigné ou bien que ses valeurs ne correspondent pas à l'un des types renseignés dans la configuration, Cosma interprètera le type de la fiche comme non défini (`undefined`).
 
 `tags` (ou `keywords`)
@@ -476,45 +432,50 @@ Si vous n'utilisez pas la syntaxe alternative, vous pouvez tout de même amélio
 
 Pour être correctement interprétée par Cosma, chaque fiche doit avoir un identifiant unique. Cet identifiant sert de cible aux liens internes.
 
-**L'identifiant doit être une suite de chiffres.**
+**L'identifiant doit être une suite unique de caractères.**
 
 Par défaut, Cosma génère des identifiants à 14 chiffres par horodatage (année, mois, jour, heures, minutes et secondes). Nous nous inspirons ici du fonctionnement de logiciels de prise de notes type Zettelkasten comme [The Archive](https://zettelkasten.de/the-archive/) et [Zettlr](https://www.zettlr.com).
-
-À terme, nous souhaitons permettre à l'utilisateur de définir un motif d'identifiant de son choix, à la manière de Zettlr.
 
 ::: note
 De nombreux logiciels de prise de notes interreliées proposent d'établir les liens entre fichiers via leurs noms, et de gérer automatiquement la maintenance des liens lorsque les noms de fichiers sont modifiés. En choisissant plutôt d'utiliser des identifiants uniques, nous avons donné à Cosma un fonctionnement plus classique, plus strict, proche de celui du Web. Nous pensons qu'il s'agit de la manière la plus simple d'éviter les [liens morts](https://fr.wikipedia.org/wiki/Lien_mort) de façon pérenne. Le fait de ne pas recourir à une maintenance automatique des liens notamment rend les données moins dépendantes d'une solution logicielle en particulier.
 :::
 
-## Créer des fiches
+### Créer des fiches via Cosma
+
+Cosma inclut plusieurs commandes qui permettent de créer rapidement des fiches en générant automatiquement leur en-tête.
 
 ::: important
-Pour créer des fiches, il faut un fichier de configuration avec le paramètre `files_origin` correctement renseigné.
+Ces commandes ne fonctionnent que pour une source de données de type `directory` (fichiers Markdown).
+
+Ces commandes requièrent un fichier de configuration avec le paramètre `files_origin` correctement renseigné. Cela peut être soit un fichier `config.yml` présent dans le répertoire courant, soit un projet indiqué via l'option `-p/--project`.
 :::
 
-### `record` : créer une fiche (mode formulaire)
+#### `record` : créer une fiche (mode formulaire)
 
 ```
 cosma record
 cosma r
+cosma record --project <nom>
 ```
 
 Cette commande permet de créer une fiche à la manière d'un formulaire. Une fois la commande lancée, le logiciel demande successivement de saisir un titre, un ou plusieurs types, et un ou plusieurs mots clés. Seul le titre est obligatoire.
 
-### `autorecord` : créer une fiche (mode *one-liner*)
+#### `autorecord` : créer une fiche (mode *one-liner*)
 
 ```
-cosma autorecord <titre> <type> <mots-clés>
+cosma autorecord <titre> <types> <mots-clés>
 cosma a <titre> <type> <mots-clés>
+cosma autorecord <titre> <types> <mots-clés> --project <nom>
 ```
 
 Cette commande permet de créer une fiche en une seule saisie. Seul le titre est obligatoire. Si vous saisissez plusieurs types ou plusieurs mots-clés, séparez-les par des virgules (les espaces suivant la virgule sont ignorés). Exemple : `type A, type B`, `mot-clé1, mot-clé2`.
 
-### `batch` : créer un lot de fiches
+#### `batch` : créer un lot de fiches
 
 ```
 cosma batch <chemin>
 cosma b <chemin>
+cosma batch <chemin> --project <nom>
 ```
 
 Cette commande permet de créer plusieurs fiches d'un coup. `<chemin>` correspond à l'emplacement d'un fichier au format JSON ou CSV décrivant les fiches à créer. Comme pour tous les autres modes de création de fiches, le titre (`title`) est obligatoire et les autres champs sont facultatifs.
@@ -561,7 +522,46 @@ Pour conserver ce fonctionnement sans risquer de générer des identifiants en d
 Du fait de ce fonctionnement, il est possible de créer par lot jusqu'à 913 599 fiches par jour et par répertoire avant d'être à cours d'identifiants.
 :::
 
-## `modelize` : créer un cosmoscope
+## Créer du contenu : données tabulaires (CSV)
+
+Cosma peut interpréter des données tabulaires contenues dans des fichiers CSV locaux ou en ligne. Il s'agit d'une alternative aux fichiers Markdown.
+
+Les données tabulaires destinées à Cosma doivent être contenues dans deux fichiers : un pour les nœuds et un autre pour les liens. Les emplacement de ces fichiers doivent être renseignés dans le fichier de configuration.
+
+::: note
+Vous pouvez générer des fichiers CSV via un tableur, et notamment depuis un tableur collaboratif en ligne. En fait, c'est parce que ce type d'outil existe que nous avons ajouté les fichiers CSV comme source de données alternative aux fichiers Markdown pour Cosma.
+
+Nous vous proposons [un modèle de tableur Google Sheets](https://docs.google.com/spreadsheets/d/1Wxm3lxgSnHaqsIVQVyuMR4TmiJwjDSr-KJWaKqNjz_o/) dont vous pouvez vous inspirer. Une feuille doit être consacrée aux nœuds et une autre aux liens. Cliquez sur Fichier › Partager › Publier sur le Web. Sélectionnez la feuille contenant les nœuds, puis changez le format « Page Web » en « Valeurs séparées par des virgules (.csv) ». Cliquez sur « Publier » puis copiez le lien de partage. Répétez l'opération pour la feuille contenant les liens (dans notre modèle, il s'agit de la feuille « Extraction » et pas « Liens »). Collez chaque lien dans le champ correspondant de la configuration du projet.
+:::
+
+Les en-têtes de colonnes des fichiers CSV doivent respecter les règles suivantes.
+
+### Métadonnées pour les nœuds
+
+Pour les nœuds, seule la métadonnée `title` (titre) est requise.
+
+nom | description
+----|------------
+`title` | Titre de la fiche (requis)
+`id` | Identifiant unique
+`type:<nom>` | Typologie de fiches. Chaque typologie contient un ou plusieurs types. Ex : une colonne peut être appelée `type:primaire` et contenir des types comme `personne`, `œuvre`, `institution` ; une autre colonne peut être appelée `type:secondaire`, avec d'autres types.
+`tag:<nom>` | Liste de mots-clés
+`meta:<nom>` | Métadonnée définie par l'utilisateur
+`time:begin`, `time:end` | Métadonnées utilisées par le mode chronologique
+`content` | Contenu textuel de la fiche
+`thumbnail` | Nom de fichier d'une image à inclure sous forme de vignette dans la fiche. Formats pris en charge : JPG, PNG. L'emplacement des fichiers images doit être renseigné via le paramètre `images_origin` dans le fichier de configuration.
+`reference` | Liste de clés de citation à inclure en bibliographie dans la fiche.
+
+### Métadonnées pour les liens
+
+nom | description
+----|------------
+`id` | Identifiant du lien (requis). Cet identifiant doit être unique.
+`source` | Identifiant de la fiche d'où part le lien (requis)
+`target` | Identifiant de la fiche que cible le lien (requis)
+`label` | Description du lien (optionnelle). Cette description s'affiche dans les infobulles de contexte des liens/rétroliens.
+
+## Créer un cosmoscope
 
 ```
 cosma modelize
@@ -825,7 +825,7 @@ Pour qu'un type apparaisse, il doit être déclaré dans le fichier de configura
 
 ### Mots-clés
 
-La liste des mots-clés située dans le panneau latéral gauche permet de mettre en évidence les fiches qui utilisent chaque mot-clé sélectionné. Sélectionner un mot-clé met en surbrillance l'étiquette des nœuds correspondants dans le graphe et restreint l'index aux fiches correspondantes. Vous pouvez activer simultanément plusieurs mots-clés. Pour désactiver un mot-clé, cliquez à nouveau sur le bouton correspondant.
+La liste des mots-clés située dans le panneau latéral gauche permet de filtrer le graphe. Sélectionner un mot-clé affiche les fiches qui contiennent ce mot-clé, dans le graphe et dans l'index. Vous pouvez activer simultanément plusieurs mots-clés. Pour désactiver un mot-clé, cliquez à nouveau sur le bouton correspondant.
 
 Pour qu'un mot-clé apparaisse, il suffit qu'il ait été déclaré dans l'en-tête YAML d'au moins une fiche avec le champ `tags` (ou `keywords`).
 
@@ -858,49 +858,41 @@ Dans le cas d'un cosmoscope publié sur le Web, il est possible de créer un lie
 
 ### Bibliothèques utilisées
 
-Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes :
+Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement utilise les bibliothèques suivantes :
 
-- [D3.js](https://d3js.org/) v4.13.0 (BSD 3-Clause) : Génération du graphe
-- [Nunjucks](https://mozilla.github.io/nunjucks/) v3.2.3 (BSD 2-Clause) : Génération du template du cosmoscope
-- [Js-yaml](https://github.com/nodeca/js-yaml) v4.1.0 (MIT License) : Lecture du fichier de configuration et écriture de l'en-tête YAML
-- [Js-yaml-front-matter](https://github.com/dworthen/js-yaml-front-matter) v4.1.1 (MIT License) : Lecture de l'en-tête YAML des fichiers Markdown
-- [Markdown-it](https://github.com/markdown-it/markdown-it) v12.3.0 (MIT License) : Conversion Markdown → HTML
-- [Markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) v4.0.0  (MIT License) : Traitement des hyperliens Markdown au sein des fiches
-- [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.62 (CPAL et AGPL) : Conversion des clés de citation
-- [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0) : Moteur de recherche
+- Zettlr/citr : 1.2.2
+- Axios : 0.27.2
+- Citeproc : 2.4.62
+- Csv-parse : 5.3.0
+- D3 : 4.13.0
+- D3-array : 2.12.1
+- D3-scale : 3.3.0
+- Fuse.js : 6.6.2
+- Glob : 7.2.0
+- Graphology : 0.25.1
+- Graphology-traversal : 0.3.1
+- Hotkeys-js : 3.10.0
+- Markdown-it : 13.0.1
+- Markdown-it-attrs : 4.1.4
+- Nunjucks : 3.2.3
+- Slugify : 1.6.5
+- Yaml : 2.2.1
+- Babel/core : 7.20.5
+- Babel/preset-env : 7.20.2
+- Faker-js/faker : 7.5.0
+- Babel-loader : 9.1.0
+- Chai : 4.3.6
+- Chai-fs : 2.0.0
+- Cypress : 10.9.0
+- Mocha : 10.0.0
+- Prettier : 2.8.0
+- Webpack : 5.74.0
+- Webpack-cli : 4.10.0
+- Webpack-dev-server : 4.11.1
 
 ## Changelog
 
-### v2-beta-4
-
-#### Bugs résolus
-
-- La syntaxe alternative pour les liens fonctionne vraiment correctement quels que soient les caractères utilisés pour le texte (correction de la v2-beta-3, qui ne réglait pas complètement le problème).
-
-#### Améliorations
-
-- En cas de problème avec la lecture de données au format CSV, le rapport d'erreur inclut un message informatif.
-
-### v2-beta-3
-
-#### Bugs résolus
-
-- La syntaxe alternative pour les liens fonctionne correctement quels que soient les caractères utilisés pour le texte (ticket #34).
-
-### v2-beta-2
-
-#### Améliorations
-
-- L'enregistrement automatique des cosmoscopes se fait dans un sous-répertoire `history`, soit dans le répertoire de données utilisateur pour les configurations globales, soit dans le même répertoire que la configuration locale pour cette dernière.
-
-#### Bugs résolus
-
-- Le chemin d'exécution sur Windows est correctement trouvé, ce qui permet la bonne exécution de l'application.
-- Le répertoire de données utilisateur se crée correctement sur Windows.
-- Le dossier `logs` contenant les rapports d'erreurs se crée correctement.
-- Les titres de fiches contenant seulement une date au format YYYY-MM-DD sont interprétés correctement.
-
-### v2-beta-1
+### v2.0.0
 
 #### Ajouts
 
@@ -923,12 +915,16 @@ Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe
 - Le rapport d'erreurs et d'avertissements est plus informatif
 - Les mots-clés au sommet des fiches dans le cosmoscope ne débordent plus de la mise en page
 - Cosma lit désormais les répertoires de fiches de manière récursive (ticket [#4](https://github.com/graphlab-fr/cosma/issues/4))
+- L'enregistrement automatique des cosmoscopes se fait dans un sous-répertoire `history`, soit dans le répertoire de données utilisateur pour les configurations globales, soit dans le même répertoire que la configuration locale pour cette dernière.
 
 #### Bugs résolus
 
 - Les infobulles de contexte des liens/rétroliens mettent correctement en évidence la fiche cible (ticket [#23](https://github.com/graphlab-fr/cosma/issues/23))
-- Les espaces dans les noms de fichiers générés par Cosma sont correctement remplacés par des tirets
 
 #### Bugs connus
 
-- Le traitement des citations échoue parfois dans les infobulles de contexte des rétroliens
+- Les citations sont traitées dans les infobulles des liens mais pas celles des rétroliens
+- Les retours chariot Windows (CR LF) ne sont pas correctement interprétés
+- L'exécution de la commande `modelize` ne s'interrompt pas lorsque les données sont issues de fichiers CSV en ligne
+- Si l'identifiant d'une fiche n'est pas une suite de chiffres, les liens vers cette fiche ne fonctionnent pas
+- Les liens vers des fiches dont l'identifiant contient des espaces ne sont pas rendus correctement dans le corps des fiches

@@ -155,9 +155,9 @@ Cosma recognises and uses the following four fields:
 
 `id`
 : Mandatory.
-: Unique identifier of the record. Must be a unique number. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
+: Unique identifier of the record. Must be a unique string. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
-`type`
+`type` or `types`
 : Optional.
 : Record type. A record can have one or more types. If the `type` field is not specified or its value does not match one of the types declared in the configuration, Cosma will interpret the type of the record as `undefined`.
 
@@ -259,7 +259,7 @@ Person D wrote against [[opponent:20201209111625|person C]].
 
 To be correctly interpreted by Cosma, each record must have a unique identifier. This identifier serves as a target for links between records.
 
-**The identifier must contain only numbers.**
+**The identifier must be a unique string.**
 
 By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
