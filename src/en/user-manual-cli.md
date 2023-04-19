@@ -1,9 +1,9 @@
 ---
 title: User Manual (CLI)
-version: CLI v2.0.0-beta-4
+version: CLI v2.0.0
 date: Last Modified
 description: >-
-  User manual for Cosma CLI v2 beta.
+  User manual for Cosma CLI.
 lang: en
 layout: doc
 tags: user
@@ -266,50 +266,6 @@ devtools: false
 lang: en
 ```
 
-## Create content: tabular data (CSV)
-
-When the data source is of type `csv` or `online` (tabular data located in local or online files), the data must comply with the following rules.
-
-### Data files: nodes and links
-
-Tabular data for Cosma must be contained in two files: one for nodes and one for links. The names of these files must be specified in the configuration file.
-
-type of data source | corresponding parameter
----|---
-nodes (local CSV file) | `nodes_origin`
-links (local CSV file) | `links_origin`
-nodes (online CSV file) | `nodes_online`
-links (online CSV file) | `links_online`
-
-### Metadata (column headers)
-
-Data files must contain column headers that correspond to the metadata used by Cosma.
-
-#### Metadata for nodes
-
-For nodes, only the `title` metadata is required.
-
-name | description
-----|------------
-`title` | Title (required)
-`id` | Unique identifier
-`type:<name>` | Record typology. Each typology contains one or more types. For example, one column may be called `type:primary` and contain types like `person`, `work`, `institution`; another column may be called `type:secondary`, with other types.
-`tag:<name>` | Keyword list
-`meta:<name>` | User-defined metadata
-`time:begin`, `time:end` | Metadata used by the chronological mode
-`content` | Textual content of the record
-`thumbnail` | File name of an image to include as a thumbnail in the record. Supported formats: JPG, PNG. The location of the image files must be specified via the `images_origin` parameter in the configuration file.
-`reference` | List of citation keys to include in the bibliography of the record.
-
-#### Metadata for links
-
-name | description
-----|------------
-`id` | Link identifier (required)
-`source` | Identifier of the record from which the link originates (required)
-`target` | Identifier of the record that the link targets (required)
-`label` | Description of the link (optional). This description is displayed in the context tooltips of the links.
-
 ## Creating content: text files (Markdown)
 
 When the data source is set on `directory` (Markdown file directory), the data must comply with the following rules:
@@ -321,7 +277,7 @@ When the data source is set on `directory` (Markdown file directory), the data m
 The following subsections explain these rules in detail.
 
 ::: note
-This combination of writing standards combines several textual cultures: documentation (enriching and indexing content with metadata); wikis (interrelating documents); the Zettelkasten method (organising one's notes); academic writing with Pandoc (using plain text as a source for exporting in various formats).
+This combination of writing standards combines several textual cultures: documentation (enriching and indexing content with metadata); wikis (interrelating documents); index cards, Zettelkasten (organising one's notes); academic writing with Pandoc (using plain text as a source for exporting in various formats).
 
 Therefore, Cosma works particularly well when used in tandem with writing environments that also adopt this approach, such as [Zettlr](https://zettlr.com) or the [Foam](https://foambubble.github.io/foam/) extension for Visual Studio Code and VSCodium.
 :::
@@ -336,7 +292,7 @@ Example:
 ---
 title: Title of the record
 id: 20201209111625
-type:
+types:
 - undefined
 tags:
 - mot-clé 1
@@ -382,7 +338,7 @@ Cosma recognises and uses the following four fields:
 : Mandatory.
 : Unique identifier of the record. Must be a unique number. By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
-`type`
+`type` or `types`
 : Optional.
 : Record types. A record can have more than one type. If the `type` field is not specified or its value does not match one of the types declared in the configuration, Cosma will interpret the type of the record as `undefined`.
 
@@ -478,7 +434,7 @@ If you do not use the alternative syntax, you can still improve the readability 
 
 To be correctly interpreted by Cosma, each record must have a unique identifier. This identifier serves as a target for links between records.
 
-**The identifier must be a unique number.**
+**The identifier must be a unique string.**
 
 By default, Cosma generates 14-digit identifiers in the form of a timestamp (year, month, day, hours, minutes and seconds). This is inspired by Zettelkasten note-taking applications such as [The Archive](https://zettelkasten.de/the-archive/) and [Zettlr](https://www.zettlr.com).
 
@@ -488,10 +444,14 @@ We plan to eventually allow the user to define an identifier pattern of their ch
 Many interrelated note-taking applications use file names as targets for links between files. They maintain links automatically when file names are changed. By choosing to use unique identifiers instead, we have designed Cosma with a more traditional, stricter, WWW-like approach. We believe this is the easiest way to avoid [link rot](https://en.wikipedia.org/wiki/Link_rot) in a sustainable way. Avoiding the reliance on automatic link maintenance is especially important if you wish to make your data less dependent on specific applications.
 :::
 
-## Creating records
+### Creating records with Cosma
+
+Cosma includes several commands that allow you to quickly create records with automatically generated YAML headers.
 
 ::: important
-Creating files requires a configuration file with `files_origin` set to a valid path.
+These commands only work when `select_origin` is set to `directory` (i.e. for Markdown files).
+
+Creating files requires a configuration file with `files_origin` set to a valid path. This can either be a `config.yml` file in the current working directory, or a project indicated by adding the `-p/--projects` option.
 :::
 
 ### `record` : create a record (“form” mode)
@@ -499,6 +459,7 @@ Creating files requires a configuration file with `files_origin` set to a valid 
 ```
 cosma record
 cosma r
+cosma record --project <name>
 ```
 
 This command allows you to create a record in the manner of a form. Once the command is launched, the software prompts you for a title, one or several types, and one or several keywords. Only the title is required.
@@ -508,6 +469,7 @@ This command allows you to create a record in the manner of a form. Once the com
 ```
 cosma autorecord <title> <type> <keywords>
 cosma a <title> <type> <keywords>
+cosma autorecord <title> <type> <keywords> --project <name>
 ```
 
 This command allows you to create a record with a single input. Only the title is required. If you enter multiple types or multiple keywords, separate them with commas (spaces after the comma are ignored). Example: `type A, type B`, `keyword1, keyword2`.
@@ -517,6 +479,7 @@ This command allows you to create a record with a single input. Only the title i
 ```
 cosma batch <path>
 cosma b <path>
+cosma batch <path> --project <name>
 ```
 
 This command allows you to create several records at once. `<path>` corresponds to the location of a file in JSON or CSV format describing the records to be created. As with all other record creation modes, the title is mandatory and the other fields are optional.
@@ -562,6 +525,45 @@ To prevent generating duplicate identifiers, the batch creation mode generates i
 
 Because of this operation, it is possible to create up to 913,599 records per day and per directory in batch mode before running out of identifiers.
 :::
+
+## Creating content: tabular data (CSV)
+
+Cosma can interpret tabular data contained in local or online CSV files. This is an alternative to using Markdown files.
+
+Tabular data for Cosma must be contained in two files: one for nodes and one for links. The locations of these files must be specified in the configuration file.
+
+::: note
+You can generate CSV files with a spreadsheet program. In fact, it is precisely because online collaborative spreadsheet programs such as Google Sheets exist that we have added CSV support to Cosma: they provide a cheap and efficient way to set up collective knowledge work.
+
+We offer [a Google Sheets template](https://docs.google.com/spreadsheets/d/1Wxm3lxgSnHaqsIVQVyuMR4TmiJwjDSr-KJWaKqNjz_o/) for you to use as a guide. One sheet should be dedicated to nodes and another to links. Click on File › Share › Publish to Web. Select the sheet containing the nodes, then change the format from "Web Page" to "Comma Separated Values (.csv)". Click "Publish" and copy the share link. Repeat the operation for the sheet containing the links (in our template, this is the "Extraction" sheet and not the "Links" sheet). Paste each link in the corresponding field of the project configuration.
+:::
+
+The column headers of the CSV files must comply with the following rules.
+
+### Metadata for nodes
+
+For nodes, only the `title` metadata is required.
+
+name | description
+----|------------
+`title` | Title (required)
+`id` | Unique identifier
+`type:<name>` | Record typology. Each typology contains one or more types. For example, one column may be called `type:primary` and contain types like `person`, `work`, `institution`; another column may be called `type:secondary`, with other types.
+`tag:<name>` | Keyword list
+`meta:<name>` | User-defined metadata
+`time:begin`, `time:end` | Metadata used by the chronological mode
+`content` | Textual content of the record
+`thumbnail` | File name of an image to include as a thumbnail in the record. Supported formats: JPG, PNG. The location of the image files must be specified via the `images_origin` parameter in the configuration file.
+`reference` | List of citation keys to include in the bibliography of the record.
+
+### Metadata for links
+
+name | description
+----|------------
+`id` | Link identifier (required)
+`source` | Identifier of the record from which the link originates (required)
+`target` | Identifier of the record that the link targets (required)
+`label` | Description of the link (optional). This description is displayed in the context tooltips of the links.
 
 ## `modelize`: creating a cosmoscope
 
@@ -815,9 +817,9 @@ For a type to appear in this list, it must be declared in the configuration file
 
 ### Filtering by keywords
 
-The list of keywords in Menu allows you to highlight records that use the selected keywords. Selecting a keyword highlights the label of the corresponding nodes in the graph and restricts the index to the corresponding records. You can activate several keywords simultaneously. To deactivate a keyword, click the corresponding button again.
+The list of keywords located in the left side panel allows you to filter the graph. Selecting a keyword filters the graph and the index to display only the records that contain this keyword. You can activate several keywords simultaneously. To deactivate a keyword, click again on the corresponding button.
 
-For a keyword to appear, it must have been declared in the `tags` field of the YAML header of at least one record.
+For a keyword to appear, it must have been declared in the `tags` (or `keywords`) field of the YAML header of at least one record.
 
 ### Index
 
@@ -852,51 +854,41 @@ In the case of a cosmoscope published on the Web, it is possible to link directl
 
 ### Dependencies
 
-To improve the maintainability and readability of the source code, the development team resorted to the following libraries:
+To improve the maintainability and readability of the source code, the development team uses the following libraries:
 
-- [D3.js](https://d3js.org/) v4.13.0 (BSD 3-Clause) : Generating the graph
-- [Nunjucks](https://mozilla.github.io/nunjucks/) v3.2.3 (BSD 2-Clause) : Generating the cosmoscope template
-- [Js-yaml](https://github.com/nodeca/js-yaml) v4.1.0 (MIT License) : Reading the configuration file and writing the YAML header
-- [Js-yaml-front-matter](https://github.com/dworthen/js-yaml-front-matter) v4.1.1 (MIT License): Reading the YAML header of Markdown files
-- [Markdown-it](https://github.com/markdown-it/markdown-it) v12.3.0 (MIT License): Converting Markdown to HTML
-- [Markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) v4.0.0 (MIT License): Handling Markdown hyperlinks within records
-- [Citeproc-js](https://github.com/Juris-M/citeproc-js) v2.4.62 (CPAL and AGPL): Converting citation keys
-- [Fuse.js](https://fusejs.io/) v6.4.6 (Apache License 2.0): Search engine
+- Zettlr/citr : 1.2.2
+- Axios : 0.27.2
+- Citeproc : 2.4.62
+- Csv-parse : 5.3.0
+- D3 : 4.13.0
+- D3-array : 2.12.1
+- D3-scale : 3.3.0
+- Fuse.js : 6.6.2
+- Glob : 7.2.0
+- Graphology : 0.25.1
+- Graphology-traversal : 0.3.1
+- Hotkeys-js : 3.10.0
+- Markdown-it : 13.0.1
+- Markdown-it-attrs : 4.1.4
+- Nunjucks : 3.2.3
+- Slugify : 1.6.5
+- Yaml : 2.2.1
+- Babel/core : 7.20.5
+- Babel/preset-env : 7.20.2
+- Faker-js/faker : 7.5.0
+- Babel-loader : 9.1.0
+- Chai : 4.3.6
+- Chai-fs : 2.0.0
+- Cypress : 10.9.0
+- Mocha : 10.0.0
+- Prettier : 2.8.0
+- Webpack : 5.74.0
+- Webpack-cli : 4.10.0
+- Webpack-dev-server : 4.11.1
 
 ## Changelog
 
-### v2-beta-4
-
-#### Bugs solved
-
-- Alternative syntax for links should now truly work with all characters (v2-beta-3 did not fix this completely).
-
-#### Improvements
-
-- Issues with parsing CSV data are logged in an informative way.
-
-### v2-beta-3
-
-#### Fixed bugs
-
-- Alternative syntax for links works with all characters (e.g. accented letters).
-
-### v2-beta-2
-
-#### Improvements
-
-- When `history: true`, cosmoscopes are saved in a `history` subdirectory, either in the user data directory for global configurations, or in the same directory as the local configuration.
-
-#### Fixed bugs
-
-- Windows: The execution path is located correctly.
-- Windows: The user data directory is created correctly.
-- The `logs` directory is created correctly.
-- Record titles containing only a date in the YYYY-MM-DD format are interpreted correctly.
-
-### v2-beta-1
-
-#### Additions
+### v2.0.0
 
 - Manage multiple configurations (global and local)
 - Use alternative syntax for links
@@ -917,12 +909,16 @@ To improve the maintainability and readability of the source code, the developme
 - The error and warning report is more informative
 - Keywords at the top of cards in the cosmoscope no longer overflow the layout
 - Cosma now reads directories recursively (issue [#4](https://github.com/graphlab-fr/cosma/issues/4))
+- When `history: true`, cosmoscopes are saved in a `history` subdirectory, either in the user data directory for global configurations, or in the same directory as the local configuration.
 
 #### Fixed bugs
 
 - Link/backlink context tooltips now correctly highlight the target record (issue [#23](https://github.com/graphlab-fr/cosma/issues/23))
-- Spaces in file names generated by Cosma are correctly replaced by dashes
 
 #### Known bugs
 
-- Backlink context tooltips may fail to render citations properly
+- Citations are processed in link context tooltips but not in backlink context tooltips
+- Windows style carriage return and line feeds hidden characters (CR LF) are not parsed correctly
+- When the data comes from online CSV files, the `modelize` command does not terminate after generating the cosmoscope
+- If a record's identifier is not a string of numbers, links to that record do not work
+- Links to records with spaces in their identifier are not rendered correctly in the record's body
