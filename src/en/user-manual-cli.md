@@ -28,7 +28,7 @@ npm install @graphlab-fr/cosma -g
 If you want to install Cosma CLI as a dependency of a NodeJS project, use the command below. The software can then be used by running `./node_modules/.bin/cosma` from the root of the project.
 
 ```
-npm install @graphlab-en/cosma
+npm install @graphlab-fr/cosma
 ```
 
 ### Upgrading
